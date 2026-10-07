@@ -127,16 +127,19 @@ var Icon = function Icon(_ref) {
     size = _ref$size === void 0 ? 16 : _ref$size,
     color = _ref.color;
   useEffect(function () {
-    if (window.lucide) window.lucide.createIcons();
-  }, [name]);
+    if (window.lucide) {
+      try { window.lucide.createIcons(); } catch(e) {}
+    }
+  });
   return /*#__PURE__*/React.createElement("i", {
     "data-lucide": name,
     style: {
       width: size,
       height: size,
       color: color || "inherit",
-      display: "block",
-      flexShrink: 0
+      display: "inline-block",
+      flexShrink: 0,
+      verticalAlign: "middle"
     }
   });
 };
@@ -324,9 +327,10 @@ function CadastroPublico(_ref2) {
     src: config.logoUrl || LOGO_URL,
     alt: "",
     style: {
-      width: 56,
-      height: 56,
-      objectFit: "contain"
+      width: 80,
+      height: 80,
+      objectFit: "cover",
+      borderRadius: "50%"
     },
     onError: function onError(e) {
       return e.target.style.display = "none";
@@ -868,9 +872,10 @@ function MesaSom(_ref6) {
     src: config.logoUrl || LOGO_URL,
     alt: "",
     style: {
-      width: 24,
-      height: 24,
-      objectFit: "contain"
+      width: 32,
+      height: 32,
+      objectFit: "cover",
+      borderRadius: "50%"
     },
     onError: function onError(e) {
       return e.target.style.display = "none";
@@ -1223,9 +1228,10 @@ function Login(_ref7) {
     src: config.logoUrl || LOGO_URL,
     alt: "Logo",
     style: {
-      width: 64,
-      height: 64,
-      objectFit: "contain"
+      width: 72,
+      height: 72,
+      objectFit: "cover",
+      borderRadius: "50%"
     },
     onError: function onError(e) {
       return e.target.style.display = "none";
@@ -2881,7 +2887,8 @@ function Configuracoes(_ref1) {
     style: {
       width: 36,
       height: 36,
-      objectFit: "contain"
+      objectFit: "cover",
+      borderRadius: "50%"
     },
     onError: function onError(e) {
       return e.target.style.display = "none";
@@ -8452,7 +8459,8 @@ function CheckinPublico(_ref41) {
     style: {
       width: 44,
       height: 44,
-      objectFit: "contain"
+      objectFit: "cover",
+      borderRadius: "50%"
     },
     onError: function onError(e) {
       return e.target.style.display = "none";
@@ -11754,7 +11762,8 @@ function App() {
     style: {
       width: 28,
       height: 28,
-      objectFit: "contain"
+      objectFit: "cover",
+      borderRadius: "50%"
     },
     onError: function onError(e) {
       return e.target.style.display = "none";
@@ -11880,7 +11889,8 @@ function App() {
     style: {
       width: 22,
       height: 22,
-      objectFit: "contain"
+      objectFit: "cover",
+      borderRadius: "50%"
     },
     onError: function onError(e) {
       return e.target.style.display = "none";
@@ -11958,4 +11968,6 @@ function App() {
     }), item.label);
   })));
 }
-ReactDOM.render(React.createElement(App), document.getElementById("root"));
+ReactDOM.render(React.createElement(App), document.getElementById("root"), function() {
+  setTimeout(function() { if(window.lucide) window.lucide.createIcons(); }, 100);
+});
