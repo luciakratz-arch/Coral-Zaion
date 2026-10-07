@@ -33,7 +33,7 @@ if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 var COR = "#B8860B";
 var COR_FUNDO = "#0F0F0F";
-var LOGO_URL = "https://raw.githubusercontent.com/luciakratz-arch/coral-zaion/main/logo.png";
+var LOGO_URL = "https://raw.githubusercontent.com/luciakratz-arch/Coral-Zaion/main/logo.png";
 var MONTHS_PT = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
 var MONTHS_SHORT = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
 var NAIPES = ["Soprano", "Contralto", "Mezzo-soprano", "Alto", "Tenor", "Barítono", "Baixo"];
@@ -233,7 +233,7 @@ function CadastroPublico(_ref2) {
   var inp = {
     width: "100%",
     padding: "12px 14px",
-    border: "1px solid #E8E0E0",
+    border: "1px solid #444",
     borderRadius: 10,
     fontSize: 14,
     outline: "none",
@@ -268,7 +268,7 @@ function CadastroPublico(_ref2) {
     style: {
       width: 80,
       height: 80,
-      background: "#E8F5E9",
+      background: "#0D2010",
       borderRadius: "50%",
       display: "flex",
       alignItems: "center",
@@ -1172,7 +1172,7 @@ function Login(_ref7) {
     inp: {
       width: "100%",
       padding: "12px 16px",
-      border: "1px solid #E8E0E0",
+      border: "1px solid #444",
       borderRadius: 10,
       fontSize: 15,
       outline: "none",
@@ -2019,13 +2019,13 @@ function ModalIntegrante(_ref9) {
   var inp = {
     width: "100%",
     padding: "11px 14px",
-    border: "1px solid #E8E0E0",
+    border: "1px solid #444",
     borderRadius: 10,
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
     color: "#F0F0F0",
-    background: "#FAFAFA"
+    background: "#1A1A1A"
   };
   var lbl = {
     display: "block",
@@ -2055,7 +2055,7 @@ function ModalIntegrante(_ref9) {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#FAFAFA",
+      background: "#1A1A1A",
       borderRadius: "20px 20px 0 0",
       padding: "24px 20px",
       width: "100%",
@@ -2080,7 +2080,7 @@ function ModalIntegrante(_ref9) {
   }, membro ? "Editar Integrante" : "Adicionar Integrante"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
     style: {
-      background: "#EEE",
+      background: "#333",
       border: "none",
       borderRadius: 8,
       width: 32,
@@ -2283,7 +2283,7 @@ function ModalIntegrante(_ref9) {
     onClick: excluir,
     style: {
       padding: "12px 16px",
-      background: "#FFF0F0",
+      background: "#2A1515",
       color: "#B8860B",
       border: "1px solid #F5DADA",
       borderRadius: 10,
@@ -2297,7 +2297,7 @@ function ModalIntegrante(_ref9) {
     style: {
       flex: 1,
       padding: "13px",
-      background: "#F0EAE8",
+      background: "#222",
       color: "#aaa",
       border: "none",
       borderRadius: 10,
@@ -2495,7 +2495,7 @@ function Integrantes(_ref0) {
       gridTemplateColumns: "2fr 1fr 1fr 90px 90px 80px",
       padding: "10px 16px",
       borderBottom: "1px solid #0F0F0F",
-      background: "#FAFAFA"
+      background: "#222"
     }
   }, ["Nome", "Função", "Naipe", "Status", "Entrada", "Ações"].map(function (h) {
     return /*#__PURE__*/React.createElement("div", {
@@ -2639,7 +2639,7 @@ function Configuracoes(_ref1) {
   var inp = {
     width: "100%",
     padding: "11px 14px",
-    border: "1px solid #E8E0E0",
+    border: "1px solid #444",
     borderRadius: 10,
     fontSize: 14,
     outline: "none",
@@ -3136,13 +3136,13 @@ function ModalEvento(_ref10) {
   var inp = {
     width: "100%",
     padding: "11px 14px",
-    border: "1px solid #E8E0E0",
+    border: "1px solid #444",
     borderRadius: 10,
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
     color: "#F0F0F0",
-    background: "#FAFAFA"
+    background: "#1A1A1A"
   };
   var lbl = {
     display: "block",
@@ -3172,7 +3172,7 @@ function ModalEvento(_ref10) {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#FAFAFA",
+      background: "#1A1A1A",
       borderRadius: "20px 20px 0 0",
       padding: "24px 20px",
       width: "100%",
@@ -3197,7 +3197,7 @@ function ModalEvento(_ref10) {
   }, evento ? "Editar Evento" : "Adicionar Evento"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
     style: {
-      background: "#EEE",
+      background: "#333",
       border: "none",
       borderRadius: 8,
       width: 32,
@@ -3396,7 +3396,7 @@ function ModalEvento(_ref10) {
         alignItems: "center",
         justifyContent: "space-between",
         padding: "8px 12px",
-        background: "#F9F5F5",
+        background: "#222",
         borderRadius: 8,
         marginBottom: 6
       }
@@ -3528,7 +3528,7 @@ function ModalEvento(_ref10) {
     onClick: excluir,
     style: {
       padding: "12px 16px",
-      background: "#FFF0F0",
+      background: "#2A1515",
       color: "#B8860B",
       border: "1px solid #F5DADA",
       borderRadius: 10,
@@ -3542,7 +3542,7 @@ function ModalEvento(_ref10) {
     style: {
       flex: 1,
       padding: "13px",
-      background: "#F0EAE8",
+      background: "#222",
       color: "#aaa",
       border: "none",
       borderRadius: 10,
@@ -3714,7 +3714,7 @@ function ModalExcluirEvento(_ref11) {
     onClick: excluirFuturos,
     disabled: excluindo,
     style: _objectSpread(_objectSpread({}, btnBase), {}, {
-      background: "#FFF3E0",
+      background: "#2A1E10",
       color: "#E65100"
     })
   }, "Este e os futuros"), /*#__PURE__*/React.createElement("button", {
@@ -3967,7 +3967,7 @@ function Agenda(_ref12) {
         fontSize: 11,
         padding: "2px 8px",
         borderRadius: 10,
-        background: "#F0EAE8",
+        background: "#222",
         color: "#bbb",
         fontWeight: 600
       }
@@ -4050,7 +4050,7 @@ function Agenda(_ref12) {
       style: {
         width: 32,
         height: 32,
-        background: "#FFF0F0",
+        background: "#2A1515",
         border: "1px solid #F5DADA",
         borderRadius: 8,
         cursor: "pointer",
@@ -4162,13 +4162,13 @@ function ModalAviso(_ref13) {
   var inp = {
     width: "100%",
     padding: "11px 14px",
-    border: "1px solid #E8E0E0",
+    border: "1px solid #444",
     borderRadius: 10,
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
     color: "#F0F0F0",
-    background: "#FAFAFA"
+    background: "#1A1A1A"
   };
   var lbl = {
     display: "block",
@@ -4217,7 +4217,7 @@ function ModalAviso(_ref13) {
   }, aviso ? "Editar Aviso" : "Novo Aviso"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
     style: {
-      background: "#EEE",
+      background: "#333",
       border: "none",
       borderRadius: 8,
       width: 32,
@@ -4303,7 +4303,7 @@ function ModalAviso(_ref13) {
     style: {
       flex: 1,
       padding: "13px",
-      background: "#F0EAE8",
+      background: "#222",
       color: "#aaa",
       border: "none",
       borderRadius: 10,
@@ -4443,7 +4443,7 @@ function Avisos(_ref14) {
     color: "#fff"
   }), " Novo Aviso")), aniversarios.length > 0 && /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#FFFBEB",
+      background: "#222010",
       border: "1px solid #FDE68A",
       borderLeft: "3px solid #F59E0B",
       borderRadius: 12,
@@ -4795,13 +4795,13 @@ function ModalMusica(_ref15) {
   var inp = {
     width: "100%",
     padding: "10px 14px",
-    border: "1px solid #E8E0E0",
+    border: "1px solid #444",
     borderRadius: 10,
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
     color: "#F0F0F0",
-    background: "#FAFAFA"
+    background: "#1A1A1A"
   };
   var lbl = {
     display: "block",
@@ -4842,7 +4842,7 @@ function ModalMusica(_ref15) {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#FAFAFA",
+      background: "#1A1A1A",
       borderRadius: "20px 20px 0 0",
       padding: "24px 20px",
       width: "100%",
@@ -4867,7 +4867,7 @@ function ModalMusica(_ref15) {
   }, musica ? "Editar Música" : "Adicionar Música ao Repertório"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
     style: {
-      background: "#EEE",
+      background: "#333",
       border: "none",
       borderRadius: 8,
       width: 32,
@@ -5205,7 +5205,7 @@ function ModalMusica(_ref15) {
     onClick: excluir,
     style: {
       padding: "12px 16px",
-      background: "#FFF0F0",
+      background: "#2A1515",
       color: "#B8860B",
       border: "1px solid #F5DADA",
       borderRadius: 10,
@@ -5219,7 +5219,7 @@ function ModalMusica(_ref15) {
     style: {
       flex: 1,
       padding: "13px",
-      background: "#F0EAE8",
+      background: "#222",
       color: "#aaa",
       border: "none",
       borderRadius: 10,
@@ -5536,7 +5536,7 @@ function Repertorio(_ref16) {
         gap: 4,
         padding: "3px 8px",
         borderRadius: 10,
-        background: "#F5F5F5",
+        background: "#222",
         color: "#aaa",
         fontSize: 11,
         fontWeight: 600,
@@ -5724,13 +5724,13 @@ function ModalEstudo(_ref18) {
   var inp = {
     width: "100%",
     padding: "11px 14px",
-    border: "1px solid #E8E0E0",
+    border: "1px solid #444",
     borderRadius: 10,
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
     color: "#F0F0F0",
-    background: "#FAFAFA"
+    background: "#1A1A1A"
   };
   var lbl = {
     display: "block",
@@ -5754,7 +5754,7 @@ function ModalEstudo(_ref18) {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#FAFAFA",
+      background: "#1A1A1A",
       borderRadius: "20px 20px 0 0",
       padding: "24px 20px",
       width: "100%",
@@ -5779,7 +5779,7 @@ function ModalEstudo(_ref18) {
   }, estudo ? "Editar material" : "Adicionar material"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
     style: {
-      background: "#EEE",
+      background: "#333",
       border: "none",
       borderRadius: 8,
       width: 32,
@@ -5946,7 +5946,7 @@ function ModalEstudo(_ref18) {
     onClick: excluir,
     style: {
       padding: "12px 16px",
-      background: "#FFF0F0",
+      background: "#2A1515",
       color: "#B8860B",
       border: "1px solid #F5DADA",
       borderRadius: 10,
@@ -5960,7 +5960,7 @@ function ModalEstudo(_ref18) {
     style: {
       flex: 1,
       padding: "13px",
-      background: "#F0EAE8",
+      background: "#222",
       color: "#aaa",
       border: "none",
       borderRadius: 10,
@@ -6160,7 +6160,7 @@ function SalaEstudos(_ref19) {
         fontSize: 11,
         padding: "2px 8px",
         borderRadius: 10,
-        background: "#F5F5F5",
+        background: "#222",
         color: "#aaa",
         fontWeight: 600
       }
@@ -6219,7 +6219,7 @@ function SalaEstudos(_ref19) {
       style: {
         width: 32,
         height: 32,
-        background: "#F5F5F5",
+        background: "#222",
         border: "none",
         borderRadius: 8,
         cursor: "pointer",
@@ -6250,7 +6250,7 @@ function SalaEstudos(_ref19) {
       style: {
         width: 32,
         height: 32,
-        background: "#FFF0F0",
+        background: "#2A1515",
         border: "none",
         borderRadius: 8,
         cursor: "pointer",
@@ -6371,13 +6371,13 @@ function Apresentacao(_ref21) {
   };
   var inp = {
     padding: "10px 14px",
-    border: "1px solid #E8E0E0",
+    border: "1px solid #444",
     borderRadius: 10,
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
     color: "#F0F0F0",
-    background: "#FAFAFA"
+    background: "#1A1A1A"
   };
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -6710,7 +6710,7 @@ function Apresentacao(_ref21) {
   }) : /*#__PURE__*/React.createElement("div", {
     style: {
       padding: "20px",
-      background: "#F5F5F5",
+      background: "#222",
       borderRadius: 8,
       textAlign: "center",
       color: "#AAA",
@@ -6722,7 +6722,7 @@ function Apresentacao(_ref21) {
     style: {
       marginTop: 12,
       padding: "8px 12px",
-      background: "#F9F5F5",
+      background: "#222",
       borderRadius: 8,
       display: "flex",
       alignItems: "center",
@@ -6879,7 +6879,7 @@ function FrequenciaEventos(_ref24) {
           fontSize: 12,
           padding: "3px 10px",
           borderRadius: 20,
-          background: "#F0EAEA",
+          background: "#222",
           color: cor,
           fontWeight: 600
         }
@@ -7085,8 +7085,8 @@ function FrequenciaAcesso(_ref25) {
       display: "grid",
       gridTemplateColumns: "40px 1fr 80px 80px 1fr",
       padding: "8px 12px",
-      background: "#FAFAFA",
-      borderBottom: "1px solid #EEE"
+      background: "#222",
+      borderBottom: "1px solid #333"
     }
   }, ["#", "Corista", "Total", "Últ. 30 dias", "Último acesso"].map(function (h) {
     return /*#__PURE__*/React.createElement("div", {
@@ -7126,7 +7126,7 @@ function FrequenciaAcesso(_ref25) {
         display: "inline-block",
         padding: "2px 8px",
         borderRadius: 20,
-        background: "#E8F5E9",
+        background: "#0D2010",
         color: "#2E7D32",
         fontSize: 12,
         fontWeight: 700
@@ -7448,13 +7448,13 @@ function Relatorios(_ref32) {
   };
   var inp = {
     padding: "10px 14px",
-    border: "1px solid #E8E0E0",
+    border: "1px solid #444",
     borderRadius: 10,
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
     color: "#F0F0F0",
-    background: "#FAFAFA"
+    background: "#1A1A1A"
   };
   var lbl = {
     display: "block",
@@ -7468,13 +7468,13 @@ function Relatorios(_ref32) {
   var ta = {
     width: "100%",
     padding: "10px 14px",
-    border: "1px solid #E8E0E0",
+    border: "1px solid #444",
     borderRadius: 10,
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
     color: "#F0F0F0",
-    background: "#FAFAFA",
+    background: "#1A1A1A",
     resize: "vertical",
     minHeight: 80
   };
@@ -7667,7 +7667,7 @@ function Relatorios(_ref32) {
     }, qtd)), /*#__PURE__*/React.createElement("div", {
       style: {
         height: 8,
-        background: "#F0EAEA",
+        background: "#222",
         borderRadius: 4,
         overflow: "hidden"
       }
@@ -8146,7 +8146,7 @@ function Relatorios(_ref32) {
         fontSize: 11,
         padding: "2px 8px",
         borderRadius: 10,
-        background: "#F0EAEA",
+        background: "#222",
         color: cor,
         fontWeight: 600
       }
@@ -8365,7 +8365,7 @@ function CheckinPublico(_ref41) {
     style: {
       width: 72,
       height: 72,
-      background: "#E8F5E9",
+      background: "#0D2010",
       borderRadius: "50%",
       display: "flex",
       alignItems: "center",
@@ -8511,7 +8511,7 @@ function CheckinPublico(_ref41) {
     style: {
       width: "100%",
       padding: "12px 14px",
-      border: "1px solid #E8E0E0",
+      border: "1px solid #444",
       borderRadius: 10,
       fontSize: 14,
       outline: "none",
@@ -8743,13 +8743,13 @@ function Frequencia(_ref42) {
   };
   var inp = {
     padding: "10px 14px",
-    border: "1px solid #E8E0E0",
+    border: "1px solid #444",
     borderRadius: 10,
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
     color: "#F0F0F0",
-    background: "#FAFAFA"
+    background: "#1A1A1A"
   };
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -8857,7 +8857,7 @@ function Frequencia(_ref42) {
     onClick: encerrarSessao,
     style: {
       padding: "11px 16px",
-      background: "#FFF0F0",
+      background: "#2A1515",
       color: "#B8860B",
       border: "1px solid #F5DADA",
       borderRadius: 10,
@@ -8873,7 +8873,7 @@ function Frequencia(_ref42) {
       alignItems: "flex-start",
       flexWrap: "wrap",
       padding: "16px",
-      background: "#F9F5F5",
+      background: "#222",
       borderRadius: 10
     }
   }, /*#__PURE__*/React.createElement("div", {
@@ -9041,8 +9041,8 @@ function Frequencia(_ref42) {
       display: "grid",
       gridTemplateColumns: "40px 1fr 100px 1fr",
       padding: "8px 12px",
-      background: "#FAFAFA",
-      borderBottom: "1px solid #EEE"
+      background: "#222",
+      borderBottom: "1px solid #333"
     }
   }, ["#", "Nome", "Naipe", "Horário"].map(function (h) {
     return /*#__PURE__*/React.createElement("div", {
@@ -9233,13 +9233,13 @@ function Declaracao(_ref43) {
   };
   var inp = {
     padding: "10px 14px",
-    border: "1px solid #E8E0E0",
+    border: "1px solid #444",
     borderRadius: 10,
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
     color: "#F0F0F0",
-    background: "#FAFAFA"
+    background: "#1A1A1A"
   };
   var lbl = {
     display: "block",
@@ -10300,13 +10300,13 @@ function MinhaDeclaracao(_ref46) {
   };
   var inp = {
     padding: "10px 14px",
-    border: "1px solid #E8E0E0",
+    border: "1px solid #444",
     borderRadius: 10,
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
     color: "#F0F0F0",
-    background: "#FAFAFA"
+    background: "#1A1A1A"
   };
   var lbl = {
     display: "block",
@@ -10563,13 +10563,13 @@ function ModalNoticia(_ref47) {
   var inp = {
     width: "100%",
     padding: "11px 14px",
-    border: "1px solid #E8E0E0",
+    border: "1px solid #444",
     borderRadius: 10,
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
     color: "#F0F0F0",
-    background: "#FAFAFA"
+    background: "#1A1A1A"
   };
   var lbl = {
     display: "block",
@@ -10593,7 +10593,7 @@ function ModalNoticia(_ref47) {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#FAFAFA",
+      background: "#1A1A1A",
       borderRadius: "20px 20px 0 0",
       padding: "24px 20px",
       width: "100%",
@@ -10618,7 +10618,7 @@ function ModalNoticia(_ref47) {
   }, noticia ? "Editar Notícia" : "Nova Notícia"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
     style: {
-      background: "#EEE",
+      background: "#333",
       border: "none",
       borderRadius: 8,
       width: 32,
@@ -10722,7 +10722,7 @@ function ModalNoticia(_ref47) {
     onClick: excluir,
     style: {
       padding: "12px 16px",
-      background: "#FFF0F0",
+      background: "#2A1515",
       color: "#B8860B",
       border: "1px solid #F5DADA",
       borderRadius: 10,
@@ -10736,7 +10736,7 @@ function ModalNoticia(_ref47) {
     style: {
       flex: 1,
       padding: "13px",
-      background: "#F0EAE8",
+      background: "#222",
       color: "#aaa",
       border: "none",
       borderRadius: 10,
@@ -10953,13 +10953,13 @@ function AreaRH(_ref48) {
   }
   var inp = {
     padding: "10px 14px",
-    border: "1px solid #E8E0E0",
+    border: "1px solid #444",
     borderRadius: 10,
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
     color: "#F0F0F0",
-    background: "#FAFAFA"
+    background: "#1A1A1A"
   };
   var lbl = {
     display: "block",
@@ -11196,7 +11196,7 @@ function AreaRH(_ref48) {
         fontSize: 12,
         padding: "2px 10px",
         borderRadius: 20,
-        background: "#E8F5E9",
+        background: "#0D2010",
         color: "#2E7D32",
         fontWeight: 700
       }
@@ -11205,7 +11205,7 @@ function AreaRH(_ref48) {
         fontSize: 12,
         padding: "2px 10px",
         borderRadius: 20,
-        background: "#FFF5F5",
+        background: "#2A1515",
         color: cor,
         fontWeight: 700
       }
@@ -11213,7 +11213,7 @@ function AreaRH(_ref48) {
   })), aniversarios.length > 0 && /*#__PURE__*/React.createElement("div", {
     style: _objectSpread(_objectSpread({}, card), {}, {
       borderLeft: "3px solid #E65100",
-      background: "#FFFBEB"
+      background: "#222010"
     })
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -11440,8 +11440,8 @@ function AreaRH(_ref48) {
       display: "grid",
       gridTemplateColumns: "1fr 1fr 100px 100px",
       padding: "10px 16px",
-      background: "#FAFAFA",
-      borderBottom: "1px solid #EEE"
+      background: "#222",
+      borderBottom: "1px solid #333"
     }
   }, ["Tipo", "Período", "Gerado em", "Por"].map(function (h) {
     return /*#__PURE__*/React.createElement("div", {
