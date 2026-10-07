@@ -1,0 +1,57 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0F0F0F;
+    color: #F0F0F0;
+    line-height: 1.5;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── DESKTOP: sidebar visível, header e nav mobile ocultos ── */
+@media (min-width: 768px) {
+    .sidebar-desktop { display: flex !important; }
+    .header-mobile   { display: none !important; }
+    .nav-mobile       { display: none !important; }
+    .main-content     { margin-left: 260px !important; padding-bottom: 0 !important; }
+}
+
+/* ── MOBILE: sidebar oculta, header e nav visíveis ── */
+@media (max-width: 767px) {
+    .sidebar-desktop { display: none !important; }
+    .header-mobile   { display: flex !important; }
+    .nav-mobile       { display: flex !important; }
+    .main-content     { margin-left: 0 !important; }
+}
+
+/* Scrollbar discreta */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+
+/* Modal overlay */
+.modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.65);
+    z-index: 300;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.modal-box {
+    background: #1A1A1A;
+    border-radius: 20px 20px 0 0;
+    padding: 24px 20px;
+    width: 100%;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow-y: auto;
+    color: #F0F0F0;
+}
