@@ -33,7 +33,7 @@ if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 var COR = "#B8860B";
 var COR_FUNDO = "#0F0F0F";
-var LOGO_URL = "https://raw.githubusercontent.com/luciakratz-arch/coral-zaion/main/unnamed.png";
+var LOGO_URL = "https://raw.githubusercontent.com/luciakratz-arch/coral-zaion/main/logo.png";
 var MONTHS_PT = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
 var MONTHS_SHORT = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
 var NAIPES = ["Soprano", "Contralto", "Mezzo-soprano", "Alto", "Tenor", "Barítono", "Baixo"];
@@ -974,12 +974,12 @@ function MesaSom(_ref6) {
   }, !tocando ? /*#__PURE__*/React.createElement("div", {
     style: {
       textAlign: "center",
-      color: "#444"
+      color: "#D0D0D0"
     }
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "music",
     size: 64,
-    color: "#333"
+    color: "#E0E0E0"
   }), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 16,
@@ -1864,7 +1864,7 @@ function Painel(_ref8) {
     return /*#__PURE__*/React.createElement("div", {
       key: a.id,
       style: _objectSpread(_objectSpread({}, card(a.urgente ? cor : "")), {}, {
-        background: a.urgente ? "#FFF5F5" : "#fff"
+        background: a.urgente ? "#3a1a1a" : "#1A1A1A"
       })
     }, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -2517,7 +2517,7 @@ function Integrantes(_ref0) {
         padding: "13px 16px",
         borderBottom: i < filtrados.length - 1 ? "1px solid #F9F5F5" : "none",
         alignItems: "center",
-        background: i % 2 === 0 ? "#fff" : "#FDFBFB"
+        background: i % 2 === 0 ? "#1A1A1A" : "#222"
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -4360,7 +4360,7 @@ function Avisos(_ref14) {
   var prioBg = {
     Urgente: "#FFF5F5",
     Alta: "#EFF6FF",
-    Normal: "#fff"
+    Normal: "#1A1A1A"
   };
   var prioIcon = {
     Urgente: "alert-circle",
@@ -4499,7 +4499,7 @@ function Avisos(_ref14) {
     var _a$createdAt2;
     var isAuto = a.tipo && a.tipo !== "manual";
     var borderColor = isAuto ? "#F59E0B" : prioColor[a.prioridade] || cor;
-    var bgColor = isAuto ? "#FFFBEB" : prioBg[a.prioridade] || "#fff";
+    var bgColor = isAuto ? "#2a2a10" : prioBg[a.prioridade] || "#1A1A1A";
     var iconName = isAuto ? "zap" : prioIcon[a.prioridade] || "megaphone";
     return /*#__PURE__*/React.createElement("div", {
       key: a.id,
@@ -5816,7 +5816,7 @@ function ModalEstudo(_ref18) {
         padding: "10px 16px",
         borderRadius: 10,
         border: "2px solid ".concat(form.tipo === t.key ? cor : "#EEE"),
-        background: form.tipo === t.key ? cor + "10" : "#fff",
+        background: form.tipo === t.key ? cor + "30" : "#222",
         cursor: "pointer",
         fontFamily: "inherit",
         minWidth: 70
@@ -5858,7 +5858,7 @@ function ModalEstudo(_ref18) {
         padding: "6px 14px",
         borderRadius: 20,
         border: "1px solid ".concat(form.categoria === c ? cor : "#EEE"),
-        background: form.categoria === c ? cor : "#fff",
+        background: form.categoria === c ? cor : "#222",
         color: form.categoria === c ? "#fff" : "#555",
         fontSize: 13,
         fontWeight: 600,
@@ -6076,7 +6076,7 @@ function SalaEstudos(_ref19) {
         padding: "6px 14px",
         borderRadius: 20,
         border: "1px solid ".concat(filtro === c ? cor : "#EEE"),
-        background: filtro === c ? cor : "#fff",
+        background: filtro === c ? cor : "#222",
         color: filtro === c ? "#fff" : "#555",
         fontSize: 13,
         fontWeight: 600,
@@ -9284,7 +9284,7 @@ function Declaracao(_ref43) {
         padding: "12px 16px",
         borderRadius: 10,
         border: "2px solid ".concat(tipo === t.key ? cor : "#EEE"),
-        background: tipo === t.key ? cor + "10" : "#fff",
+        background: tipo === t.key ? cor + "30" : "#222",
         cursor: "pointer",
         fontFamily: "inherit",
         fontWeight: tipo === t.key ? 700 : 500,
@@ -9692,7 +9692,7 @@ function PainelCorista(_ref45) {
   var prioBg = {
     Urgente: "#FFF5F5",
     Alta: "#EFF6FF",
-    Normal: "#fff"
+    Normal: "#1A1A1A"
   };
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -9739,7 +9739,7 @@ function PainelCorista(_ref45) {
     var _a$createdAt3;
     var isAuto = a.tipo && a.tipo !== "manual";
     var bc = isAuto ? "#F59E0B" : prioColor[a.prioridade] || cor;
-    var bg = isAuto ? "#FFFBEB" : prioBg[a.prioridade] || "#fff";
+    var bg = isAuto ? "#2a2a10" : prioBg[a.prioridade] || "#1A1A1A";
     return /*#__PURE__*/React.createElement("div", {
       key: a.id,
       style: _objectSpread(_objectSpread({}, card), {}, {
@@ -10216,7 +10216,7 @@ function PainelCorista(_ref45) {
         padding: "5px 12px",
         borderRadius: 20,
         border: "1px solid ".concat(conf === "vou" ? "#2E7D32" : "#EEE"),
-        background: conf === "vou" ? "#E8F5E9" : "#fff",
+        background: conf === "vou" ? "#1a3a1a" : "#222",
         color: conf === "vou" ? "#2E7D32" : "#888",
         fontSize: 12,
         fontWeight: 600,
@@ -10238,7 +10238,7 @@ function PainelCorista(_ref45) {
         padding: "5px 12px",
         borderRadius: 20,
         border: "1px solid ".concat(conf === "nao" ? cor : "#EEE"),
-        background: conf === "nao" ? "#FFF5F5" : "#fff",
+        background: conf === "nao" ? "#3a1a1a" : "#222",
         color: conf === "nao" ? cor : "#888",
         fontSize: 12,
         fontWeight: 600,
@@ -11454,7 +11454,7 @@ function AreaRH(_ref48) {
         padding: "12px 16px",
         borderBottom: i < relatorios.length - 1 ? "1px solid #F5F5F5" : "none",
         alignItems: "center",
-        background: i % 2 === 0 ? "#fff" : "#FDFBFB"
+        background: i % 2 === 0 ? "#1A1A1A" : "#222"
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
