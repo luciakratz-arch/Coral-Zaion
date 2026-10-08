@@ -1,130 +1,32 @@
-<!DOCTYPE html>
-<html lang="pt-BR" translate="no">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google" content="notranslate">
-    <title>Coral Zaion | Gestão Profissional</title>
-    <!-- PWA -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#B8860B">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Coral Zaion">
-    <link rel="apple-touch-icon" href="logo.png">
-    <script>
-      if('serviceWorker' in navigator){
-        window.addEventListener('load',function(){
-          navigator.serviceWorker.register('./sw.js')
-            .then(function(r){console.log('[SW] registrado',r.scope);})
-            .catch(function(e){console.log('[SW] erro',e);});
-        });
-      }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@0.462.0/dist/umd/lucide.min.js"></script>
-    <script>
-      // Re-criar ícones Lucide sempre que o React atualizar o DOM
-      window.addEventListener('load', function() {
-        var observer = new MutationObserver(function(mutations) {
-          var hasIcons = mutations.some(function(m) {
-            return Array.from(m.addedNodes).some(function(n) {
-              return n.nodeType === 1 && (n.hasAttribute && n.hasAttribute('data-lucide') || n.querySelector && n.querySelector('[data-lucide]'));
-            });
-          });
-          if (hasIcons && window.lucide) window.lucide.createIcons();
-        });
-        observer.observe(document.getElementById('root') || document.body, { childList: true, subtree: true });
-      });
-    </script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div id="root"></div>
-    <script src="app.js?v=1"></script>
+const CACHE_NAME = 'zaion-v3';
+const ASSETS = [
+  './',
+  './index.html',
+  './style.css',
+  './app.js',
+  './manifest.json',
+  './logo.png'
+];
 
-    <!-- Modal PWA -->
-    <div id="modal-pwa" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:99999;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px);">
-      <div style="background:#1A1A1A;border-radius:20px 20px 0 0;padding:28px 24px 40px;width:100%;max-width:500px;box-shadow:0 -4px 32px rgba(0,0,0,0.4);">
-        <div style="width:40px;height:4px;background:#333;border-radius:2px;margin:0 auto 20px;"></div>
-        <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
-          <img src="logo.png" style="width:56px;height:56px;border-radius:12px;object-fit:cover;" onerror="this.style.display='none'">
-          <div>
-            <div style="font-size:18px;font-weight:700;color:#F5DEB3;">Coral Zaion</div>
-            <div style="font-size:13px;color:#aaa;margin-top:2px;">Instalar app no seu celular?</div>
-          </div>
-        </div>
-        <p style="font-size:14px;color:#ccc;line-height:1.6;margin-bottom:20px;">Adicione à sua tela inicial para acessar rapidamente, mesmo sem internet!</p>
-        <div id="pwa-android">
-          <button onclick="instalarPWA()" style="width:100%;padding:14px;border-radius:12px;border:none;background:#B8860B;color:#fff;font-weight:700;font-size:15px;cursor:pointer;margin-bottom:10px;font-family:Inter,sans-serif;">📲 Instalar App</button>
-        </div>
-        <div id="pwa-ios" style="display:none;background:#222;border-radius:10px;padding:14px;margin-bottom:10px;">
-          <p style="font-size:13px;font-weight:700;color:#F5DEB3;margin-bottom:8px;">📱 No iPhone / iPad:</p>
-          <p style="font-size:13px;color:#aaa;line-height:1.8;">1. Toque em <strong>Compartilhar ⬆️</strong> na barra do Safari<br>2. Toque em <strong>"Adicionar à Tela de Início"</strong><br>3. Toque em <strong>Adicionar</strong></p>
-          <p style="font-size:11px;color:#f59e0b;margin-top:6px;">⚠️ Deve estar no Safari, não no Chrome.</p>
-        </div>
-        <button onclick="fecharModalPWA()" style="width:100%;padding:12px;border-radius:12px;border:1px solid #333;background:#111;color:#999;font-weight:600;font-size:14px;cursor:pointer;font-family:Inter,sans-serif;">Agora não</button>
-      </div>
-    </div>
+self.addEventListener('install', e => {
+  e.waitUntil(
+    caches.open(CACHE_NAME).then(c => c.addAll(ASSETS)).catch(() => {})
+  );
+  self.skipWaiting();
+});
 
-    <script>
-    (function(){
-      var deferredPrompt = null;
-      var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
-      var isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+self.addEventListener('activate', e => {
+  e.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
+    )
+  );
+  self.clients.claim();
+});
 
-      window.addEventListener('beforeinstallprompt', function(e){
-        e.preventDefault();
-        deferredPrompt = e;
-        window.__pwaPrompt = e;
-      });
-
-      window.addEventListener('appinstalled', function(){
-        deferredPrompt = null;
-        fecharModalPWA();
-      });
-
-      window.addEventListener('load', function(){
-        if(isStandalone) return;
-        var jaViu = localStorage.getItem('pwa_aviso_zaion');
-        if(jaViu) return;
-        if(isIOS){
-          document.getElementById('pwa-android').style.display='none';
-          document.getElementById('pwa-ios').style.display='block';
-        }
-        setTimeout(function(){
-          var el = document.getElementById('modal-pwa');
-          if(el) el.style.display='flex';
-        }, 1500);
-      });
-
-      window.instalarPWA = function(){
-        if(deferredPrompt){
-          var p = deferredPrompt;
-          deferredPrompt = null;
-          p.prompt();
-          p.userChoice.then(function(r){
-            fecharModalPWA();
-          });
-        } else if(isIOS){
-          document.getElementById('pwa-android').style.display='none';
-          document.getElementById('pwa-ios').style.display='block';
-        } else {
-          fecharModalPWA();
-        }
-      };
-
-      window.fecharModalPWA = function(){
-        localStorage.setItem('pwa_aviso_zaion', '1');
-        var el = document.getElementById('modal-pwa');
-        if(el) el.style.display='none';
-      };
-    })();
-    </script>
-
-</body>
-</html>
+self.addEventListener('fetch', e => {
+  if (e.request.method !== 'GET') return;
+  e.respondWith(
+    caches.match(e.request).then(cached => cached || fetch(e.request).catch(() => cached))
+  );
+});
