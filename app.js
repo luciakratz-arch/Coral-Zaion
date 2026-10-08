@@ -33,7 +33,7 @@ if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 var COR = "#B8860B";
 var COR_FUNDO = "#0F0F0F";
-var LOGO_URL = "https://raw.githubusercontent.com/luciakratz-arch/Coral-Zaion/main/logo.png";
+var LOGO_URL = "https://raw.githubusercontent.com/luciakratz-arch/Coral-Zaion/main/logo.jpg";
 var MONTHS_PT = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
 var MONTHS_SHORT = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
 var NAIPES = ["Soprano", "Contralto", "Mezzo-soprano", "Alto", "Tenor", "Barítono", "Baixo"];
