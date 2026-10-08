@@ -1,4 +1,4 @@
-const CACHE_NAME = 'zaion-v1';
+const CACHE_NAME = 'zaion-v3';
 const ASSETS = [
   './',
   './index.html',
