@@ -3,9 +3,9 @@ const { useState, useEffect } = React;
 // 1. Configuração do Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyDcLsndRbDPeUru_Di-h3w8RP_Ung-YSUo",
-    authDomain: "flamboyant-coral.firebaseapp.com",
-    projectId: "flamboyant-coral",
-    storageBucket: "flamboyant-coral.firebasestorage.app",
+    authDomain: "zaion-coral.firebaseapp.com",
+    projectId: "zaion-coral",
+    storageBucket: "zaion-coral.firebasestorage.app",
     messagingSenderId: "15022873086",
     appId: "1:15022873086:web:507d97757035ac90d108af"
 };
@@ -44,7 +44,7 @@ function Login({ members, onLogin }) {
     }
 
     function entrarRH() {
-        if (senha === 'flamboyant1234') {
+        if (senha === 'zaion1234') {
             onLogin({ name: 'RH', isAdmin: false, role: 'rh' });
         } else { setErro('Senha incorreta.'); }
     }
@@ -76,14 +76,14 @@ function Login({ members, onLogin }) {
     };
     const btnEntrar = {
         width: '100%', padding: '13px',
-        background: '#B41020', color: '#fff',
+        background: '#B8860B', color: '#fff',
         border: 'none', borderRadius: 10,
         fontSize: 14, fontWeight: 600,
         cursor: 'pointer', fontFamily: 'inherit',
     };
     const btnVoltar = {
         background: 'none', border: 'none',
-        color: '#B41020', fontSize: 13,
+        color: '#B8860B', fontSize: 13,
         cursor: 'pointer', marginBottom: 20,
         display: 'flex', alignItems: 'center', gap: 4,
         fontFamily: 'inherit', padding: 0,
@@ -95,8 +95,8 @@ function Login({ members, onLogin }) {
 
                 {/* Logo */}
                 <div style={{ textAlign: 'center', marginBottom: 36 }}>
-                    <div style={{ width: 72, height: 72, background: '#B41020', borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', fontSize: 32 }}>🎼</div>
-                    <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 24, fontWeight: 700, color: '#1A1D23' }}>Flamboyant Coral</div>
+                    <div style={{ width: 72, height: 72, background: '#B8860B', borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', fontSize: 32 }}>🎼</div>
+                    <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 24, fontWeight: 700, color: '#1A1D23' }}>Coral Zaion</div>
                     <div style={{ fontSize: 13, color: '#64748B', marginTop: 4 }}>Portal de Gestão</div>
                 </div>
 
@@ -106,7 +106,7 @@ function Login({ members, onLogin }) {
                         <div style={{ fontSize: 13, color: '#64748B', textAlign: 'center', marginBottom: 20 }}>Como deseja entrar?</div>
 
                         <button style={btnPerfil} onClick={() => { setTela('admin'); setErro(''); setSenha(''); }}>
-                            <div style={iconBox('rgba(180,16,32,0.1)', '#B41020')}>🛡️</div>
+                            <div style={iconBox('rgba(184,134,11,0.1)', '#B8860B')}>🛡️</div>
                             <div>
                                 <div style={{ fontWeight: 600, fontSize: 14, color: '#1A1D23' }}>Sou Gestor / ADM</div>
                                 <div style={{ fontSize: 12, color: '#64748B' }}>Acesso administrativo completo</div>
@@ -142,7 +142,7 @@ function Login({ members, onLogin }) {
                         <input style={inputStyle} type="password" placeholder="Senha de acesso" value={senha}
                             onChange={e => { setSenha(e.target.value); setErro(''); }}
                             onKeyDown={e => e.key === 'Enter' && entrarAdmin()} autoFocus />
-                        {erro && <div style={{ fontSize: 12, color: '#B41020', marginBottom: 8 }}>{erro}</div>}
+                        {erro && <div style={{ fontSize: 12, color: '#B8860B', marginBottom: 8 }}>{erro}</div>}
                         <button style={btnEntrar} onClick={entrarAdmin}>Entrar</button>
                     </>
                 )}
@@ -155,7 +155,7 @@ function Login({ members, onLogin }) {
                         <input style={inputStyle} type="password" placeholder="Senha de acesso" value={senha}
                             onChange={e => { setSenha(e.target.value); setErro(''); }}
                             onKeyDown={e => e.key === 'Enter' && entrarRH()} autoFocus />
-                        {erro && <div style={{ fontSize: 12, color: '#B41020', marginBottom: 8 }}>{erro}</div>}
+                        {erro && <div style={{ fontSize: 12, color: '#B8860B', marginBottom: 8 }}>{erro}</div>}
                         <button style={btnEntrar} onClick={entrarRH}>Entrar</button>
                     </>
                 )}
@@ -182,13 +182,13 @@ function Login({ members, onLogin }) {
                             <div style={{ fontSize: 12, color: '#64748B', marginBottom: 8 }}>Digite mais {3 - busca.length} letra(s)...</div>
                         )}
                         {busca.length >= 3 && sugestoes.length === 0 && (
-                            <div style={{ fontSize: 12, color: '#B41020', marginBottom: 8 }}>Nenhum corista encontrado.</div>
+                            <div style={{ fontSize: 12, color: '#B8860B', marginBottom: 8 }}>Nenhum corista encontrado.</div>
                         )}
                     </>
                 )}
 
             </div>
-            <div style={{ marginTop: 40, fontSize: 11, color: '#CCC' }}>Flamboyant Coral · Portal de Gestão</div>
+            <div style={{ marginTop: 40, fontSize: 11, color: '#CCC' }}>Coral Zaion · Portal de Gestão</div>
         </div>
     );
 }
@@ -218,7 +218,7 @@ function App() {
         <div className="container">
             <header className="header">
                 <div>
-                    <h1 className="serif">Coral Flamboyant</h1>
+                    <h1 className="serif">Coral Zaion</h1>
                     <p style={{ fontSize: '12px', color: 'var(--text-sub)' }}>Gestão Artística</p>
                 </div>
                 <button onClick={() => { localStorage.removeItem("cf_user"); setUser(null); }}
