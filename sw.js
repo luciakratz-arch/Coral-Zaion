@@ -1,11 +1,12 @@
-const CACHE_NAME = 'zaion-v3';
+const CACHE_NAME = 'zaion-v5';
 const ASSETS = [
   './',
   './index.html',
   './style.css',
   './app.js',
   './manifest.json',
-  './logo.png'
+  './logo.png',
+  './logo.jpg'
 ];
 
 self.addEventListener('install', e => {
@@ -26,6 +27,19 @@ self.addEventListener('activate', e => {
 
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
+  const url = e.request.url;
+  // app.js e index.html: sempre busca rede primeiro
+  if (url.includes('app.js') || url.includes('index.html')) {
+    e.respondWith(
+      fetch(e.request).then(r => {
+        const clone = r.clone();
+        caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
+        return r;
+      }).catch(() => caches.match(e.request))
+    );
+    return;
+  }
+  // Resto: cache primeiro
   e.respondWith(
     caches.match(e.request).then(cached => cached || fetch(e.request).catch(() => cached))
   );
