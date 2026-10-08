@@ -126,36 +126,5 @@
     })();
     </script>
 
-    <!-- Backup Firestore -->
-    <script>
-    (function(){
-      var COLS=["zaion_acessos","zaion_avisos","zaion_config","zaion_confirmacoes","zaion_estudos","zaion_events","zaion_frequencias","zaion_members","zaion_noticias","zaion_relatorios_historico","zaion_sessoes_checkin","zaion_songs"];
-      function p2(x){return x<10?"0"+x:""+x;}
-      window.fazerBackupZaion=function(){
-        var btn=document.getElementById("btnBackupZaion");
-        if(btn){btn.disabled=true;btn.textContent="⏳ Gerando...";}
-        var bk={geradoEm:new Date().toLocaleString("pt-BR"),colecoes:{}};
-        Promise.all(COLS.map(function(c){
-          return db.collection(c).get().then(function(snap){
-            var docs={};snap.forEach(function(d){docs[d.id]=d.data();});
-            bk.colecoes[c]=docs;
-          }).catch(function(){bk.colecoes[c]={_erro:"erro"};});
-        })).then(function(){
-          var blob=new Blob([JSON.stringify(bk,null,2)],{type:"application/json"});
-          var url=URL.createObjectURL(blob);
-          var a=document.createElement("a");
-          var h=new Date();
-          a.href=url;a.download="backup-zaion-"+p2(h.getDate())+p2(h.getMonth()+1)+h.getFullYear()+".json";
-          a.click();URL.revokeObjectURL(url);
-          if(btn){btn.disabled=false;btn.textContent="💾 Backup";}
-        });
-      };
-      var b=document.createElement("button");
-      b.id="btnBackupZaion";b.textContent="💾 Backup";
-      b.style.cssText="position:fixed;bottom:12px;right:12px;z-index:9999;background:#B8860B;color:#fff;border:none;border-radius:18px;padding:7px 14px;font-size:12px;font-family:Inter,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.5);opacity:0.85;";
-      b.onclick=window.fazerBackupZaion;
-      document.body.appendChild(b);
-    })();
-    </script>
 </body>
 </html>
