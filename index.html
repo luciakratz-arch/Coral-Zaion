@@ -13,6 +13,16 @@
     <meta name="apple-mobile-web-app-title" content="Coral Zaion">
     <link rel="apple-touch-icon" href="logo.png">
     <script>
+      window.onerror = function(msg, src, line, col, err) {
+        document.body.innerHTML = '<div style="background:#1a1a1a;color:#f55;padding:20px;font-family:monospace;font-size:13px;position:fixed;inset:0;overflow:auto;z-index:99999">'
+          + '<b style="color:#ff0">ERRO JS:</b><br>' + msg
+          + '<br><br><b>Arquivo:</b> ' + src
+          + '<br><b>Linha:</b> ' + line + ' Col: ' + col
+          + '<br><br>' + (err ? err.stack : '') + '</div>';
+        return false;
+      };
+    </script>
+    <script>
       if('serviceWorker' in navigator){
         window.addEventListener('load',function(){
           navigator.serviceWorker.register('./sw.js')
