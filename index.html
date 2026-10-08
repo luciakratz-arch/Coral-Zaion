@@ -23,11 +23,10 @@
       };
     </script>
     <script>
+      // SW desativado temporariamente para debug
       if('serviceWorker' in navigator){
-        window.addEventListener('load',function(){
-          navigator.serviceWorker.register('./sw.js')
-            .then(function(r){console.log('[SW] registrado',r.scope);})
-            .catch(function(e){console.log('[SW] erro',e);});
+        navigator.serviceWorker.getRegistrations().then(function(regs){
+          regs.forEach(function(r){ r.unregister(); });
         });
       }
     </script>
