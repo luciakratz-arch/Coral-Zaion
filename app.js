@@ -180,11 +180,11 @@ function CadastroPublico(_ref2) {
     form = _useState8[0],
     setForm = _useState8[1];
   var _useState9 = useState(false),
-    _useState0 = _slicedToArray(_useState9, 2),
-    salvando = _useState0[0],
-    setSalvando = _useState0[1];
-  var _useState1 = useState(false),
-    _useState10 = _slicedToArray(_useState1, 2),
+    _useStateA = _slicedToArray(_useState9, 2),
+    salvando = _useStateA[0],
+    setSalvando = _useStateA[1];
+  var _useStateB = useState(false),
+    _useState10 = _slicedToArray(_useStateB, 2),
     ok = _useState10[0],
     setOk = _useState10[1];
   var _useState11 = useState(""),
