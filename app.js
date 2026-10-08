@@ -130,7 +130,7 @@ var Icon = function Icon(_ref) {
     if (window.lucide) {
       try { window.lucide.createIcons(); } catch(e) {}
     }
-  });
+  }, [name]);
   return /*#__PURE__*/React.createElement("i", {
     "data-lucide": name,
     style: {
