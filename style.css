@@ -18,12 +18,23 @@ body {
   margin-left: 270px;
 }
 
+/* Em mobile: sem sidebar, sem margin, header mobile aparece */
 @media (max-width: 768px) {
   .sidebar-desktop {
     display: none !important;
   }
   .main-content {
     margin-left: 0 !important;
+  }
+  .header-mobile {
+    display: flex !important;
+  }
+}
+
+/* Em desktop: esconde o header mobile (dourado) */
+@media (min-width: 769px) {
+  .header-mobile {
+    display: none !important;
   }
 }
 
@@ -39,12 +50,6 @@ body {
 .sidebar-desktop nav button:hover {
   background: rgba(201,162,39,0.15) !important;
   color: #C9A227 !important;
-}
-
-/* === NAV MOBILE - labels maiores === */
-.header-mobile ~ * span,
-nav span {
-  font-size: 13px !important;
 }
 
 /* === INPUTS === */
@@ -78,11 +83,6 @@ select option {
 button {
   font-family: inherit;
   cursor: pointer;
-}
-
-/* === TÍTULOS DE CARDS E SEÇÕES === */
-h1, h2, h3 {
-  color: #C9A227;
 }
 
 /* === SCROLLBAR === */
