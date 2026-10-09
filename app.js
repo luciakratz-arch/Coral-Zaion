@@ -33,7 +33,7 @@ if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 var COR = "#C9A227";
 var COR_FUNDO = "#1A1400";
-var LOGO_URL = "https://raw.githubusercontent.com/luciakratz-arch/Coral-Zaion/main/LOGOCORAL.jpeg";
+var LOGO_URL = "https://raw.githubusercontent.com/luciakratz-arch/Coral-Zaion/main/logo.jpg";
 var MONTHS_PT = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
 var MONTHS_SHORT = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
 var NAIPES = ["Soprano", "Contralto", "Mezzo-soprano", "Alto", "Tenor", "Barítono", "Baixo"];
@@ -305,9 +305,9 @@ function CadastroPublico(_ref2) {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      width: 140,
-      height: 140,
-      borderRadius: 16,
+      width: 220,
+      height: 110,
+      borderRadius: 12,
       overflow: "hidden",
       margin: "0 auto 16px",
       boxShadow: "0 4px 20px rgba(201,162,39,0.4)",
