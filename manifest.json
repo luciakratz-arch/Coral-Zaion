@@ -5,11 +5,11 @@
   "start_url": "/Coral-Zaion/",
   "scope": "/Coral-Zaion/",
   "display": "standalone",
-  "background_color": "#0F0F0F",
-  "theme_color": "#B8860B",
+  "background_color": "#0D0D0D",
+  "theme_color": "#C9A227",
   "orientation": "portrait",
   "icons": [
-    { "src": "logo.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
-    { "src": "logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+    { "src": "LOGOCORAL.jpeg", "sizes": "192x192", "type": "image/jpeg", "purpose": "any maskable" },
+    { "src": "LOGOCORAL.jpeg", "sizes": "512x512", "type": "image/jpeg", "purpose": "any maskable" }
   ]
 }
