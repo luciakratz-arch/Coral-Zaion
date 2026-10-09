@@ -33,7 +33,7 @@ if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 var COR = "#C9A227";
 var COR_FUNDO = "#1A1400";
-var LOGO_URL = "https://raw.githubusercontent.com/luciakratz-arch/Coral-Zaion/main/LOGOCORAL.jpeg";
+var LOGO_URL = "https://raw.githubusercontent.com/luciakratz-arch/Coral-Zaion/main/logo.jpg";
 var MONTHS_PT = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
 var MONTHS_SHORT = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
 var NAIPES = ["Soprano", "Contralto", "Mezzo-soprano", "Alto", "Tenor", "Barítono", "Baixo"];
@@ -235,7 +235,7 @@ function CadastroPublico(_ref2) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#1A1D23",
+    color: "#E8D5A3",
     background: "#1E1A0A"
   };
   var lbl = {
@@ -281,7 +281,7 @@ function CadastroPublico(_ref2) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 24,
       fontWeight: 700,
-      color: "#1A1D23",
+      color: "#E8D5A3",
       marginBottom: 8,
       textAlign: "center"
     }
@@ -305,9 +305,9 @@ function CadastroPublico(_ref2) {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      width: 140,
+      width: 280,
       height: 140,
-      borderRadius: 16,
+      borderRadius: 12,
       overflow: "hidden",
       margin: "0 auto 16px",
       boxShadow: "0 4px 20px rgba(201,162,39,0.4)",
@@ -1168,13 +1168,13 @@ function Login(_ref7) {
       fontSize: 15,
       outline: "none",
       fontFamily: "inherit",
-      color: "#1A1D23",
+      color: "#E8D5A3",
       background: "#1E1A0A"
     },
     btnSec: {
       flex: 1,
       padding: "13px",
-      background: "#F5EAFF",
+      background: "#1E1A0A",
       color: cor,
       border: "none",
       borderRadius: 10,
@@ -1205,12 +1205,12 @@ function Login(_ref7) {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      width: 96,
-      height: 96,
-      borderRadius: 14,
+      width: 280,
+      height: 140,
+      borderRadius: 12,
       overflow: "hidden",
       margin: "0 auto 16px",
-      boxShadow: "0 4px 20px rgba(123,0,160,0.25)"
+      boxShadow: "0 4px 20px rgba(201,162,39,0.4)"
     }
   }, /*#__PURE__*/React.createElement("img", {
     src: config.logoUrl || LOGO_URL,
@@ -1218,7 +1218,7 @@ function Login(_ref7) {
     style: {
       width: "100%",
       height: "100%",
-      objectFit: "cover"
+      objectFit: "contain"
     },
     onError: function onError(e) {
       return e.target.style.display = "none";
@@ -1226,14 +1226,14 @@ function Login(_ref7) {
   })), /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: "'Playfair Display',serif",
-      fontSize: 26,
+      fontSize: 28,
       fontWeight: 700,
       color: cor
     }
   }, config.nomeApp || "Coral Zaion"), /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 14,
-      color: "#AAA",
+      fontSize: 16,
+      color: "#C9B880",
       marginTop: 4
     }
   }, config.subtitulo || "Portal de Gestão")), !tela && /*#__PURE__*/React.createElement("div", {
@@ -1305,13 +1305,13 @@ function Login(_ref7) {
     }, /*#__PURE__*/React.createElement("div", {
       style: {
         fontWeight: 700,
-        fontSize: 15,
-        color: "#1A1D23"
+        fontSize: 17,
+        color: "#E8D5A3"
       }
     }, p.label), /*#__PURE__*/React.createElement("div", {
       style: {
-        fontSize: 12,
-        color: "#AAA",
+        fontSize: 14,
+        color: "#C9B880",
         marginTop: 2
       }
     }, p.sub)), /*#__PURE__*/React.createElement(Icon, {
@@ -1345,9 +1345,9 @@ function Login(_ref7) {
   })), /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: "'Playfair Display',serif",
-      fontSize: 18,
+      fontSize: 20,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#C9A227"
     }
   }, "Acesso Administrativo")), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1436,7 +1436,7 @@ function Login(_ref7) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, "RH \u2014 Coordenação de Curso")), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1527,7 +1527,7 @@ function Login(_ref7) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, "Sou Corista")), /*#__PURE__*/React.createElement("input", {
     style: _objectSpread(_objectSpread({}, s.inp), {}, {
@@ -1566,7 +1566,7 @@ function Login(_ref7) {
         fontSize: 14,
         borderBottom: "1px solid #F5F5F5",
         fontFamily: "inherit",
-        color: "#1A1D23"
+        color: "#E8D5A3"
       }
     }, m.name, " ", /*#__PURE__*/React.createElement("span", {
       style: {
@@ -1710,7 +1710,7 @@ function Painel(_ref8) {
       style: {
         fontSize: 32,
         fontWeight: 700,
-        color: "#1A1D23",
+        color: "#E8D5A3",
         lineHeight: 1
       }
     }, m.value), /*#__PURE__*/React.createElement("div", {
@@ -1740,7 +1740,7 @@ function Painel(_ref8) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, "Pr\xF3ximos Eventos")), proxEventos.length === 0 ? /*#__PURE__*/React.createElement("div", {
     style: _objectSpread(_objectSpread({}, card()), {}, {
@@ -1762,7 +1762,7 @@ function Painel(_ref8) {
       style: {
         fontSize: 15,
         fontWeight: 700,
-        color: "#1A1D23"
+        color: "#E8D5A3"
       }
     }, e.title), /*#__PURE__*/React.createElement("div", {
       style: {
@@ -1792,7 +1792,7 @@ function Painel(_ref8) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, "Aniversariantes do M\xEAs")), aniversarios.map(function (m) {
     var _m$birthday$split = m.birthday.split("-"),
@@ -1826,12 +1826,12 @@ function Painel(_ref8) {
       style: {
         fontSize: 14,
         fontWeight: isToday ? 700 : 600,
-        color: "#1A1D23"
+        color: "#E8D5A3"
       }
     }, isToday ? "🎉 " : "", m.name), /*#__PURE__*/React.createElement("div", {
       style: {
-        fontSize: 12,
-        color: "#AAA",
+        fontSize: 14,
+        color: "#C9B880",
         marginTop: 2
       }
     }, "dia ", parseInt(dd), " de ", MONTHS_SHORT[parseInt(mm) - 1], isToday ? " · hoje!" : "")));
@@ -1851,7 +1851,7 @@ function Painel(_ref8) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, "Avisos Recentes")), avisos.filter(function(a) { return !a.oculto; }).slice(0, 3).map(function (a) {
     var _a$createdAt;
@@ -1871,7 +1871,7 @@ function Painel(_ref8) {
       style: {
         fontSize: 15,
         fontWeight: 700,
-        color: "#1A1D23"
+        color: "#E8D5A3"
       }
     }, a.title || a.titulo), ((_a$createdAt = a.createdAt) === null || _a$createdAt === void 0 ? void 0 : _a$createdAt.seconds) && /*#__PURE__*/React.createElement("div", {
       style: {
@@ -2012,7 +2012,7 @@ function ModalIntegrante(_ref9) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#1A1D23",
+    color: "#E8D5A3",
     background: "#FAFAFA"
   };
   var lbl = {
@@ -2063,7 +2063,7 @@ function ModalIntegrante(_ref9) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, membro ? "Editar Integrante" : "Adicionar Integrante"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
@@ -2446,7 +2446,7 @@ function Integrantes(_ref0) {
       outline: "none",
       fontSize: 14,
       fontFamily: "inherit",
-      color: "#1A1D23",
+      color: "#E8D5A3",
       background: "none"
     }
   }), /*#__PURE__*/React.createElement("select", {
@@ -2460,7 +2460,7 @@ function Integrantes(_ref0) {
       padding: "7px 12px",
       fontSize: 13,
       fontFamily: "inherit",
-      color: "#1A1D23",
+      color: "#E8D5A3",
       outline: "none",
       background: "#1E1A0A",
       cursor: "pointer"
@@ -2517,7 +2517,7 @@ function Integrantes(_ref0) {
       style: {
         fontSize: 14,
         fontWeight: 600,
-        color: "#1A1D23"
+        color: "#E8D5A3"
       }
     }, m.name), /*#__PURE__*/React.createElement("div", {
       style: {
@@ -2632,7 +2632,7 @@ function Configuracoes(_ref1) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#1A1D23",
+    color: "#E8D5A3",
     background: "#1E1A0A"
   };
   var lbl = {
@@ -3128,7 +3128,7 @@ function ModalEvento(_ref10) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#1A1D23",
+    color: "#E8D5A3",
     background: "#FAFAFA"
   };
   var lbl = {
@@ -3179,7 +3179,7 @@ function ModalEvento(_ref10) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, evento ? "Editar Evento" : "Adicionar Evento"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
@@ -3404,7 +3404,7 @@ function ModalEvento(_ref10) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#1A1D23"
+        color: "#E8D5A3"
       }
     }, s.title), s.compositor && /*#__PURE__*/React.createElement("div", {
       style: {
@@ -3681,7 +3681,7 @@ function ModalExcluirEvento(_ref11) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#1A1D23",
+      color: "#E8D5A3",
       marginBottom: 8
     }
   }, "Excluir evento"), /*#__PURE__*/React.createElement("div", {
@@ -3848,7 +3848,7 @@ function Agenda(_ref12) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, MONTHS_PT[mes].charAt(0).toUpperCase() + MONTHS_PT[mes].slice(1), " ", ano), /*#__PURE__*/React.createElement("button", {
     onClick: function onClick() {
@@ -3947,7 +3947,7 @@ function Agenda(_ref12) {
       style: {
         fontSize: 15,
         fontWeight: 700,
-        color: "#1A1D23"
+        color: "#E8D5A3"
       }
     }, e.title), e.tipo && /*#__PURE__*/React.createElement("span", {
       style: {
@@ -4154,7 +4154,7 @@ function ModalAviso(_ref13) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#1A1D23",
+    color: "#E8D5A3",
     background: "#FAFAFA"
   };
   var lbl = {
@@ -4199,7 +4199,7 @@ function ModalAviso(_ref13) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, aviso ? "Editar Aviso" : "Novo Aviso"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
@@ -4528,7 +4528,7 @@ function Avisos(_ref14) {
       style: {
         fontSize: 15,
         fontWeight: 700,
-        color: "#1A1D23"
+        color: "#E8D5A3"
       }
     }, a.title), !isAuto && a.prioridade && a.prioridade !== "Normal" && /*#__PURE__*/React.createElement("span", {
       style: {
@@ -4787,7 +4787,7 @@ function ModalMusica(_ref15) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#1A1D23",
+    color: "#E8D5A3",
     background: "#FAFAFA"
   };
   var lbl = {
@@ -4849,7 +4849,7 @@ function ModalMusica(_ref15) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, musica ? "Editar Música" : "Adicionar Música ao Repertório"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
@@ -5360,7 +5360,7 @@ function Repertorio(_ref16) {
       outline: "none",
       fontSize: 14,
       fontFamily: "inherit",
-      color: "#1A1D23",
+      color: "#E8D5A3",
       background: "none"
     }
   })), filtradas.length === 0 ? /*#__PURE__*/React.createElement("div", {
@@ -5406,7 +5406,7 @@ function Repertorio(_ref16) {
       style: {
         fontSize: 15,
         fontWeight: 700,
-        color: "#1A1D23",
+        color: "#E8D5A3",
         flex: 1,
         paddingRight: 8
       }
@@ -5688,7 +5688,7 @@ function ModalEstudo(_ref18) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#1A1D23",
+    color: "#E8D5A3",
     background: "#FAFAFA"
   };
   var lbl = {
@@ -5733,7 +5733,7 @@ function ModalEstudo(_ref18) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, estudo ? "Editar material" : "Adicionar material"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
@@ -6127,7 +6127,7 @@ function SalaEstudos(_ref19) {
       style: {
         fontSize: 13,
         fontWeight: 700,
-        color: "#1A1D23",
+        color: "#E8D5A3",
         marginBottom: 4,
         lineHeight: 1.3
       }
@@ -6335,7 +6335,7 @@ function Apresentacao(_ref21) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#1A1D23",
+    color: "#E8D5A3",
     background: "#FAFAFA"
   };
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
@@ -6363,7 +6363,7 @@ function Apresentacao(_ref21) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#1A1D23",
+      color: "#E8D5A3",
       marginBottom: 12
     }
   }, "Selecionar Evento"), /*#__PURE__*/React.createElement("div", {
@@ -6553,7 +6553,7 @@ function Apresentacao(_ref21) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#1A1D23"
+        color: "#E8D5A3"
       }
     }, s.title), s.compositor && /*#__PURE__*/React.createElement("div", {
       style: {
@@ -6640,7 +6640,7 @@ function Apresentacao(_ref21) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#1A1D23",
+      color: "#E8D5A3",
       marginBottom: 4
     }
   }, tocando.title), tocando.compositor && /*#__PURE__*/React.createElement("div", {
@@ -6698,7 +6698,7 @@ function Apresentacao(_ref21) {
     }
   }, "A seguir: ", /*#__PURE__*/React.createElement("span", {
     style: {
-      color: "#1A1D23",
+      color: "#E8D5A3",
       fontWeight: 600
     }
   }, setlist[setlist.findIndex(function (s) {
@@ -6790,7 +6790,7 @@ function FrequenciaEventos(_ref24) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, "Frequ\xEAncia por Evento")), eventosComFreq.map(function (e) {
     var lista = porEvento[e.id] || [];
@@ -6812,7 +6812,7 @@ function FrequenciaEventos(_ref24) {
       style: {
         fontSize: 13,
         fontWeight: 700,
-        color: "#1A1D23"
+        color: "#E8D5A3"
       }
     }, e.title), /*#__PURE__*/React.createElement("div", {
       style: {
@@ -6919,7 +6919,7 @@ function FrequenciaAcesso(_ref25) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, "Frequ\xEAncia de Acesso ao App")), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -7078,7 +7078,7 @@ function FrequenciaAcesso(_ref25) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#1A1D23"
+        color: "#E8D5A3"
       }
     }, nome), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
       style: {
@@ -7412,7 +7412,7 @@ function Relatorios(_ref32) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#1A1D23",
+    color: "#E8D5A3",
     background: "#FAFAFA"
   };
   var lbl = {
@@ -7432,7 +7432,7 @@ function Relatorios(_ref32) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#1A1D23",
+    color: "#E8D5A3",
     background: "#FAFAFA",
     resize: "vertical",
     minHeight: 80
@@ -7468,7 +7468,7 @@ function Relatorios(_ref32) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, "Per\xEDodo do relat\xF3rio")), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -7586,7 +7586,7 @@ function Relatorios(_ref32) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#1A1D23",
+      color: "#E8D5A3",
       marginBottom: 14
     }
   }, "Atividades por tipo"), Object.entries(porTipo).length === 0 ? /*#__PURE__*/React.createElement("div", {
@@ -7644,7 +7644,7 @@ function Relatorios(_ref32) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#1A1D23",
+      color: "#E8D5A3",
       marginBottom: 14
     }
   }, "Distribui\xE7\xE3o por status"), Object.entries(porStatus).length === 0 ? /*#__PURE__*/React.createElement("div", {
@@ -7715,7 +7715,7 @@ function Relatorios(_ref32) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, "Texto Qualitativo do Relat\xF3rio")), /*#__PURE__*/React.createElement("button", {
     onClick: function onClick() {
@@ -8000,7 +8000,7 @@ function Relatorios(_ref32) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, "Atividades no per\xEDodo ", /*#__PURE__*/React.createElement("span", {
     style: {
@@ -8093,7 +8093,7 @@ function Relatorios(_ref32) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#1A1D23"
+        color: "#E8D5A3"
       }
     }, e.title), e.local && /*#__PURE__*/React.createElement("div", {
       style: {
@@ -8280,7 +8280,7 @@ function CheckinPublico(_ref41) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 22,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, "QR Code expirado"), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -8305,7 +8305,7 @@ function CheckinPublico(_ref41) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 22,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, "Sess\xE3o n\xE3o encontrada")));
   if (status === "ok") return /*#__PURE__*/React.createElement("div", {
@@ -8340,7 +8340,7 @@ function CheckinPublico(_ref41) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 22,
       fontWeight: 700,
-      color: "#1A1D23",
+      color: "#E8D5A3",
       marginBottom: 8
     }
   }, "Presen\xE7a confirmada!"), /*#__PURE__*/React.createElement("div", {
@@ -8384,7 +8384,7 @@ function CheckinPublico(_ref41) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, "J\xE1 registrado!"), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -8450,7 +8450,7 @@ function CheckinPublico(_ref41) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 16,
       fontWeight: 700,
-      color: "#1A1D23",
+      color: "#E8D5A3",
       marginBottom: 4
     }
   }, sessao === null || sessao === void 0 ? void 0 : sessao.eventoTitulo), /*#__PURE__*/React.createElement("div", {
@@ -8474,7 +8474,7 @@ function CheckinPublico(_ref41) {
       fontSize: 14,
       outline: "none",
       fontFamily: "inherit",
-      color: "#1A1D23",
+      color: "#E8D5A3",
       marginBottom: 8
     }
   }), sugestoes.length > 0 && /*#__PURE__*/React.createElement("div", {
@@ -8501,7 +8501,7 @@ function CheckinPublico(_ref41) {
         fontSize: 14,
         borderBottom: "1px solid #F5F5F5",
         fontFamily: "inherit",
-        color: "#1A1D23"
+        color: "#E8D5A3"
       }
     }, m.name, " ", /*#__PURE__*/React.createElement("span", {
       style: {
@@ -8706,7 +8706,7 @@ function Frequencia(_ref42) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#1A1D23",
+    color: "#E8D5A3",
     background: "#FAFAFA"
   };
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
@@ -8739,7 +8739,7 @@ function Frequencia(_ref42) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#1A1D23",
+      color: "#E8D5A3",
       marginBottom: 14
     }
   }, "Nova Sess\xE3o de Check-in"), /*#__PURE__*/React.createElement("div", {
@@ -8865,7 +8865,7 @@ function Frequencia(_ref42) {
     style: {
       fontSize: 15,
       fontWeight: 700,
-      color: "#1A1D23",
+      color: "#E8D5A3",
       marginBottom: 4
     }
   }, eventoAtual.title), /*#__PURE__*/React.createElement("div", {
@@ -8972,7 +8972,7 @@ function Frequencia(_ref42) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#1A1D23",
+      color: "#E8D5A3",
       marginBottom: 14
     }
   }, "Presen\xE7as registradas ", /*#__PURE__*/React.createElement("span", {
@@ -9034,7 +9034,7 @@ function Frequencia(_ref42) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#1A1D23"
+        color: "#E8D5A3"
       }
     }, f.membroNome), /*#__PURE__*/React.createElement("div", {
       style: {
@@ -9196,7 +9196,7 @@ function Declaracao(_ref43) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#1A1D23",
+    color: "#E8D5A3",
     background: "#FAFAFA"
   };
   var lbl = {
@@ -9268,7 +9268,7 @@ function Declaracao(_ref43) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#1A1D23",
+      color: "#E8D5A3",
       marginBottom: 14
     }
   }, "Lista de Presen\xE7a por Evento"), /*#__PURE__*/React.createElement("div", {
@@ -9333,7 +9333,7 @@ function Declaracao(_ref43) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#1A1D23",
+        color: "#E8D5A3",
         flex: 1
       }
     }, f.membroNome), /*#__PURE__*/React.createElement("span", {
@@ -9376,7 +9376,7 @@ function Declaracao(_ref43) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#1A1D23",
+      color: "#E8D5A3",
       marginBottom: 14
     }
   }, "Declara\xE7\xE3o Individual do Corista"), /*#__PURE__*/React.createElement("div", {
@@ -9459,7 +9459,7 @@ function Declaracao(_ref43) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#1A1D23",
+        color: "#E8D5A3",
         flex: 1
       }
     }, f.eventoTitulo));
@@ -9728,7 +9728,7 @@ function PainelCorista(_ref45) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 24,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, "Ol\xE1, ", user.name.split(" ")[0], "! \uD83D\uDC4B"), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -9785,7 +9785,7 @@ function PainelCorista(_ref45) {
       style: {
         fontSize: 14,
         fontWeight: 700,
-        color: "#1A1D23",
+        color: "#E8D5A3",
         marginBottom: 4
       }
     }, a.title || a.titulo), /*#__PURE__*/React.createElement("div", {
@@ -9890,7 +9890,7 @@ function PainelCorista(_ref45) {
       style: {
         fontSize: 14,
         fontWeight: 700,
-        color: "#1A1D23",
+        color: "#E8D5A3",
         marginBottom: 4
       }
     }, n.titulo), /*#__PURE__*/React.createElement("div", {
@@ -9982,7 +9982,7 @@ function PainelCorista(_ref45) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 16,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, MONTHS_PT[mes].charAt(0).toUpperCase() + MONTHS_PT[mes].slice(1), " De ", ano), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -10087,7 +10087,7 @@ function PainelCorista(_ref45) {
       style: {
         fontSize: 14,
         fontWeight: 700,
-        color: "#1A1D23",
+        color: "#E8D5A3",
         marginBottom: 6
       }
     }, e.title), /*#__PURE__*/React.createElement("div", {
@@ -10374,7 +10374,7 @@ function MinhaDeclaracao(_ref46) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#1A1D23",
+    color: "#E8D5A3",
     background: "#FAFAFA"
   };
   var lbl = {
@@ -10493,7 +10493,7 @@ function MinhaDeclaracao(_ref46) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#1A1D23",
+        color: "#E8D5A3",
         flex: 1
       }
     }, f.eventoTitulo));
@@ -10637,7 +10637,7 @@ function ModalNoticia(_ref47) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#1A1D23",
+    color: "#E8D5A3",
     background: "#FAFAFA"
   };
   var lbl = {
@@ -10682,7 +10682,7 @@ function ModalNoticia(_ref47) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, noticia ? "Editar Notícia" : "Nova Notícia"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
@@ -11027,7 +11027,7 @@ function AreaRH(_ref48) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#1A1D23",
+    color: "#E8D5A3",
     background: "#FAFAFA"
   };
   var lbl = {
@@ -11108,7 +11108,7 @@ function AreaRH(_ref48) {
     }, m.value), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 11,
-        color: "#1A1D23",
+        color: "#E8D5A3",
         fontWeight: 600,
         marginTop: 4
       }
@@ -11125,7 +11125,7 @@ function AreaRH(_ref48) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#1A1D23",
+      color: "#E8D5A3",
       marginBottom: 14
     }
   }, "Distribui\xE7\xE3o por Naipe"), Object.entries(naipes).map(function (_ref51) {
@@ -11147,7 +11147,7 @@ function AreaRH(_ref48) {
     }, /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 13,
-        color: "#1A1D23",
+        color: "#E8D5A3",
         fontWeight: 600
       }
     }, naipe), /*#__PURE__*/React.createElement("span", {
@@ -11176,7 +11176,7 @@ function AreaRH(_ref48) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#1A1D23",
+      color: "#E8D5A3",
       marginBottom: 14
     }
   }, "Frequ\xEAncia de Participa\xE7\xE3o"), freqLista.map(function (_ref53) {
@@ -11197,7 +11197,7 @@ function AreaRH(_ref48) {
     }, /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 13,
-        color: "#1A1D23"
+        color: "#E8D5A3"
       }
     }, nome), /*#__PURE__*/React.createElement("span", {
       style: {
@@ -11226,7 +11226,7 @@ function AreaRH(_ref48) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#1A1D23",
+      color: "#E8D5A3",
       marginBottom: 14
     }
   }, "Confirma\xE7\xF5es \u2014 Pr\xF3ximos Eventos"), proxEventos.map(function (e) {
@@ -11253,7 +11253,7 @@ function AreaRH(_ref48) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#1A1D23"
+        color: "#E8D5A3"
       }
     }, e.title), /*#__PURE__*/React.createElement("div", {
       style: {
@@ -11310,7 +11310,7 @@ function AreaRH(_ref48) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#1A1D23"
+        color: "#E8D5A3"
       }
     }, m.name), /*#__PURE__*/React.createElement("span", {
       style: {
@@ -11329,7 +11329,7 @@ function AreaRH(_ref48) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#1A1D23"
+      color: "#E8D5A3"
     }
   }, "Not\xEDcias do Coral"), /*#__PURE__*/React.createElement("button", {
     onClick: function onClick() {
@@ -11411,7 +11411,7 @@ function AreaRH(_ref48) {
       style: {
         fontSize: 15,
         fontWeight: 700,
-        color: "#1A1D23",
+        color: "#E8D5A3",
         marginBottom: 6
       }
     }, n.titulo), /*#__PURE__*/React.createElement("div", {
@@ -11431,7 +11431,7 @@ function AreaRH(_ref48) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#1A1D23",
+      color: "#E8D5A3",
       marginBottom: 16
     }
   }, "Declara\xE7\xE3o Individual por Corista"), /*#__PURE__*/React.createElement("div", {
@@ -11490,7 +11490,7 @@ function AreaRH(_ref48) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#1A1D23",
+      color: "#E8D5A3",
       marginBottom: 16
     }
   }, "Hist\xF3rico de Relat\xF3rios Enviados"), relatorios.length === 0 ? /*#__PURE__*/React.createElement("div", {
@@ -11537,7 +11537,7 @@ function AreaRH(_ref48) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#1A1D23"
+        color: "#E8D5A3"
       }
     }, r.tipo || "Relatório"), /*#__PURE__*/React.createElement("div", {
       style: {
@@ -11866,14 +11866,14 @@ function App() {
         alignItems: "center",
         gap: 12,
         width: "100%",
-        padding: "13px 14px",
+        padding: "14px 14px",
         borderRadius: 10,
         border: "none",
         background: tab === item.key ? cor : "none",
         color: tab === item.key ? "#fff" : "#E8D5A3",
         cursor: "pointer",
         fontFamily: "inherit",
-        fontSize: 16,
+        fontSize: 17,
         fontWeight: tab === item.key ? 700 : 500,
         marginBottom: 2,
         textAlign: "left",
@@ -11897,9 +11897,9 @@ function App() {
     }
   }, isAdmin ? "Administrador" : user.voice || "Corista"), /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 14,
+      fontSize: 15,
       fontWeight: 600,
-      color: "#1A1D23",
+      color: "#E8D5A3",
       marginBottom: 10
     }
   }, user.name), /*#__PURE__*/React.createElement("button", {
