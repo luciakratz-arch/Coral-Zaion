@@ -1129,7 +1129,7 @@ function Login(_ref7) {
     onLogin({
       name: m.name,
       isAdmin: false,
-      role: m.funcao === "Gestor" ? "rh" : "corista",
+      role: "corista",
       voice: m.voice
     });
   }
@@ -1549,11 +1549,29 @@ function Login(_ref7) {
       marginBottom: 10
     }
   }, sugestoes.map(function (m) {
-    return /*#__PURE__*/React.createElement("button", {
+    return /*#__PURE__*/React.createElement("div", {
       key: m.id,
-      onClick: function onClick() {
-        return entrarCorista(m);
-      },
+      style: {
+        borderBottom: "1px solid #3A3010"
+      }
+    }, m.funcao === "Gestor" ? /*#__PURE__*/React.createElement("div", {
+      style: { padding: "10px 16px" }
+    },
+      /*#__PURE__*/React.createElement("div", {
+        style: { fontSize: 14, color: "#E8D5A3", marginBottom: 6 }
+      }, m.name, " ", /*#__PURE__*/React.createElement("span", { style: { fontSize: 12, color: "#AAA", marginLeft: 8 } }, m.voice)),
+      /*#__PURE__*/React.createElement("div", { style: { display: "flex", gap: 8 } },
+        /*#__PURE__*/React.createElement("button", {
+          onClick: function() { onLogin({ name: m.name, isAdmin: false, role: "corista", voice: m.voice }); },
+          style: { flex: 1, padding: "8px", background: "#2A2000", border: "1px solid #C9A227", borderRadius: 6, color: "#E8D5A3", cursor: "pointer", fontSize: 13, fontFamily: "inherit" }
+        }, "Entrar como Corista"),
+        /*#__PURE__*/React.createElement("button", {
+          onClick: function() { onLogin({ name: m.name, isAdmin: false, role: "rh", voice: m.voice }); },
+          style: { flex: 1, padding: "8px", background: "#C9A227", border: "none", borderRadius: 6, color: "#1A1400", cursor: "pointer", fontSize: 13, fontFamily: "inherit", fontWeight: 700 }
+        }, "Entrar como Gestor")
+      )
+    ) : /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() { return entrarCorista(m); },
       style: {
         display: "block",
         width: "100%",
@@ -1563,17 +1581,12 @@ function Login(_ref7) {
         textAlign: "left",
         cursor: "pointer",
         fontSize: 14,
-        borderBottom: "1px solid #F5F5F5",
         fontFamily: "inherit",
         color: "#E8D5A3"
       }
     }, m.name, " ", /*#__PURE__*/React.createElement("span", {
-      style: {
-        fontSize: 12,
-        color: "#AAA",
-        marginLeft: 8
-      }
-    }, m.voice));
+      style: { fontSize: 12, color: "#AAA", marginLeft: 8 }
+    }, m.voice)));
   })), busca.length > 0 && busca.length < 3 && /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
