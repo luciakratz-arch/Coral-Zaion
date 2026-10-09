@@ -23,17 +23,17 @@ var _React = React,
   useEffect = _React.useEffect;
 var firebaseConfig = {
   apiKey: "AIzaSyDcLsndRbDPeUru_Di-h3w8RP_Ung-YSUo",
-  authDomain: "zaion-coral.firebaseapp.com",
-  projectId: "zaion-coral",
-  storageBucket: "zaion-coral.firebasestorage.app",
+  authDomain: "flamboyant-coral.firebaseapp.com",
+  projectId: "flamboyant-coral",
+  storageBucket: "flamboyant-coral.firebasestorage.app",
   messagingSenderId: "15022873086",
-  appId: "1:15022873086:web:507d97757035ac90d108af"
+  appId: "1:15022873086:web:72b9189cf5914418d108af"
 };
 if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 var COR = "#C9A227";
 var COR_FUNDO = "#1A1400";
-var LOGO_URL = "https://raw.githubusercontent.com/luciakratz-arch/Coral-Zaion/main/logo.jpg";
+var LOGO_URL = "https://raw.githubusercontent.com/luciakratz-arch/Coral-Zaion/main/LOGOCORAL.jpeg";
 var MONTHS_PT = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
 var MONTHS_SHORT = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
 var NAIPES = ["Soprano", "Contralto", "Mezzo-soprano", "Alto", "Tenor", "Barítono", "Baixo"];
@@ -305,9 +305,9 @@ function CadastroPublico(_ref2) {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      width: 220,
-      height: 110,
-      borderRadius: 12,
+      width: 140,
+      height: 140,
+      borderRadius: 16,
       overflow: "hidden",
       margin: "0 auto 16px",
       boxShadow: "0 4px 20px rgba(201,162,39,0.4)",
