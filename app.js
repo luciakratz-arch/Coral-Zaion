@@ -11791,7 +11791,7 @@ function App() {
     }
   }, /*#__PURE__*/React.createElement("aside", {
     style: {
-      width: 260,
+      width: 270,
       background: "#1E1A0A",
       borderRight: "1px solid #EEE0E0",
       display: "flex",
@@ -11839,14 +11839,14 @@ function App() {
   })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: "'Playfair Display',serif",
-      fontSize: 15,
+      fontSize: 17,
       fontWeight: 700,
       color: cor,
       lineHeight: 1.2
     }
   }, config.nomeApp || "Coral Zaion"), /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 11,
+      fontSize: 13,
       color: "#AAA"
     }
   }, isAdmin ? config.subtitulo || "Portal de Gestão" : "Área do Corista")))), /*#__PURE__*/React.createElement("nav", {
@@ -11866,14 +11866,14 @@ function App() {
         alignItems: "center",
         gap: 12,
         width: "100%",
-        padding: "10px 12px",
+        padding: "13px 14px",
         borderRadius: 10,
         border: "none",
         background: tab === item.key ? cor : "none",
         color: tab === item.key ? "#fff" : "#E8D5A3",
         cursor: "pointer",
         fontFamily: "inherit",
-        fontSize: 14,
+        fontSize: 16,
         fontWeight: tab === item.key ? 700 : 500,
         marginBottom: 2,
         textAlign: "left",
