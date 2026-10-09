@@ -1,57 +1,45 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* Coral Zaion - Dark Theme */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background: #0F0F0F;
-    color: #F0F0F0;
-    line-height: 1.5;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #0D0D0D;
+  color: #E8D5A3;
+  min-height: 100vh;
 }
 
-@keyframes spin {
-    to { transform: rotate(360deg); }
+input, textarea, select {
+  background: #1A1400 !important;
+  color: #E8D5A3 !important;
+  border: 1px solid #3A3010 !important;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  width: 100%;
+  outline: none;
+  font-family: inherit;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
+input::placeholder, textarea::placeholder {
+  color: #7A6A40;
 }
 
-/* ── DESKTOP: sidebar visível, header e nav mobile ocultos ── */
-@media (min-width: 768px) {
-    .sidebar-desktop { display: flex !important; }
-    .header-mobile   { display: none !important; }
-    .nav-mobile       { display: none !important; }
-    .main-content     { margin-left: 260px !important; padding-bottom: 0 !important; }
+input:focus, textarea:focus, select:focus {
+  border-color: #C9A227 !important;
+  box-shadow: 0 0 0 2px rgba(201,162,39,0.2);
 }
 
-/* ── MOBILE: sidebar oculta, header e nav visíveis ── */
-@media (max-width: 767px) {
-    .sidebar-desktop { display: none !important; }
-    .header-mobile   { display: flex !important; }
-    .nav-mobile       { display: flex !important; }
-    .main-content     { margin-left: 0 !important; }
+select option {
+  background: #1A1400;
+  color: #E8D5A3;
 }
 
-/* Scrollbar discreta */
-::-webkit-scrollbar       { width: 4px; }
-::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
 
-/* Modal overlay */
-.modal-overlay {
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.65);
-    z-index: 300;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-}
-.modal-box {
-    background: #1A1A1A;
-    border-radius: 20px 20px 0 0;
-    padding: 24px 20px;
-    width: 100%;
-    max-width: 480px;
-    max-height: 90vh;
-    overflow-y: auto;
-    color: #F0F0F0;
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0D0D0D; }
+::-webkit-scrollbar-thumb { background: #3A3010; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #C9A227; }
