@@ -37,7 +37,7 @@ var LOGO_URL = "https://raw.githubusercontent.com/luciakratz-arch/Coral-Zaion/ma
 var MONTHS_PT = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
 var MONTHS_SHORT = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
 var NAIPES = ["Soprano", "Contralto", "Mezzo-soprano", "Alto", "Tenor", "Barítono", "Baixo"];
-var FUNCOES = ["Corista", "Solista", "Regente", "Pianista", "Produtora", "Auxiliar"];
+var FUNCOES = ["Corista", "Solista", "Regente", "Pianista", "Produtora", "Auxiliar", "Gestor"];
 function todayStr() {
   return new Date().toISOString().split("T")[0];
 }
@@ -1129,7 +1129,7 @@ function Login(_ref7) {
     onLogin({
       name: m.name,
       isAdmin: false,
-      role: "corista",
+      role: m.funcao === "Gestor" ? "rh" : "corista",
       voice: m.voice
     });
   }
