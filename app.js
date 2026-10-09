@@ -305,14 +305,13 @@ function CadastroPublico(_ref2) {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      width: 280,
-      height: 140,
-      borderRadius: 12,
+      width: 300,
+      height: 150,
+      borderRadius: 0,
       overflow: "hidden",
       margin: "0 auto 16px",
-      boxShadow: "0 4px 20px rgba(201,162,39,0.4)",
       flexShrink: 0,
-      background: "#0D0D0D"
+      background: "transparent"
     }
   }, /*#__PURE__*/React.createElement("img", {
     src: config.logoUrl || LOGO_URL,
@@ -1205,12 +1204,12 @@ function Login(_ref7) {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      width: 280,
-      height: 140,
-      borderRadius: 12,
+      width: 300,
+      height: 150,
+      borderRadius: 0,
       overflow: "hidden",
       margin: "0 auto 16px",
-      boxShadow: "0 4px 20px rgba(201,162,39,0.4)"
+      background: "transparent"
     }
   }, /*#__PURE__*/React.createElement("img", {
     src: config.logoUrl || LOGO_URL,
@@ -1255,8 +1254,8 @@ function Login(_ref7) {
   }, {
     id: "rh",
     icon: "briefcase",
-    label: "Sou Coordenador(a) do Curso",
-    sub: "Coordenação de Curso",
+    label: "Sou Gestor(a) do Coral",
+    sub: "Gestão do coral",
     cor: "#1565C0",
     bg: "rgba(21,101,192,0.08)"
   }].map(function (p) {
@@ -1438,7 +1437,7 @@ function Login(_ref7) {
       fontWeight: 700,
       color: "#E8D5A3"
     }
-  }, "RH \u2014 Coordenação de Curso")), /*#__PURE__*/React.createElement("div", {
+  }, "Gestor(a) do Coral")), /*#__PURE__*/React.createElement("div", {
     style: {
       position: "relative",
       marginBottom: 12
@@ -11047,7 +11046,7 @@ function AreaRH(_ref48) {
       color: cor,
       marginBottom: 4
     }
-  }, "RH \u2014 Coordenação de Curso"), /*#__PURE__*/React.createElement("div", {
+  }, "Gestor(a) do Coral"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
       color: "#AAA",
