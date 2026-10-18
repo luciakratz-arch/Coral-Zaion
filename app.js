@@ -32,7 +32,7 @@ var firebaseConfig = {
 if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 var COR = "#C9A227";
-var COR_FUNDO = "#1A1400";
+var COR_FUNDO = "#000000";
 var LOGO_URL = "https://raw.githubusercontent.com/luciakratz-arch/Coral-Zaion/main/logo.jpg";
 var MONTHS_PT = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
 var MONTHS_SHORT = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
@@ -107,7 +107,9 @@ function useConfig() {
   useEffect(function () {
     var unsub = db.collection("zaion_config").doc("app").onSnapshot(function (snap) {
       if (snap.exists) setConfig(function (c) {
-        return _objectSpread(_objectSpread({}, c), snap.data());
+        return _objectSpread(_objectSpread(_objectSpread({}, c), snap.data()), {
+          corFundo: COR_FUNDO
+        });
       });
     });
     return unsub;
@@ -236,7 +238,7 @@ function CadastroPublico(_ref2) {
     outline: "none",
     fontFamily: "inherit",
     color: "#E8D5A3",
-    background: "#1E1A0A"
+    background: "#121212"
   };
   var lbl = {
     display: "block",
@@ -340,7 +342,7 @@ function CadastroPublico(_ref2) {
     }
   }, "Cadastro de Corista")), /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#1E1A0A",
+      background: "#121212",
       borderRadius: 16,
       border: "1px solid #EEE0E0",
       padding: "24px 20px",
@@ -1295,7 +1297,7 @@ function Login(_ref7) {
       padding: "32px 20px"
     },
     card: {
-      background: "#1E1A0A",
+      background: "#121212",
       borderRadius: 16,
       border: "1px solid #EEE0E0",
       padding: "24px 20px",
@@ -1312,12 +1314,12 @@ function Login(_ref7) {
       outline: "none",
       fontFamily: "inherit",
       color: "#E8D5A3",
-      background: "#1E1A0A"
+      background: "#121212"
     },
     btnSec: {
       flex: 1,
       padding: "13px",
-      background: "#1E1A0A",
+      background: "#121212",
       color: cor,
       border: "none",
       borderRadius: 10,
@@ -1431,7 +1433,7 @@ function Login(_ref7) {
         width: 40,
         height: 40,
         borderRadius: 10,
-        background: "#1E1A0A",
+        background: "#121212",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -1686,7 +1688,7 @@ function Login(_ref7) {
     autoFocus: true
   }), sugestoes.length > 0 && /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#1E1A0A",
+      background: "#121212",
       border: "1px solid #EEE",
       borderRadius: 10,
       overflow: "hidden",
@@ -1797,7 +1799,7 @@ function Painel(_ref8) {
   });
   var card = function card(bc) {
     return {
-      background: "#1E1A0A",
+      background: "#121212",
       borderRadius: 12,
       padding: "16px 20px",
       border: "1px solid #EEE8E8",
@@ -2014,7 +2016,7 @@ function Painel(_ref8) {
     return /*#__PURE__*/React.createElement("div", {
       key: a.id,
       style: _objectSpread(_objectSpread({}, card(a.urgente ? cor : "")), {}, {
-        background: a.urgente ? "#1A0000" : "#1E1A0A"
+        background: a.urgente ? "#1A0000" : "#121212"
       })
     }, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -2539,7 +2541,7 @@ function Integrantes(_ref0) {
       alignItems: "center",
       gap: 8,
       padding: "10px 16px",
-      background: "#1E1A0A",
+      background: "#121212",
       border: "1px solid ".concat(cor),
       borderRadius: 10,
       fontSize: 13,
@@ -2576,7 +2578,7 @@ function Integrantes(_ref0) {
     color: "#fff"
   }), " Adicionar Integrante"))), /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#1E1A0A",
+      background: "#121212",
       borderRadius: 12,
       border: "1px solid #EEE8E8",
       padding: "12px 16px",
@@ -2618,7 +2620,7 @@ function Integrantes(_ref0) {
       fontFamily: "inherit",
       color: "#E8D5A3",
       outline: "none",
-      background: "#1E1A0A",
+      background: "#121212",
       cursor: "pointer"
     }
   }, ["Todos", "Ativos", "Inativos"].concat(NAIPES).map(function (f) {
@@ -2627,7 +2629,7 @@ function Integrantes(_ref0) {
     }, f);
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#1E1A0A",
+      background: "#121212",
       borderRadius: 12,
       border: "1px solid #EEE8E8",
       overflow: "hidden",
@@ -2667,7 +2669,7 @@ function Integrantes(_ref0) {
         padding: "13px 16px",
         borderBottom: i < filtrados.length - 1 ? "1px solid #F9F5F5" : "none",
         alignItems: "center",
-        background: i % 2 === 0 ? "#1E1A0A" : "#1C1808"
+        background: i % 2 === 0 ? "#121212" : "#0A0A0A"
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -2693,7 +2695,7 @@ function Integrantes(_ref0) {
         borderRadius: 20,
         fontSize: 11,
         fontWeight: 700,
-        background: m.active ? "#0D1A0D" : "#1A1200",
+        background: m.active ? "#0D1A0D" : "#0F0F0F",
         color: m.active ? "#2E7D32" : "#E65100"
       }
     }, m.active ? "Ativo" : "Inativo")), /*#__PURE__*/React.createElement("div", {
@@ -2789,7 +2791,7 @@ function Configuracoes(_ref1) {
     outline: "none",
     fontFamily: "inherit",
     color: "#E8D5A3",
-    background: "#1E1A0A"
+    background: "#121212"
   };
   var lbl = {
     display: "block",
@@ -2801,7 +2803,7 @@ function Configuracoes(_ref1) {
     letterSpacing: 1
   };
   var box = {
-    background: "#1E1A0A",
+    background: "#121212",
     borderRadius: 12,
     border: "1px solid #EEE8E8",
     padding: "20px",
@@ -3018,7 +3020,7 @@ function Configuracoes(_ref1) {
     style: {
       width: 52,
       height: 52,
-      background: "#1E1A0A",
+      background: "#121212",
       borderRadius: "50%",
       display: "flex",
       alignItems: "center",
@@ -3825,7 +3827,7 @@ function ModalExcluirEvento(_ref11) {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#1E1A0A",
+      background: "#121212",
       borderRadius: 16,
       padding: "24px 20px",
       width: "100%",
@@ -3857,7 +3859,7 @@ function ModalExcluirEvento(_ref11) {
     onClick: excluirFuturos,
     disabled: excluindo,
     style: _objectSpread(_objectSpread({}, btnBase), {}, {
-      background: "#1A1200",
+      background: "#0F0F0F",
       color: "#E65100"
     })
   }, "Este e os futuros"), /*#__PURE__*/React.createElement("button", {
@@ -3970,7 +3972,7 @@ function Agenda(_ref12) {
     color: "#fff"
   }), " Adicionar Evento")), /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#1E1A0A",
+      background: "#121212",
       borderRadius: 12,
       border: "1px solid #EEE8E8",
       padding: "14px 20px",
@@ -4027,7 +4029,7 @@ function Agenda(_ref12) {
     color: "#C9B880"
   }))), eventosMes.length === 0 ? /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#1E1A0A",
+      background: "#121212",
       borderRadius: 12,
       border: "1px solid #EEE8E8",
       padding: "32px",
@@ -4045,7 +4047,7 @@ function Agenda(_ref12) {
     return /*#__PURE__*/React.createElement("div", {
       key: e.id,
       style: {
-        background: "#1E1A0A",
+        background: "#121212",
         borderRadius: 12,
         border: "1px solid #EEE8E8",
         padding: "16px",
@@ -4335,7 +4337,7 @@ function ModalAviso(_ref13) {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#1E1A0A",
+      background: "#121212",
       borderRadius: "20px 20px 0 0",
       padding: "24px 20px",
       width: "100%",
@@ -4637,7 +4639,7 @@ function Avisos(_ref14) {
     }, "\uD83C\uDF82 ", m.name, " (dia ", dd, ")", isToday ? " 🎉" : "");
   }))), avisos.length === 0 && aniversarios.length === 0 && /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#1E1A0A",
+      background: "#121212",
       borderRadius: 12,
       border: "1px solid #EEE8E8",
       padding: "32px",
@@ -5494,7 +5496,7 @@ function Repertorio(_ref16) {
     color: "#fff"
   }), " Adicionar M\xFAsica")), /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#1E1A0A",
+      background: "#121212",
       borderRadius: 12,
       border: "1px solid #EEE8E8",
       padding: "12px 16px",
@@ -5525,7 +5527,7 @@ function Repertorio(_ref16) {
     }
   })), filtradas.length === 0 ? /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#1E1A0A",
+      background: "#121212",
       borderRadius: 12,
       border: "1px solid #EEE8E8",
       padding: "32px",
@@ -5544,7 +5546,7 @@ function Repertorio(_ref16) {
     return /*#__PURE__*/React.createElement("div", {
       key: s.id,
       style: {
-        background: "#1E1A0A",
+        background: "#121212",
         borderRadius: 12,
         border: "1px solid #EEE8E8",
         borderTop: "3px solid ".concat(catColor),
@@ -6224,7 +6226,7 @@ function SalaEstudos(_ref19) {
     }, "(", count, ")"));
   })), filtrados.length === 0 ? /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#1E1A0A",
+      background: "#121212",
       borderRadius: 12,
       border: "1px solid #EEE8E8",
       padding: "32px",
@@ -6243,7 +6245,7 @@ function SalaEstudos(_ref19) {
     return /*#__PURE__*/React.createElement("div", {
       key: e.id,
       style: {
-        background: "#1E1A0A",
+        background: "#121212",
         borderRadius: 12,
         border: "1px solid #EEE8E8",
         overflow: "hidden",
@@ -6488,7 +6490,7 @@ function Apresentacao(_ref21) {
   }
   var mesaUrl = eventoSel ? "".concat(window.location.origin).concat(window.location.pathname, "?mesa=").concat(eventoSel.id) : "";
   var card = {
-    background: "#1E1A0A",
+    background: "#121212",
     borderRadius: 12,
     border: "1px solid #EEE8E8",
     padding: "16px 20px",
@@ -6920,7 +6922,7 @@ function FrequenciaEventos(_ref24) {
     config = _ref24.config;
   var cor = config.corPrimaria || COR;
   var card = {
-    background: "#1E1A0A",
+    background: "#121212",
     borderRadius: 12,
     border: "1px solid #EEE8E8",
     padding: "16px 20px",
@@ -7062,7 +7064,7 @@ function FrequenciaAcesso(_ref25) {
     return v.total;
   })).concat([1]));
   var card = {
-    background: "#1E1A0A",
+    background: "#121212",
     borderRadius: 12,
     border: "1px solid #EEE8E8",
     padding: "16px 20px",
@@ -7565,7 +7567,7 @@ function Relatorios(_ref32) {
     }, 800);
   }
   var card = {
-    background: "#1E1A0A",
+    background: "#121212",
     borderRadius: 12,
     border: "1px solid #EEE8E8",
     padding: "16px 20px",
@@ -7893,7 +7895,7 @@ function Relatorios(_ref32) {
     },
     style: {
       padding: "6px 14px",
-      background: "#1E1A0A",
+      background: "#121212",
       border: "1px solid #EEE",
       borderRadius: 8,
       fontSize: 12,
@@ -8188,7 +8190,7 @@ function Relatorios(_ref32) {
       alignItems: "center",
       gap: 8,
       padding: "9px 18px",
-      background: "#1E1A0A",
+      background: "#121212",
       color: cor,
       border: "1px solid ".concat(cor),
       borderRadius: 10,
@@ -8480,7 +8482,7 @@ function CheckinPublico(_ref41) {
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       textAlign: "center",
-      background: "#1E1A0A",
+      background: "#121212",
       borderRadius: 20,
       padding: "32px 24px",
       maxWidth: 360,
@@ -8534,7 +8536,7 @@ function CheckinPublico(_ref41) {
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       textAlign: "center",
-      background: "#1E1A0A",
+      background: "#121212",
       borderRadius: 20,
       padding: "32px 24px",
       maxWidth: 360,
@@ -8571,7 +8573,7 @@ function CheckinPublico(_ref41) {
     style: {
       width: 64,
       height: 64,
-      background: "#1E1A0A",
+      background: "#121212",
       borderRadius: "50%",
       display: "flex",
       alignItems: "center",
@@ -8605,7 +8607,7 @@ function CheckinPublico(_ref41) {
     }
   }, "Check-in de presen\xE7a")), /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#1E1A0A",
+      background: "#121212",
       borderRadius: 16,
       padding: "24px 20px",
       width: "100%",
@@ -8859,7 +8861,7 @@ function Frequencia(_ref42) {
   });
   var totalMembros = frequencias.length;
   var card = {
-    background: "#1E1A0A",
+    background: "#121212",
     borderRadius: 12,
     border: "1px solid #EEE8E8",
     padding: "20px",
@@ -9349,7 +9351,7 @@ function Declaracao(_ref43) {
     }, 800);
   }
   var card = {
-    background: "#1E1A0A",
+    background: "#121212",
     borderRadius: 12,
     border: "1px solid #EEE8E8",
     padding: "20px",
@@ -9869,7 +9871,7 @@ function PainelCorista(_ref45) {
     return a.date > b.date ? 1 : -1;
   });
   var card = {
-    background: "#1E1A0A",
+    background: "#121212",
     borderRadius: 12,
     border: "1px solid #EEE8E8",
     padding: "16px 20px",
@@ -10031,7 +10033,7 @@ function PainelCorista(_ref45) {
     return /*#__PURE__*/React.createElement("div", {
       key: n.id,
       style: {
-        background: "#1E1A0A",
+        background: "#121212",
         borderRadius: 12,
         border: "1px solid #EEE8E8",
         marginBottom: 10,
@@ -10527,7 +10529,7 @@ function MinhaDeclaracao(_ref46) {
     return a.eventoData > b.eventoData ? 1 : -1;
   });
   var card = {
-    background: "#1E1A0A",
+    background: "#121212",
     borderRadius: 12,
     border: "1px solid #EEE8E8",
     padding: "20px",
@@ -11107,7 +11109,7 @@ function AreaRH(_ref48) {
     return c.status === "nao";
   }).length;
   var card = {
-    background: "#1E1A0A",
+    background: "#121212",
     borderRadius: 12,
     border: "1px solid #EEE8E8",
     padding: "16px 20px",
@@ -11698,7 +11700,7 @@ function AreaRH(_ref48) {
         padding: "12px 16px",
         borderBottom: i < relatorios.length - 1 ? "1px solid #F5F5F5" : "none",
         alignItems: "center",
-        background: i % 2 === 0 ? "#1E1A0A" : "#1C1808"
+        background: i % 2 === 0 ? "#121212" : "#0A0A0A"
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -11959,7 +11961,7 @@ function App() {
   }, /*#__PURE__*/React.createElement("aside", {
     style: {
       width: 270,
-      background: "#1E1A0A",
+      background: "#121212",
       borderRight: "1px solid #EEE0E0",
       display: "flex",
       flexDirection: "column",
@@ -12084,7 +12086,7 @@ function App() {
       style: {
         width: "100%",
         padding: "9px",
-        background: "#1E1A0A",
+        background: "#121212",
         color: cor,
         border: "1px solid " + cor + "33",
         borderRadius: 8,
@@ -12193,7 +12195,7 @@ function App() {
       bottom: 0,
       left: 0,
       right: 0,
-      background: "#1E1A0A",
+      background: "#121212",
       borderTop: "1px solid #EEE0E0",
       display: "flex",
       zIndex: 150
