@@ -11869,6 +11869,14 @@ function App() {
   var _maisState = useState(false),
     maisAberto = _maisState[0],
     setMaisAberto = _maisState[1];
+  useEffect(function () {
+    var el = document.getElementById("fs-ctl");
+    if (el) el.style.display = maisAberto ? "none" : "";
+    return function () {
+      var e2 = document.getElementById("fs-ctl");
+      if (e2) e2.style.display = "";
+    };
+  }, [maisAberto]);
   var _useState209 = useState([]),
     _useState210 = _slicedToArray(_useState209, 2),
     members = _useState210[0],
