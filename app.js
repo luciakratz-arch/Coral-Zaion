@@ -12332,7 +12332,7 @@ function App() {
       position: "fixed",
       inset: 0,
       background: "rgba(0,0,0,0.75)",
-      zIndex: 400,
+      zIndex: 10000,
       display: "flex",
       alignItems: "flex-end",
       justifyContent: "center"
