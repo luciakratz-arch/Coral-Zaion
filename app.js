@@ -42,8 +42,9 @@ var __ce = React.createElement;
 React.createElement = function (t, p) {
   if (p && p.style && typeof t === "string") {
     var st = p.style, mudou = false, novo = {};
-    if (__FS !== 1 && typeof st.fontSize === "number") {
-      novo.fontSize = Math.round(st.fontSize * __FS * 10) / 10;
+    var __fsAtual = window.__FS || 1;
+    if (__fsAtual !== 1 && typeof st.fontSize === "number") {
+      novo.fontSize = Math.round(st.fontSize * __fsAtual * 10) / 10;
       mudou = true;
     }
     if (st.display === "grid" && typeof st.gridTemplateColumns === "string" && window.innerWidth < 700) {
@@ -164,8 +165,9 @@ var Icon = function Icon(_ref) {
     color = _ref.color;
   useEffect(function () {
     if (window.lucide) window.lucide.createIcons();
-  }, [name]);
+  }, [name, size]);
   return /*#__PURE__*/React.createElement("i", {
+    key: name + "-" + size,
     "data-lucide": name,
     style: {
       width: size,
@@ -11854,6 +11856,16 @@ function App() {
     _useState208 = _slicedToArray(_useState207, 2),
     user = _useState208[0],
     setUser = _useState208[1];
+  var _fsState = useState(0),
+    setFsTick = _fsState[1];
+  useEffect(function () {
+    window.__setFS = function (v) {
+      window.__FS = v;
+      try { localStorage.setItem("zaion_fs", String(v)); } catch (e) {}
+      setFsTick(function (t) { return t + 1; });
+    };
+    return function () { window.__setFS = null; };
+  }, []);
   var _maisState = useState(false),
     maisAberto = _maisState[0],
     setMaisAberto = _maisState[1];
@@ -11868,6 +11880,32 @@ function App() {
   var _useConfig = useConfig(),
     config = _useConfig.config,
     save = _useConfig.save;
+  var homeTab = user && user.isAdmin ? "painel" : user && user.role === "rh" ? "rh_dashboard" : "inicio";
+  var _navRef = React.useRef({ pop: false });
+  useEffect(function () {
+    function onPop(e) {
+      var t = e.state && e.state.zt;
+      _navRef.current.pop = true;
+      setTab(t || homeTab);
+    }
+    window.addEventListener("popstate", onPop);
+    return function () {
+      window.removeEventListener("popstate", onPop);
+    };
+  }, [homeTab]);
+  useEffect(function () {
+    if (_navRef.current.pop) {
+      _navRef.current.pop = false;
+      return;
+    }
+    if (tab !== homeTab) {
+      try { window.history.pushState({ zt: tab }, ""); } catch (e) {}
+    }
+  }, [tab]);
+  function voltar() {
+    if (window.history.state && window.history.state.zt) window.history.back();
+    else setTab(homeTab);
+  }
   useEffect(function () {
     var unsub = db.collection("zaion_members").onSnapshot(function (snap) {
       return setMembers(snap.docs.map(function (d) {
@@ -12177,7 +12215,24 @@ function App() {
       alignItems: "center",
       gap: 10
     }
-  }, /*#__PURE__*/React.createElement("div", {
+  }, tab !== homeTab && /*#__PURE__*/React.createElement("button", {
+    onClick: voltar,
+    "aria-label": "Voltar",
+    style: {
+      width: 44,
+      height: 44,
+      borderRadius: "50%",
+      border: "1px solid rgba(255,255,255,0.4)",
+      background: "rgba(0,0,0,0.25)",
+      color: "#FFFFFF",
+      fontSize: 22,
+      fontWeight: 700,
+      cursor: "pointer",
+      fontFamily: "inherit",
+      flexShrink: 0,
+      lineHeight: 1
+    }
+  }, "\u2190"), /*#__PURE__*/React.createElement("div", {
     style: {
       width: 32,
       height: 32,
