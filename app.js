@@ -611,7 +611,7 @@ function PlayerModal(_ref3) {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      padding: 16
+      padding: isMobile ? 0 : 16
     },
     onClick: function onClick(e) {
       return e.target === e.currentTarget && onClose();
@@ -621,8 +621,12 @@ function PlayerModal(_ref3) {
       width: "100%",
       maxWidth: showSplit ? 1100 : 800,
       background: "#1A1D23",
-      borderRadius: 16,
+      borderRadius: isMobile ? 0 : 16,
       overflow: "hidden",
+      display: "flex",
+      flexDirection: "column",
+      height: showSplit || isMobile ? (isMobile ? "100vh" : "90vh") : "auto",
+      maxHeight: isMobile ? "100vh" : "90vh",
       boxShadow: "0 20px 60px rgba(0,0,0,0.5)"
     }
   }, /*#__PURE__*/React.createElement("div", {
@@ -681,27 +685,29 @@ function PlayerModal(_ref3) {
       flexShrink: 0,
       fontFamily: "inherit"
     }
-  }, /*#__PURE__*/React.createElement(Icon, { name: "columns", size: 14, color: "#fff" }), !isMobile && " Dividir"))), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement(Icon, { name: "columns", size: 14, color: "#fff" }), !isMobile && " Dividir")), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
-      flexDirection: showSplit ? "row" : "column",
+      flexDirection: showSplit ? (isMobile ? "column" : "row") : "column",
       flex: 1,
-      overflow: "hidden",
-      background: "#000"
+      minHeight: 0,
+      overflow: showSplit ? "hidden" : "auto",
+      background: "#1A1D23"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      flex: showSplit ? "0 0 50%" : "none",
+      flex: showSplit ? "0 0 30%" : "none",
       display: "flex",
       flexDirection: "column",
       overflow: "hidden",
+      minHeight: 0,
       minWidth: 0
     }
   }, (type === "youtube" || type === "iframe") && url !== "letra" && /*#__PURE__*/React.createElement("iframe", {
     src: embed,
     style: {
       width: "100%",
-      height: window.innerWidth < 600 ? 220 : 450,
+      height: showSplit ? "100%" : (window.innerWidth < 600 ? 220 : 450),
       border: "none",
       display: "block"
     },
@@ -710,7 +716,7 @@ function PlayerModal(_ref3) {
     title: title
   }), type === "audio" && /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: "32px 24px",
+      padding: showSplit ? "16px 12px" : "32px 24px",
       textAlign: "center",
       background: "#1A1D23"
     }
@@ -742,7 +748,7 @@ function PlayerModal(_ref3) {
     alt: title,
     style: {
       maxWidth: "100%",
-      maxHeight: 500,
+      maxHeight: showSplit ? "100%" : 500,
       objectFit: "contain",
       borderRadius: 8
     }
@@ -750,19 +756,21 @@ function PlayerModal(_ref3) {
     src: embed,
     style: {
       width: "100%",
-      height: window.innerWidth < 600 ? 400 : 600,
+      height: showSplit ? "100%" : (window.innerWidth < 600 ? 400 : 600),
       border: "none",
       display: "block"
     },
     title: title
-  }))), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/React.createElement("div", {
     style: {
-      flex: showSplit ? "0 0 50%" : "none",
+      flex: showSplit ? "0 0 70%" : "none",
       display: "flex",
       flexDirection: "column",
       overflow: "hidden",
+      minHeight: 0,
       minWidth: 0,
-      borderLeft: showSplit ? "1px solid #333" : "none"
+      borderLeft: showSplit && !isMobile ? "1px solid #333" : "none",
+      borderTop: showSplit && isMobile ? "1px solid #333" : "none"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -831,9 +839,9 @@ function PlayerModal(_ref3) {
     }, "✏️ Editar"),
     letraMsg && /*#__PURE__*/React.createElement("div", { style: { fontSize: 12, color: "#C9A227", marginBottom: 8 } }, letraMsg),
     /*#__PURE__*/React.createElement("div", {
-      style: { fontSize: 14, color: "#EEE", lineHeight: 1.8, whiteSpace: "pre-wrap" }
+      style: { fontSize: 14, color: "#EEE", lineHeight: 1.8 }
     }, renderLetraFormatada(letraEdit || letra))
-  ) : null)), naipes && /*#__PURE__*/React.createElement("div", {
+  ) : null))), naipes && /*#__PURE__*/React.createElement("div", {
     style: {
       padding: "16px 18px",
       background: "#1A1D23"
