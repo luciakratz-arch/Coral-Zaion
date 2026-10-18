@@ -125,7 +125,7 @@
       background:#C9A227;border-radius:28px;padding:6px 8px;box-shadow:0 2px 10px rgba(0,0,0,.4);}
     #fs-ctl button{width:44px;height:44px;border-radius:50%;border:none;background:#1A1400;color:#FFFFFF;
       font-weight:700;cursor:pointer;font-family:inherit;line-height:1;}
-    #fs-ctl .menos{font-size:15px;} #fs-ctl .mais{font-size:22px;}
+    #fs-ctl .menos{font-size:15px;} #fs-ctl .mais{font-size:22px;} #fs-ctl .ouvir{font-size:22px;background:#FFFFFF;color:#1A1400;} #fs-ctl .ouvir.falando{background:#C0392B;color:#fff;}
     #fs-ctl button:disabled{opacity:.35;cursor:default;}
     @media (min-width:769px){#fs-ctl{bottom:56px;}}
     @media (max-width:768px){#fs-ctl{bottom:76px;}}
@@ -141,8 +141,75 @@
     var i=get();m.disabled=i===0;p.disabled=i===N.length-1;
     m.onclick=function(){set(Math.max(0,get()-1));};
     p.onclick=function(){set(Math.min(N.length-1,get()+1));};
-    box.appendChild(m);box.appendChild(p);
+    var o=document.createElement('button');o.className='ouvir';o.id='fs-ouvir';o.textContent='🔊';o.title='Ouvir o que está na tela';o.setAttribute('aria-label','Ouvir o que está na tela');
+    box.appendChild(m);box.appendChild(p);box.appendChild(o);
     window.addEventListener('load',function(){document.body.appendChild(box);});
+  })();
+  </script>
+
+
+  <!-- Leitura em voz alta (acessibilidade) -->
+  <script>
+  (function(){
+    if(!('speechSynthesis' in window)) return;
+    var falando=false, fila=[], pos=0;
+    function pegarTexto(){
+      var sel=''; try{ sel=String(window.getSelection()).trim(); }catch(e){}
+      if(sel) return sel;
+      var alvo=null, fixos=document.querySelectorAll('#root [style*="position: fixed"], body > [style*="position: fixed"]');
+      for(var k=0;k<fixos.length;k++){
+        var el=fixos[k];
+        if(el.id==='fs-ctl'||el.id==='modal-pwa'||el.closest('#fs-ctl')) continue;
+        var r=el.getBoundingClientRect(), z=parseInt(getComputedStyle(el).zIndex,10)||0;
+        if(z>=300 && r.width>200 && r.height>200 && (el.innerText||'').trim().length>20) alvo=el;
+      }
+      if(!alvo) alvo=document.querySelector('.main-content')||document.getElementById('root');
+      return alvo?(alvo.innerText||''):'';
+    }
+    function dividir(t){
+      t=t.replace(/\s*\n+\s*/g,'. ').replace(/\.\s*\./g,'.').replace(/\s+/g,' ').trim();
+      var partes=t.match(/[^.!?;:]+[.!?;:]?/g)||[t], out=[], cur='';
+      partes.forEach(function(s){
+        if((cur+s).length>180){ if(cur) out.push(cur); cur=s; } else cur+=s;
+      });
+      if(cur) out.push(cur);
+      return out;
+    }
+    function escolherVoz(){
+      var v=speechSynthesis.getVoices()||[];
+      return v.filter(function(x){return /^pt[-_]BR/i.test(x.lang);})[0]||v.filter(function(x){return /^pt/i.test(x.lang);})[0]||null;
+    }
+    function botao(){return document.getElementById('fs-ouvir');}
+    function parar(){
+      falando=false; fila=[]; speechSynthesis.cancel();
+      var b=botao(); if(b){ b.classList.remove('falando'); b.textContent='🔊'; b.title='Ouvir o que está na tela'; }
+    }
+    function proximo(){
+      if(!falando) return;
+      if(pos>=fila.length){ parar(); return; }
+      var u=new SpeechSynthesisUtterance(fila[pos++]);
+      u.lang='pt-BR'; u.rate=0.9;
+      var v=escolherVoz(); if(v) u.voice=v;
+      u.onend=proximo; u.onerror=function(){ if(falando) proximo(); };
+      speechSynthesis.speak(u);
+    }
+    function iniciar(){
+      var t=pegarTexto();
+      fila=dividir(t); pos=0;
+      if(!fila.length) return;
+      falando=true;
+      var b=botao(); if(b){ b.classList.add('falando'); b.textContent='⏹'; b.title='Parar a leitura'; }
+      speechSynthesis.cancel();
+      proximo();
+    }
+    window.addEventListener('load',function(){
+      document.addEventListener('click',function(e){
+        var b=e.target.closest&&e.target.closest('#fs-ouvir');
+        if(!b) return;
+        if(falando) parar(); else iniciar();
+      });
+      window.addEventListener('beforeunload',function(){ speechSynthesis.cancel(); });
+    });
   })();
   </script>
 
@@ -153,7 +220,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-  <script src="app.js?v=6"></script>
+  <script src="app.js?v=7"></script>
 
   <script>
     if('serviceWorker' in navigator){
