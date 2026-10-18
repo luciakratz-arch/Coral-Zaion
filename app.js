@@ -31,6 +31,21 @@ var firebaseConfig = {
 };
 if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
+// ── TAMANHO DAS LETRAS (acessibilidade 60+) ──────────────────────────────────
+var __FS = 1;
+try { __FS = parseFloat(localStorage.getItem("zaion_fs")) || 1; } catch (e) {}
+if (__FS < 1 || __FS > 2) __FS = 1;
+window.__FS = __FS;
+if (__FS !== 1) {
+  var __ce = React.createElement;
+  React.createElement = function (t, p) {
+    if (p && p.style && typeof p.style.fontSize === "number") {
+      var st = Object.assign({}, p.style, { fontSize: Math.round(p.style.fontSize * __FS * 10) / 10 });
+      arguments[1] = Object.assign({}, p, { style: st });
+    }
+    return __ce.apply(React, arguments);
+  };
+}
 var COR = "#C9A227";
 var COR_FUNDO = "#000000";
 var LOGO_URL = "https://raw.githubusercontent.com/luciakratz-arch/Coral-Zaion/main/logo.jpg";
@@ -126,7 +141,7 @@ function useConfig() {
 var Icon = function Icon(_ref) {
   var name = _ref.name,
     _ref$size = _ref.size,
-    size = _ref$size === void 0 ? 16 : _ref$size,
+    size = (_ref$size === void 0 ? 16 : _ref$size) * Math.min(window.__FS || 1, 1.5),
     color = _ref.color;
   useEffect(function () {
     if (window.lucide) window.lucide.createIcons();
@@ -237,14 +252,14 @@ function CadastroPublico(_ref2) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#E8D5A3",
+    color: "#FFF2CF",
     background: "#121212"
   };
   var lbl = {
     display: "block",
     fontSize: 12,
     fontWeight: 600,
-    color: "#9A8A60",
+    color: "#DCCB94",
     marginBottom: 5
   };
   var g2 = {
@@ -283,14 +298,14 @@ function CadastroPublico(_ref2) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 24,
       fontWeight: 700,
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       marginBottom: 8,
       textAlign: "center"
     }
   }, "Cadastro realizado!"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 15,
-      color: "#9A8A60",
+      color: "#DCCB94",
       textAlign: "center",
       maxWidth: 320
     }
@@ -337,7 +352,7 @@ function CadastroPublico(_ref2) {
   }, config.nomeApp || "Coral Zaion"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginTop: 4
     }
   }, "Cadastro de Corista")), /*#__PURE__*/React.createElement("div", {
@@ -492,7 +507,7 @@ function CadastroPublico(_ref2) {
     style: {
       marginTop: 24,
       fontSize: 11,
-      color: "#CCC"
+      color: "#F2F2F2"
     }
   }, config.nomeApp || "Coral Zaion", " \xB7 Portal de Gest\xE3o")
   );
@@ -725,7 +740,7 @@ function PlayerModal(_ref3) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "music",
     size: 48,
-    color: "#C9B880"
+    color: "#F2E4B5"
   }), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 16
@@ -821,7 +836,7 @@ function PlayerModal(_ref3) {
       }, letraSaving ? "Salvando..." : "Salvar"),
       /*#__PURE__*/React.createElement("button", {
         onClick: function() { setLetraMode("view"); setLetraEdit(letra || ""); },
-        style: { padding: "3px 10px", borderRadius: 6, border: "1px solid #555", background: "transparent", color: "#AAA", cursor: "pointer", fontFamily: "inherit" }
+        style: { padding: "3px 10px", borderRadius: 6, border: "1px solid #555", background: "transparent", color: "#E2E2E2", cursor: "pointer", fontFamily: "inherit" }
       }, "Cancelar"),
       letraMsg && /*#__PURE__*/React.createElement("span", { style: { fontSize: 12, color: "#C9A227" } }, letraMsg)
     ),
@@ -837,7 +852,7 @@ function PlayerModal(_ref3) {
     songId && /*#__PURE__*/React.createElement("button", {
       onClick: function() { setLetraMode("edit"); },
       title: "Editar letra",
-      style: { position: "absolute", top: 10, right: 12, padding: "3px 10px", borderRadius: 6, border: "1px solid #555", background: "#23262E", color: "#AAA", fontSize: 11, cursor: "pointer", fontFamily: "inherit" }
+      style: { position: "absolute", top: 10, right: 12, padding: "3px 10px", borderRadius: 6, border: "1px solid #555", background: "#23262E", color: "#E2E2E2", fontSize: 11, cursor: "pointer", fontFamily: "inherit" }
     }, "✏️ Editar"),
     letraMsg && /*#__PURE__*/React.createElement("div", { style: { fontSize: 12, color: "#C9A227", marginBottom: 8 } }, letraMsg),
     /*#__PURE__*/React.createElement("div", {
@@ -851,7 +866,7 @@ function PlayerModal(_ref3) {
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginBottom: 12,
       textTransform: "uppercase",
       letterSpacing: 1
@@ -889,7 +904,7 @@ function PlayerModal(_ref3) {
     }, /*#__PURE__*/React.createElement(Icon, {
       name: "play-circle",
       size: 14,
-      color: "#AAA"
+      color: "#E2E2E2"
     }), " ", label) : null;
   }))), url && url !== "letra" && /*#__PURE__*/React.createElement("div", {
     style: {
@@ -903,7 +918,7 @@ function PlayerModal(_ref3) {
     rel: "noreferrer",
     style: {
       fontSize: 12,
-      color: "#AAA",
+      color: "#E2E2E2",
       textDecoration: "none",
       display: "inline-flex",
       alignItems: "center",
@@ -912,7 +927,7 @@ function PlayerModal(_ref3) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "external-link",
     size: 12,
-    color: "#AAA"
+    color: "#E2E2E2"
   }), " Abrir em nova aba"))));
 }
 
@@ -966,7 +981,7 @@ function MesaSom(_ref6) {
       justifyContent: "center",
       height: "100vh",
       background: "#111",
-      color: "#AAA",
+      color: "#E2E2E2",
       fontSize: 16
     }
   }, "Evento n\xE3o encontrado.");
@@ -1026,7 +1041,7 @@ function MesaSom(_ref6) {
   }, config.nomeApp || "Coral Zaion"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#AAA"
+      color: "#E2E2E2"
     }
   }, "Mesa de Som \u2014 ", evento.title, " \xB7 ", evento.date))), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1046,7 +1061,7 @@ function MesaSom(_ref6) {
       borderBottom: "1px solid #333",
       fontSize: 11,
       fontWeight: 700,
-      color: "#AAA",
+      color: "#E2E2E2",
       textTransform: "uppercase",
       letterSpacing: 1
     }
@@ -1054,7 +1069,7 @@ function MesaSom(_ref6) {
     style: {
       padding: "24px 16px",
       textAlign: "center",
-      color: "#C9B880",
+      color: "#F2E4B5",
       fontSize: 13
     }
   }, "Nenhuma m\xFAsica no setlist."), setlist.map(function (s, i) {
@@ -1080,7 +1095,7 @@ function MesaSom(_ref6) {
     }, /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 13,
-        color: (tocando === null || tocando === void 0 ? void 0 : tocando.id) === s.id ? cor : "#C9B880",
+        color: (tocando === null || tocando === void 0 ? void 0 : tocando.id) === s.id ? cor : "#F2E4B5",
         fontWeight: 700,
         minWidth: 22
       }
@@ -1092,17 +1107,17 @@ function MesaSom(_ref6) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: (tocando === null || tocando === void 0 ? void 0 : tocando.id) === s.id ? "#fff" : "#CCC"
+        color: (tocando === null || tocando === void 0 ? void 0 : tocando.id) === s.id ? "#fff" : "#F2F2F2"
       }
     }, s.title), s.compositor && /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 11,
-        color: "#C9B880"
+        color: "#F2E4B5"
       }
     }, s.compositor)), (s.playback || s.audioOriginal) && /*#__PURE__*/React.createElement(Icon, {
       name: "play-circle",
       size: 14,
-      color: (tocando === null || tocando === void 0 ? void 0 : tocando.id) === s.id ? cor : "#E8D5A3"
+      color: (tocando === null || tocando === void 0 ? void 0 : tocando.id) === s.id ? cor : "#FFF2CF"
     })));
   })), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1115,18 +1130,18 @@ function MesaSom(_ref6) {
   }, !tocando ? /*#__PURE__*/React.createElement("div", {
     style: {
       textAlign: "center",
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "music",
     size: 64,
-    color: "#E8D5A3"
+    color: "#FFF2CF"
   }), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 16,
       fontSize: 18,
       fontWeight: 600,
-      color: "#C9B880"
+      color: "#F2E4B5"
     }
   }, "Clique em uma m\xFAsica para reproduzir")) : /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1148,7 +1163,7 @@ function MesaSom(_ref6) {
   }, tocando.title), tocando.compositor && /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 14,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginTop: 4
     }
   }, tocando.compositor)), tocando.playback || tocando.audioOriginal ? /*#__PURE__*/React.createElement("iframe", {
@@ -1168,7 +1183,7 @@ function MesaSom(_ref6) {
       background: "#1A1D23",
       borderRadius: 12,
       textAlign: "center",
-      color: "#C9B880",
+      color: "#F2E4B5",
       fontSize: 14
     }
   }, "Sem playback cadastrado para esta m\xFAsica."), setlist[setlist.findIndex(function (s) {
@@ -1186,7 +1201,7 @@ function MesaSom(_ref6) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "skip-forward",
     size: 16,
-    color: "#AAA"
+    color: "#E2E2E2"
   }), /*#__PURE__*/React.createElement("div", {
     style: {
       flex: 1
@@ -1194,12 +1209,12 @@ function MesaSom(_ref6) {
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 11,
-      color: "#C9B880"
+      color: "#F2E4B5"
     }
   }, "A seguir"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 14,
-      color: "#CCC",
+      color: "#F2F2F2",
       fontWeight: 600
     }
   }, setlist[setlist.findIndex(function (s) {
@@ -1313,7 +1328,7 @@ function Login(_ref7) {
       fontSize: 15,
       outline: "none",
       fontFamily: "inherit",
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       background: "#121212"
     },
     btnSec: {
@@ -1378,7 +1393,7 @@ function Login(_ref7) {
   }, config.nomeApp || "Coral Zaion"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 16,
-      color: "#C9B880",
+      color: "#F2E4B5",
       marginTop: 4
     }
   }, config.subtitulo || "Portal de Gestão")), !tela && /*#__PURE__*/React.createElement("div", {
@@ -1451,18 +1466,18 @@ function Login(_ref7) {
       style: {
         fontWeight: 700,
         fontSize: 17,
-        color: "#E8D5A3"
+        color: "#FFF2CF"
       }
     }, p.label), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 14,
-        color: "#C9B880",
+        color: "#F2E4B5",
         marginTop: 2
       }
     }, p.sub)), /*#__PURE__*/React.createElement(Icon, {
       name: "chevron-right",
       size: 16,
-      color: "#CCC"
+      color: "#F2F2F2"
     }));
   })), tela === "admin" && /*#__PURE__*/React.createElement("div", {
     style: s.card
@@ -1532,7 +1547,7 @@ function Login(_ref7) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: mostrar ? "eye-off" : "eye",
     size: 16,
-    color: "#AAA"
+    color: "#E2E2E2"
   }))), erro && /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
@@ -1581,7 +1596,7 @@ function Login(_ref7) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, "Gestor(a) do Coral")), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1621,7 +1636,7 @@ function Login(_ref7) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: mostrar ? "eye-off" : "eye",
     size: 16,
-    color: "#AAA"
+    color: "#E2E2E2"
   }))), erro && /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
@@ -1672,7 +1687,7 @@ function Login(_ref7) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, "Sou Corista")), /*#__PURE__*/React.createElement("input", {
     style: _objectSpread(_objectSpread({}, s.inp), {}, {
@@ -1704,12 +1719,12 @@ function Login(_ref7) {
       style: { padding: "10px 16px" }
     },
       /*#__PURE__*/React.createElement("div", {
-        style: { fontSize: 14, color: "#E8D5A3", marginBottom: 6 }
-      }, m.name, " ", /*#__PURE__*/React.createElement("span", { style: { fontSize: 12, color: "#AAA", marginLeft: 8 } }, m.voice)),
+        style: { fontSize: 14, color: "#FFF2CF", marginBottom: 6 }
+      }, m.name, " ", /*#__PURE__*/React.createElement("span", { style: { fontSize: 12, color: "#E2E2E2", marginLeft: 8 } }, m.voice)),
       /*#__PURE__*/React.createElement("div", { style: { display: "flex", gap: 8 } },
         /*#__PURE__*/React.createElement("button", {
           onClick: function() { onLogin({ name: m.name, isAdmin: false, role: "corista", voice: m.voice }); },
-          style: { flex: 1, padding: "8px", background: "#2A2000", border: "1px solid #C9A227", borderRadius: 6, color: "#E8D5A3", cursor: "pointer", fontSize: 13, fontFamily: "inherit" }
+          style: { flex: 1, padding: "8px", background: "#2A2000", border: "1px solid #C9A227", borderRadius: 6, color: "#FFF2CF", cursor: "pointer", fontSize: 13, fontFamily: "inherit" }
         }, "Entrar como Corista"),
         /*#__PURE__*/React.createElement("button", {
           onClick: function() { onLogin({ name: m.name, isAdmin: false, role: "rh", voice: m.voice }); },
@@ -1728,15 +1743,15 @@ function Login(_ref7) {
         cursor: "pointer",
         fontSize: 14,
         fontFamily: "inherit",
-        color: "#E8D5A3"
+        color: "#FFF2CF"
       }
     }, m.name, " ", /*#__PURE__*/React.createElement("span", {
-      style: { fontSize: 12, color: "#AAA", marginLeft: 8 }
+      style: { fontSize: 12, color: "#E2E2E2", marginLeft: 8 }
     }, m.voice)));
   })), busca.length > 0 && busca.length < 3 && /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginBottom: 8
     }
   }, "Digite mais ", 3 - busca.length, " letra(s)..."), busca.length >= 3 && sugestoes.length === 0 && /*#__PURE__*/React.createElement("div", {
@@ -1758,7 +1773,7 @@ function Login(_ref7) {
     style: {
       marginTop: 32,
       fontSize: 11,
-      color: "#CCC"
+      color: "#F2F2F2"
     }
   }, config.nomeApp || "Coral Zaion", " \xB7 Portal de Gest\xE3o")
   );
@@ -1860,7 +1875,7 @@ function Painel(_ref8) {
     }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 13,
-        color: "#C9B880",
+        color: "#F2E4B5",
         fontWeight: 600,
         marginBottom: 8
       }
@@ -1868,13 +1883,13 @@ function Painel(_ref8) {
       style: {
         fontSize: 32,
         fontWeight: 700,
-        color: "#E8D5A3",
+        color: "#FFF2CF",
         lineHeight: 1
       }
     }, m.value), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 13,
-        color: "#AAA",
+        color: "#E2E2E2",
         marginTop: 4
       }
     }, m.sub)), /*#__PURE__*/React.createElement(Icon, {
@@ -1898,12 +1913,12 @@ function Painel(_ref8) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, "Pr\xF3ximos Eventos")), proxEventos.length === 0 ? /*#__PURE__*/React.createElement("div", {
     style: _objectSpread(_objectSpread({}, card()), {}, {
       textAlign: "center",
-      color: "#CCC",
+      color: "#F2F2F2",
       padding: "24px"
     })
   }, "Nenhum evento cadastrado") : proxEventos.map(function (e) {
@@ -1920,18 +1935,18 @@ function Painel(_ref8) {
       style: {
         fontSize: 15,
         fontWeight: 700,
-        color: "#E8D5A3"
+        color: "#FFF2CF"
       }
     }, e.title), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 13,
-        color: "#AAA",
+        color: "#E2E2E2",
         marginTop: 3
       }
     }, fmtDate(e.date), e.tipo ? " \u2014 ".concat(e.tipo) : "")), e.timeChegada && /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 13,
-        color: "#AAA"
+        color: "#E2E2E2"
       }
     }, "Chegada: ", e.timeChegada)));
   }), aniversarios.length > 0 && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
@@ -1950,7 +1965,7 @@ function Painel(_ref8) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, "Aniversariantes do M\xEAs")), aniversarios.map(function (m) {
     var _m$birthday$split = m.birthday.split("-"),
@@ -1984,12 +1999,12 @@ function Painel(_ref8) {
       style: {
         fontSize: 14,
         fontWeight: isToday ? 700 : 600,
-        color: "#E8D5A3"
+        color: "#FFF2CF"
       }
     }, isToday ? "🎉 " : "", m.name), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 14,
-        color: "#C9B880",
+        color: "#F2E4B5",
         marginTop: 2
       }
     }, "dia ", parseInt(dd), " de ", MONTHS_SHORT[parseInt(mm) - 1], isToday ? " · hoje!" : "")));
@@ -2009,7 +2024,7 @@ function Painel(_ref8) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, "Avisos Recentes")), avisos.filter(function(a) { return !a.oculto; }).slice(0, 3).map(function (a) {
     var _a$createdAt;
@@ -2029,12 +2044,12 @@ function Painel(_ref8) {
       style: {
         fontSize: 15,
         fontWeight: 700,
-        color: "#E8D5A3"
+        color: "#FFF2CF"
       }
     }, a.title || a.titulo), ((_a$createdAt = a.createdAt) === null || _a$createdAt === void 0 ? void 0 : _a$createdAt.seconds) && /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#AAA",
+        color: "#E2E2E2",
         marginLeft: 12
       }
     }, new Date(a.createdAt.seconds * 1000).toLocaleDateString("pt-BR", {
@@ -2043,7 +2058,7 @@ function Painel(_ref8) {
     }))), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 14,
-        color: "#C9B880",
+        color: "#F2E4B5",
         lineHeight: 1.5
       }
     }, a.text || a.texto));
@@ -2170,14 +2185,14 @@ function ModalIntegrante(_ref9) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#E8D5A3",
+    color: "#FFF2CF",
     background: "#FAFAFA"
   };
   var lbl = {
     display: "block",
     fontSize: 12,
     fontWeight: 600,
-    color: "#9A8A60",
+    color: "#DCCB94",
     marginBottom: 5
   };
   var g2 = {
@@ -2221,7 +2236,7 @@ function ModalIntegrante(_ref9) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, membro ? "Editar Integrante" : "Adicionar Integrante"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
@@ -2239,7 +2254,7 @@ function ModalIntegrante(_ref9) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "x",
     size: 16,
-    color: "#C9B880"
+    color: "#F2E4B5"
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
       marginBottom: 16
@@ -2444,7 +2459,7 @@ function ModalIntegrante(_ref9) {
       flex: 1,
       padding: "13px",
       background: "#F0EAE8",
-      color: "#C9B880",
+      color: "#F2E4B5",
       border: "none",
       borderRadius: 10,
       fontSize: 14,
@@ -2591,7 +2606,7 @@ function Integrantes(_ref0) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "search",
     size: 16,
-    color: "#AAA"
+    color: "#E2E2E2"
   }), /*#__PURE__*/React.createElement("input", {
     value: busca,
     onChange: function onChange(e) {
@@ -2604,7 +2619,7 @@ function Integrantes(_ref0) {
       outline: "none",
       fontSize: 14,
       fontFamily: "inherit",
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       background: "none"
     }
   }), /*#__PURE__*/React.createElement("select", {
@@ -2618,7 +2633,7 @@ function Integrantes(_ref0) {
       padding: "7px 12px",
       fontSize: 13,
       fontFamily: "inherit",
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       outline: "none",
       background: "#121212",
       cursor: "pointer"
@@ -2657,7 +2672,7 @@ function Integrantes(_ref0) {
     style: {
       textAlign: "center",
       padding: "32px",
-      color: "#CCC",
+      color: "#F2F2F2",
       fontSize: 14
     }
   }, "Nenhum integrante encontrado."), filtrados.map(function (m, i) {
@@ -2675,17 +2690,17 @@ function Integrantes(_ref0) {
       style: {
         fontSize: 14,
         fontWeight: 600,
-        color: "#E8D5A3"
+        color: "#FFF2CF"
       }
     }, m.name), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 13,
-        color: "#9A8A60"
+        color: "#DCCB94"
       }
     }, m.funcao || "Corista"), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 13,
-        color: naipeColor[m.voice] || "#888",
+        color: naipeColor[m.voice] || "#D0D0D0",
         fontWeight: 500
       }
     }, m.voice || "—"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
@@ -2701,7 +2716,7 @@ function Integrantes(_ref0) {
     }, m.active ? "Ativo" : "Inativo")), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 13,
-        color: "#AAA"
+        color: "#E2E2E2"
       }
     }, fmtMonthYear(m.startDate)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
@@ -2721,7 +2736,7 @@ function Integrantes(_ref0) {
   })), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginTop: 10,
       textAlign: "right"
     }
@@ -2790,14 +2805,14 @@ function Configuracoes(_ref1) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#E8D5A3",
+    color: "#FFF2CF",
     background: "#121212"
   };
   var lbl = {
     display: "block",
     fontSize: 11,
     fontWeight: 700,
-    color: "#9A8A60",
+    color: "#DCCB94",
     marginBottom: 6,
     textTransform: "uppercase",
     letterSpacing: 1
@@ -2824,7 +2839,7 @@ function Configuracoes(_ref1) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#9A8A60",
+      color: "#DCCB94",
       textTransform: "uppercase",
       letterSpacing: 1,
       marginBottom: 16
@@ -2881,7 +2896,7 @@ function Configuracoes(_ref1) {
   }), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 11,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginTop: 5
     }
   }, "Link direto para PNG com fundo transparente"), form.logoUrl && /*#__PURE__*/React.createElement("div", {
@@ -2908,7 +2923,7 @@ function Configuracoes(_ref1) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#9A8A60",
+      color: "#DCCB94",
       textTransform: "uppercase",
       letterSpacing: 1,
       marginBottom: 16
@@ -3013,7 +3028,7 @@ function Configuracoes(_ref1) {
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 11,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginBottom: 8
     }
   }, "PREVIEW"), /*#__PURE__*/React.createElement("div", {
@@ -3048,7 +3063,7 @@ function Configuracoes(_ref1) {
   }, form.nomeApp || "Coral Zaion"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginTop: 4
     }
   }, form.subtitulo || "Portal de Gestão"))), /*#__PURE__*/React.createElement("button", {
@@ -3286,14 +3301,14 @@ function ModalEvento(_ref10) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#E8D5A3",
+    color: "#FFF2CF",
     background: "#FAFAFA"
   };
   var lbl = {
     display: "block",
     fontSize: 12,
     fontWeight: 600,
-    color: "#9A8A60",
+    color: "#DCCB94",
     marginBottom: 5
   };
   var g2 = {
@@ -3337,7 +3352,7 @@ function ModalEvento(_ref10) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, evento ? "Editar Evento" : "Adicionar Evento"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
@@ -3355,7 +3370,7 @@ function ModalEvento(_ref10) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "x",
     size: 16,
-    color: "#C9B880"
+    color: "#F2E4B5"
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
       marginBottom: 16
@@ -3562,12 +3577,12 @@ function ModalEvento(_ref10) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#E8D5A3"
+        color: "#FFF2CF"
       }
     }, s.title), s.compositor && /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 11,
-        color: "#AAA"
+        color: "#E2E2E2"
       }
     }, s.compositor))), /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
@@ -3583,17 +3598,17 @@ function ModalEvento(_ref10) {
         background: "none",
         border: "none",
         cursor: "pointer",
-        color: "#CCC",
+        color: "#F2F2F2",
         padding: 4
       }
     }, /*#__PURE__*/React.createElement(Icon, {
       name: "x",
       size: 14,
-      color: "#CCC"
+      color: "#F2F2F2"
     })));
   })), /*#__PURE__*/React.createElement("select", {
     style: _objectSpread(_objectSpread({}, inp), {}, {
-      color: "#9A8A60"
+      color: "#DCCB94"
     }),
     onChange: function onChange(e) {
       var song = songs.find(function (s) {
@@ -3661,7 +3676,7 @@ function ModalEvento(_ref10) {
   }))), form.recorrencia !== "Sem recorrência" && /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginTop: 6
     }
   }, form.recorrencia === "Indeterminada" ? "Serão criados eventos semanais por 1 ano (editável depois)." : "Serão criados 12 eventos a partir desta data.")), /*#__PURE__*/React.createElement("div", {
@@ -3688,7 +3703,7 @@ function ModalEvento(_ref10) {
       flex: 1,
       padding: "13px",
       background: "#F0EAE8",
-      color: "#C9B880",
+      color: "#F2E4B5",
       border: "none",
       borderRadius: 10,
       fontSize: 14,
@@ -3839,13 +3854,13 @@ function ModalExcluirEvento(_ref11) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       marginBottom: 8
     }
   }, "Excluir evento"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#9A8A60",
+      color: "#DCCB94",
       marginBottom: 20
     }
   }, "\"", evento.title, "\" faz parte de uma s\xE9rie. O que deseja excluir?"), /*#__PURE__*/React.createElement("button", {
@@ -3874,7 +3889,7 @@ function ModalExcluirEvento(_ref11) {
     disabled: excluindo,
     style: _objectSpread(_objectSpread({}, btnBase), {}, {
       background: "#F0F0F0",
-      color: "#C9B880",
+      color: "#F2E4B5",
       marginBottom: 0
     })
   }, "Cancelar")));
@@ -4000,13 +4015,13 @@ function Agenda(_ref12) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "chevron-left",
     size: 16,
-    color: "#C9B880"
+    color: "#F2E4B5"
   })), /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, MONTHS_PT[mes].charAt(0).toUpperCase() + MONTHS_PT[mes].slice(1), " ", ano), /*#__PURE__*/React.createElement("button", {
     onClick: function onClick() {
@@ -4026,7 +4041,7 @@ function Agenda(_ref12) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "chevron-right",
     size: 16,
-    color: "#C9B880"
+    color: "#F2E4B5"
   }))), eventosMes.length === 0 ? /*#__PURE__*/React.createElement("div", {
     style: {
       background: "#121212",
@@ -4034,7 +4049,7 @@ function Agenda(_ref12) {
       border: "1px solid #EEE8E8",
       padding: "32px",
       textAlign: "center",
-      color: "#CCC",
+      color: "#F2F2F2",
       fontSize: 14,
       boxShadow: "0 1px 4px rgba(0,0,0,0.04)"
     }
@@ -4043,7 +4058,7 @@ function Agenda(_ref12) {
     var dia = dt.getDate();
     var semana = WEEKDAYS_PT[dt.getDay()];
     var feriado = isFeriado(e);
-    var stColor = STATUS_COLORS[e.status] || "#888";
+    var stColor = STATUS_COLORS[e.status] || "#D0D0D0";
     return /*#__PURE__*/React.createElement("div", {
       key: e.id,
       style: {
@@ -4082,7 +4097,7 @@ function Agenda(_ref12) {
     }, dia), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 11,
-        color: "#AAA",
+        color: "#E2E2E2",
         marginTop: 2
       }
     }, semana)), /*#__PURE__*/React.createElement("div", {
@@ -4105,7 +4120,7 @@ function Agenda(_ref12) {
       style: {
         fontSize: 15,
         fontWeight: 700,
-        color: "#E8D5A3"
+        color: "#FFF2CF"
       }
     }, e.title), e.tipo && /*#__PURE__*/React.createElement("span", {
       style: {
@@ -4113,7 +4128,7 @@ function Agenda(_ref12) {
         padding: "2px 8px",
         borderRadius: 10,
         background: "#F0EAE8",
-        color: "#9A8A60",
+        color: "#DCCB94",
         fontWeight: 600
       }
     }, e.tipo), !feriado && e.status && /*#__PURE__*/React.createElement("span", {
@@ -4131,26 +4146,26 @@ function Agenda(_ref12) {
         alignItems: "center",
         gap: 6,
         fontSize: 13,
-        color: "#C9B880",
+        color: "#F2E4B5",
         marginBottom: 4
       }
     }, /*#__PURE__*/React.createElement(Icon, {
       name: "clock",
       size: 13,
-      color: "#AAA"
+      color: "#E2E2E2"
     }), " Chegada: ", e.timeChegada, e.timeApresentacao && " \xB7 Apresenta\xE7\xE3o: ".concat(e.timeApresentacao)), e.local && /*#__PURE__*/React.createElement("div", {
       style: {
         display: "flex",
         alignItems: "center",
         gap: 6,
         fontSize: 13,
-        color: "#C9B880",
+        color: "#F2E4B5",
         marginBottom: 4
       }
     }, /*#__PURE__*/React.createElement(Icon, {
       name: "map-pin",
       size: 13,
-      color: "#AAA"
+      color: "#E2E2E2"
     }), e.mapsUrl ? /*#__PURE__*/React.createElement("a", {
       href: e.mapsUrl,
       target: "_blank",
@@ -4162,7 +4177,7 @@ function Agenda(_ref12) {
     }, e.local) : e.local), e.notes && /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#AAA",
+        color: "#E2E2E2",
         marginTop: 4,
         fontStyle: "italic"
       }
@@ -4312,14 +4327,14 @@ function ModalAviso(_ref13) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#E8D5A3",
+    color: "#FFF2CF",
     background: "#FAFAFA"
   };
   var lbl = {
     display: "block",
     fontSize: 12,
     fontWeight: 600,
-    color: "#9A8A60",
+    color: "#DCCB94",
     marginBottom: 5
   };
   return /*#__PURE__*/React.createElement("div", {
@@ -4357,7 +4372,7 @@ function ModalAviso(_ref13) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, aviso ? "Editar Aviso" : "Novo Aviso"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
@@ -4375,7 +4390,7 @@ function ModalAviso(_ref13) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "x",
     size: 16,
-    color: "#C9B880"
+    color: "#F2E4B5"
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
       marginBottom: 16
@@ -4449,7 +4464,7 @@ function ModalAviso(_ref13) {
       flex: 1,
       padding: "13px",
       background: "#F0EAE8",
-      color: "#C9B880",
+      color: "#F2E4B5",
       border: "none",
       borderRadius: 10,
       fontSize: 14,
@@ -4644,7 +4659,7 @@ function Avisos(_ref14) {
       border: "1px solid #EEE8E8",
       padding: "32px",
       textAlign: "center",
-      color: "#CCC",
+      color: "#F2F2F2",
       fontSize: 14
     }
   }, "Nenhum aviso publicado."), avisos.filter(function(a) { return isAdmin || !a.oculto; }).map(function (a) {
@@ -4686,7 +4701,7 @@ function Avisos(_ref14) {
       style: {
         fontSize: 15,
         fontWeight: 700,
-        color: "#E8D5A3"
+        color: "#FFF2CF"
       }
     }, a.title), !isAuto && a.prioridade && a.prioridade !== "Normal" && /*#__PURE__*/React.createElement("span", {
       style: {
@@ -4709,7 +4724,7 @@ function Avisos(_ref14) {
     }, /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#AAA"
+        color: "#E2E2E2"
       }
     }, fmtDataAviso((_a$createdAt2 = a.createdAt) === null || _a$createdAt2 === void 0 ? void 0 : _a$createdAt2.seconds)), isAdmin && !isAuto && /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
@@ -4753,13 +4768,13 @@ function Avisos(_ref14) {
         padding: "4px 10px",
         fontSize: 11,
         fontWeight: 600,
-        color: a.oculto ? "#B45309" : "#C9B880",
+        color: a.oculto ? "#B45309" : "#F2E4B5",
         fontFamily: "inherit"
       }
     }, a.oculto ? "Mostrar" : "Ocultar"))), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 14,
-        color: "#C9B880",
+        color: "#F2E4B5",
         lineHeight: 1.6
       }
     }, a.text), isAuto && /*#__PURE__*/React.createElement("div", {
@@ -4945,14 +4960,14 @@ function ModalMusica(_ref15) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#E8D5A3",
+    color: "#FFF2CF",
     background: "#FAFAFA"
   };
   var lbl = {
     display: "block",
     fontSize: 11,
     fontWeight: 700,
-    color: "#9A8A60",
+    color: "#DCCB94",
     marginBottom: 5,
     textTransform: "uppercase",
     letterSpacing: 0.8
@@ -5007,7 +5022,7 @@ function ModalMusica(_ref15) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, musica ? "Editar Música" : "Adicionar Música ao Repertório"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
@@ -5025,7 +5040,7 @@ function ModalMusica(_ref15) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "x",
     size: 16,
-    color: "#C9B880"
+    color: "#F2E4B5"
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
       marginBottom: 14
@@ -5365,7 +5380,7 @@ function ModalMusica(_ref15) {
       flex: 1,
       padding: "13px",
       background: "#F0EAE8",
-      color: "#C9B880",
+      color: "#F2E4B5",
       border: "none",
       borderRadius: 10,
       fontSize: 14,
@@ -5509,7 +5524,7 @@ function Repertorio(_ref16) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "search",
     size: 16,
-    color: "#AAA"
+    color: "#E2E2E2"
   }), /*#__PURE__*/React.createElement("input", {
     value: busca,
     onChange: function onChange(e) {
@@ -5522,7 +5537,7 @@ function Repertorio(_ref16) {
       outline: "none",
       fontSize: 14,
       fontFamily: "inherit",
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       background: "none"
     }
   })), filtradas.length === 0 ? /*#__PURE__*/React.createElement("div", {
@@ -5532,7 +5547,7 @@ function Repertorio(_ref16) {
       border: "1px solid #EEE8E8",
       padding: "32px",
       textAlign: "center",
-      color: "#CCC",
+      color: "#F2F2F2",
       fontSize: 14
     }
   }, "Nenhuma m\xFAsica encontrada.") : /*#__PURE__*/React.createElement("div", {
@@ -5568,7 +5583,7 @@ function Repertorio(_ref16) {
       style: {
         fontSize: 15,
         fontWeight: 700,
-        color: "#E8D5A3",
+        color: "#FFF2CF",
         flex: 1,
         paddingRight: 8
       }
@@ -5585,7 +5600,7 @@ function Repertorio(_ref16) {
     }, s.categoria)), s.compositor && /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#AAA",
+        color: "#E2E2E2",
         marginBottom: 10
       }
     }, s.compositor), /*#__PURE__*/React.createElement("div", {
@@ -5665,7 +5680,7 @@ function Repertorio(_ref16) {
         padding: "3px 8px",
         borderRadius: 10,
         background: "#F5F5F5",
-        color: "#C9B880",
+        color: "#F2E4B5",
         fontSize: 11,
         fontWeight: 600,
         border: "none",
@@ -5678,7 +5693,7 @@ function Repertorio(_ref16) {
   })), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginTop: 12,
       textAlign: "right"
     }
@@ -5857,14 +5872,14 @@ function ModalEstudo(_ref18) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#E8D5A3",
+    color: "#FFF2CF",
     background: "#FAFAFA"
   };
   var lbl = {
     display: "block",
     fontSize: 12,
     fontWeight: 600,
-    color: "#9A8A60",
+    color: "#DCCB94",
     marginBottom: 6
   };
   return /*#__PURE__*/React.createElement("div", {
@@ -5902,7 +5917,7 @@ function ModalEstudo(_ref18) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, estudo ? "Editar material" : "Adicionar material"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
@@ -5920,7 +5935,7 @@ function ModalEstudo(_ref18) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "x",
     size: 16,
-    color: "#C9B880"
+    color: "#F2E4B5"
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
       marginBottom: 20
@@ -5959,12 +5974,12 @@ function ModalEstudo(_ref18) {
     }, /*#__PURE__*/React.createElement(Icon, {
       name: t.icon,
       size: 20,
-      color: form.tipo === t.key ? cor : "#AAA"
+      color: form.tipo === t.key ? cor : "#E2E2E2"
     }), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
         fontWeight: 700,
-        color: form.tipo === t.key ? cor : "#888"
+        color: form.tipo === t.key ? cor : "#D0D0D0"
       }
     }, t.label));
   }))), /*#__PURE__*/React.createElement("div", {
@@ -5994,7 +6009,7 @@ function ModalEstudo(_ref18) {
         borderRadius: 20,
         border: "1px solid ".concat(form.categoria === c ? cor : "#EEE"),
         background: form.categoria === c ? cor : "#fff",
-        color: form.categoria === c ? "#fff" : "#C9B880",
+        color: form.categoria === c ? "#fff" : "#F2E4B5",
         fontSize: 13,
         fontWeight: 600,
         cursor: "pointer",
@@ -6089,7 +6104,7 @@ function ModalEstudo(_ref18) {
       flex: 1,
       padding: "13px",
       background: "#F0EAE8",
-      color: "#C9B880",
+      color: "#F2E4B5",
       border: "none",
       borderRadius: 10,
       fontSize: 14,
@@ -6167,7 +6182,7 @@ function SalaEstudos(_ref19) {
   }, "Sala de Estudos"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginTop: 2
     }
   }, "Recursos did\xE1ticos para o corista")), isAdmin && /*#__PURE__*/React.createElement("button", {
@@ -6212,7 +6227,7 @@ function SalaEstudos(_ref19) {
         borderRadius: 20,
         border: "1px solid ".concat(filtro === c ? cor : "#EEE"),
         background: filtro === c ? cor : "#fff",
-        color: filtro === c ? "#fff" : "#C9B880",
+        color: filtro === c ? "#fff" : "#F2E4B5",
         fontSize: 13,
         fontWeight: 600,
         cursor: "pointer",
@@ -6231,7 +6246,7 @@ function SalaEstudos(_ref19) {
       border: "1px solid #EEE8E8",
       padding: "32px",
       textAlign: "center",
-      color: "#CCC",
+      color: "#F2F2F2",
       fontSize: 14
     }
   }, "Nenhum material encontrado.") : /*#__PURE__*/React.createElement("div", {
@@ -6289,21 +6304,21 @@ function SalaEstudos(_ref19) {
         padding: "2px 8px",
         borderRadius: 10,
         background: "#F5F5F5",
-        color: "#C9B880",
+        color: "#F2E4B5",
         fontWeight: 600
       }
     }, e.categoria)), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 13,
         fontWeight: 700,
-        color: "#E8D5A3",
+        color: "#FFF2CF",
         marginBottom: 4,
         lineHeight: 1.3
       }
     }, e.title), e.descricao && /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#AAA",
+        color: "#E2E2E2",
         marginBottom: 10
       }
     }, e.descricao), /*#__PURE__*/React.createElement("div", {
@@ -6358,7 +6373,7 @@ function SalaEstudos(_ref19) {
     }, /*#__PURE__*/React.createElement(Icon, {
       name: "pencil",
       size: 13,
-      color: "#9A8A60"
+      color: "#DCCB94"
     })), /*#__PURE__*/React.createElement("button", {
       onClick: /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee14() {
         return _regenerator().w(function (_context14) {
@@ -6504,7 +6519,7 @@ function Apresentacao(_ref21) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#E8D5A3",
+    color: "#FFF2CF",
     background: "#FAFAFA"
   };
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
@@ -6521,7 +6536,7 @@ function Apresentacao(_ref21) {
   }, "Apresenta\xE7\xE3o"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginTop: 2
     }
   }, "Painel operacional para o dia do show \u2014 playbacks e setlist")), /*#__PURE__*/React.createElement("div", {
@@ -6532,7 +6547,7 @@ function Apresentacao(_ref21) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       marginBottom: 12
     }
   }, "Selecionar Evento"), /*#__PURE__*/React.createElement("div", {
@@ -6593,7 +6608,7 @@ function Apresentacao(_ref21) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "monitor-speaker",
     size: 16,
-    color: "#AAA"
+    color: "#E2E2E2"
   }), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 14,
@@ -6603,7 +6618,7 @@ function Apresentacao(_ref21) {
   }, "Mesa de Som \u2014 Painel do Sonoplasta")), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#9A8A60",
+      color: "#DCCB94",
       marginBottom: 10
     }
   }, "Acesso p\xFAblico sem senha \u2014 envie este link para o sonoplasta no dia da apresenta\xE7\xE3o."), /*#__PURE__*/React.createElement("div", {
@@ -6618,7 +6633,7 @@ function Apresentacao(_ref21) {
     style: _objectSpread(_objectSpread({}, inp), {}, {
       flex: 1,
       background: "#2A2D33",
-      color: "#CCC",
+      color: "#F2F2F2",
       border: "1px solid #333"
     })
   }), /*#__PURE__*/React.createElement("button", {
@@ -6645,7 +6660,7 @@ function Apresentacao(_ref21) {
     style: {
       padding: "10px 16px",
       background: "#2A2D33",
-      color: "#CCC",
+      color: "#F2F2F2",
       border: "1px solid #444",
       borderRadius: 8,
       fontSize: 13,
@@ -6680,12 +6695,12 @@ function Apresentacao(_ref21) {
   }, "Setlist"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#AAA"
+      color: "#E2E2E2"
     }
   }, "(", setlist.length, " m\xFAsica", setlist.length !== 1 ? "s" : "", ")"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 11,
-      color: "#CCC",
+      color: "#F2F2F2",
       marginLeft: "auto"
     }
   }, "\u2191\u2193 para reordenar")), setlist.map(function (s, i) {
@@ -6722,12 +6737,12 @@ function Apresentacao(_ref21) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#E8D5A3"
+        color: "#FFF2CF"
       }
     }, s.title), s.compositor && /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 11,
-        color: "#AAA"
+        color: "#E2E2E2"
       }
     }, s.compositor)), /*#__PURE__*/React.createElement("div", {
       style: {
@@ -6745,12 +6760,12 @@ function Apresentacao(_ref21) {
         border: "none",
         cursor: "pointer",
         padding: 2,
-        color: i === 0 ? "#EEE" : "#888"
+        color: i === 0 ? "#EEE" : "#D0D0D0"
       }
     }, /*#__PURE__*/React.createElement(Icon, {
       name: "chevron-up",
       size: 14,
-      color: i === 0 ? "#EEE" : "#888"
+      color: i === 0 ? "#EEE" : "#D0D0D0"
     })), /*#__PURE__*/React.createElement("button", {
       onClick: function onClick(e) {
         e.stopPropagation();
@@ -6761,12 +6776,12 @@ function Apresentacao(_ref21) {
         border: "none",
         cursor: "pointer",
         padding: 2,
-        color: i === setlist.length - 1 ? "#EEE" : "#888"
+        color: i === setlist.length - 1 ? "#EEE" : "#D0D0D0"
       }
     }, /*#__PURE__*/React.createElement(Icon, {
       name: "chevron-down",
       size: 14,
-      color: i === setlist.length - 1 ? "#EEE" : "#888"
+      color: i === setlist.length - 1 ? "#EEE" : "#D0D0D0"
     }))));
   })), /*#__PURE__*/React.createElement("div", {
     style: card
@@ -6794,7 +6809,7 @@ function Apresentacao(_ref21) {
       alignItems: "center",
       justifyContent: "center",
       padding: "40px 20px",
-      color: "#CCC",
+      color: "#F2F2F2",
       gap: 12
     }
   }, /*#__PURE__*/React.createElement(Icon, {
@@ -6809,13 +6824,13 @@ function Apresentacao(_ref21) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       marginBottom: 4
     }
   }, tocando.title), tocando.compositor && /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginBottom: 12
     }
   }, tocando.compositor), tocando.playback || tocando.audioOriginal ? /*#__PURE__*/React.createElement("iframe", {
@@ -6841,7 +6856,7 @@ function Apresentacao(_ref21) {
       background: "#F5F5F5",
       borderRadius: 8,
       textAlign: "center",
-      color: "#AAA",
+      color: "#E2E2E2",
       fontSize: 13
     }
   }, "Esta m\xFAsica n\xE3o tem playback cadastrado."), setlist[setlist.findIndex(function (s) {
@@ -6859,15 +6874,15 @@ function Apresentacao(_ref21) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "skip-forward",
     size: 13,
-    color: "#AAA"
+    color: "#E2E2E2"
   }), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#AAA"
+      color: "#E2E2E2"
     }
   }, "A seguir: ", /*#__PURE__*/React.createElement("span", {
     style: {
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       fontWeight: 600
     }
   }, setlist[setlist.findIndex(function (s) {
@@ -6894,7 +6909,7 @@ function Apresentacao(_ref21) {
     style: _objectSpread(_objectSpread({}, card), {}, {
       textAlign: "center",
       padding: "48px 20px",
-      color: "#CCC"
+      color: "#F2F2F2"
     })
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "qr-code",
@@ -6905,7 +6920,7 @@ function Apresentacao(_ref21) {
       marginTop: 12,
       fontSize: 15,
       fontWeight: 600,
-      color: "#CCC"
+      color: "#F2F2F2"
     }
   }, "Selecione um evento acima"), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -6959,7 +6974,7 @@ function FrequenciaEventos(_ref24) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, "Frequ\xEAncia por Evento")), eventosComFreq.map(function (e) {
     var lista = porEvento[e.id] || [];
@@ -6981,12 +6996,12 @@ function FrequenciaEventos(_ref24) {
       style: {
         fontSize: 13,
         fontWeight: 700,
-        color: "#E8D5A3"
+        color: "#FFF2CF"
       }
     }, e.title), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#AAA"
+        color: "#E2E2E2"
       }
     }, e.date ? new Date(e.date + "T12:00:00").toLocaleDateString("pt-BR") : "")), /*#__PURE__*/React.createElement("span", {
       style: {
@@ -7088,18 +7103,18 @@ function FrequenciaAcesso(_ref25) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, "Frequ\xEAncia de Acesso ao App")), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginBottom: 16
     }
   }, "Quantas vezes cada corista entrou no aplicativo (total e \xFAltimos 30 dias)"), lista.length === 0 ? /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#CCC",
+      color: "#F2F2F2",
       textAlign: "center",
       padding: "16px 0"
     }
@@ -7122,7 +7137,7 @@ function FrequenciaAcesso(_ref25) {
     }, /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#C9B880",
+        color: "#F2E4B5",
         minWidth: 100,
         textAlign: "right",
         overflow: "hidden",
@@ -7178,7 +7193,7 @@ function FrequenciaAcesso(_ref25) {
       alignItems: "center",
       gap: 5,
       fontSize: 11,
-      color: "#C9B880"
+      color: "#F2E4B5"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -7193,7 +7208,7 @@ function FrequenciaAcesso(_ref25) {
       alignItems: "center",
       gap: 5,
       fontSize: 11,
-      color: "#C9B880"
+      color: "#F2E4B5"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -7241,13 +7256,13 @@ function FrequenciaAcesso(_ref25) {
     }, /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#AAA"
+        color: "#E2E2E2"
       }
     }, i + 1), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#E8D5A3"
+        color: "#FFF2CF"
       }
     }, nome), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
       style: {
@@ -7272,7 +7287,7 @@ function FrequenciaAcesso(_ref25) {
     }, dados.ultimos30)), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#9A8A60"
+        color: "#DCCB94"
       }
     }, dados.ultimoAcesso ? new Date(dados.ultimoAcesso * 1000).toLocaleString("pt-BR", {
       day: "2-digit",
@@ -7284,7 +7299,7 @@ function FrequenciaAcesso(_ref25) {
   })), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginTop: 8
     }
   }, "\u2197 ", lista.length, " corista", lista.length !== 1 ? "s" : "", " com acesso registrado")));
@@ -7299,7 +7314,7 @@ function Relatorios(_ref32) {
     members = _useCollection12.data;
   var _useCollection13 = useCollection("zaion_songs"),
     songs = _useCollection13.data;
-  var _useCollection14 = useCollection("frequencias", "dataHora"),
+  var _useCollection14 = useCollection("zaion_frequencias", "dataHora"),
     frequencias = _useCollection14.data;
   var cor = config.corPrimaria || COR;
   var _useState119 = useState(new Date().getFullYear() + "-01-01"),
@@ -7581,14 +7596,14 @@ function Relatorios(_ref32) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#E8D5A3",
+    color: "#FFF2CF",
     background: "#FAFAFA"
   };
   var lbl = {
     display: "block",
     fontSize: 11,
     fontWeight: 700,
-    color: "#9A8A60",
+    color: "#DCCB94",
     marginBottom: 5,
     textTransform: "uppercase",
     letterSpacing: 0.8
@@ -7601,7 +7616,7 @@ function Relatorios(_ref32) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#E8D5A3",
+    color: "#FFF2CF",
     background: "#FAFAFA",
     resize: "vertical",
     minHeight: 80
@@ -7617,7 +7632,7 @@ function Relatorios(_ref32) {
   }, "Relat\xF3rios"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginBottom: 20
     }
   }, "Relat\xF3rio de atividades e gest\xE3o do coral"), /*#__PURE__*/React.createElement("div", {
@@ -7637,7 +7652,7 @@ function Relatorios(_ref32) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, "Per\xEDodo do relat\xF3rio")), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -7738,7 +7753,7 @@ function Relatorios(_ref32) {
     }, m.value), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#AAA",
+        color: "#E2E2E2",
         marginTop: 4
       }
     }, m.label));
@@ -7755,13 +7770,13 @@ function Relatorios(_ref32) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       marginBottom: 14
     }
   }, "Atividades por tipo"), Object.entries(porTipo).length === 0 ? /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#CCC",
+      color: "#F2F2F2",
       textAlign: "center",
       padding: "16px 0"
     }
@@ -7784,7 +7799,7 @@ function Relatorios(_ref32) {
     }, /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
-        color: "#C9B880"
+        color: "#F2E4B5"
       }
     }, tipo), /*#__PURE__*/React.createElement("span", {
       style: {
@@ -7813,13 +7828,13 @@ function Relatorios(_ref32) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       marginBottom: 14
     }
   }, "Distribui\xE7\xE3o por status"), Object.entries(porStatus).length === 0 ? /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#CCC",
+      color: "#F2F2F2",
       textAlign: "center",
       padding: "16px 0"
     }
@@ -7847,18 +7862,18 @@ function Relatorios(_ref32) {
         width: 10,
         height: 10,
         borderRadius: "50%",
-        background: statusColors[status] || "#888"
+        background: statusColors[status] || "#D0D0D0"
       }
     }), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 13,
-        color: "#C9B880"
+        color: "#F2E4B5"
       }
     }, status)), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 13,
         fontWeight: 700,
-        color: statusColors[status] || "#888"
+        color: statusColors[status] || "#D0D0D0"
       }
     }, qtd));
   }))), /*#__PURE__*/React.createElement("div", {
@@ -7884,7 +7899,7 @@ function Relatorios(_ref32) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, "Texto Qualitativo do Relat\xF3rio")), /*#__PURE__*/React.createElement("button", {
     onClick: function onClick() {
@@ -7902,7 +7917,7 @@ function Relatorios(_ref32) {
       fontWeight: 600,
       cursor: "pointer",
       fontFamily: "inherit",
-      color: "#C9B880"
+      color: "#F2E4B5"
     }
   }, editTextos ? "Cancelar" : "Editar textos")), !editTextos ? /*#__PURE__*/React.createElement(React.Fragment, null, textos.sobreProjeto && /*#__PURE__*/React.createElement("div", {
     style: {
@@ -7920,7 +7935,7 @@ function Relatorios(_ref32) {
   }, "Sobre o Projeto"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#C9B880",
+      color: "#F2E4B5",
       lineHeight: 1.6
     }
   }, textos.sobreProjeto)), textos.curriculoMaestro && /*#__PURE__*/React.createElement("div", {
@@ -7939,7 +7954,7 @@ function Relatorios(_ref32) {
   }, "Curr\xEDculo do Maestro"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#C9B880",
+      color: "#F2E4B5",
       lineHeight: 1.6
     }
   }, textos.curriculoMaestro)), textos.equipe && /*#__PURE__*/React.createElement("div", {
@@ -7958,13 +7973,13 @@ function Relatorios(_ref32) {
   }, "Equipe de Produ\xE7\xE3o"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#C9B880",
+      color: "#F2E4B5",
       lineHeight: 1.6
     }
   }, textos.equipe)), !textos.sobreProjeto && !textos.curriculoMaestro && !textos.equipe && /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#CCC",
+      color: "#F2F2F2",
       textAlign: "center",
       padding: "16px 0"
     }
@@ -8169,12 +8184,12 @@ function Relatorios(_ref32) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, "Atividades no per\xEDodo ", /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: 13,
-      color: "#AAA",
+      color: "#E2E2E2",
       fontWeight: 400
     }
   }, "(", eventosFiltrados.length, ")")), /*#__PURE__*/React.createElement("div", {
@@ -8226,7 +8241,7 @@ function Relatorios(_ref32) {
   }), " Relat\xF3rio Completo para Empresa"))), eventosFiltrados.length === 0 ? /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#CCC",
+      color: "#F2F2F2",
       textAlign: "center",
       padding: "16px 0"
     }
@@ -8245,13 +8260,13 @@ function Relatorios(_ref32) {
     }, /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
-        color: "#AAA",
+        color: "#E2E2E2",
         minWidth: 20
       }
     }, i + 1), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
-        color: "#9A8A60",
+        color: "#DCCB94",
         minWidth: 80
       }
     }, e.date ? new Date(e.date + "T12:00:00").toLocaleDateString("pt-BR") : ""), /*#__PURE__*/React.createElement("div", {
@@ -8262,12 +8277,12 @@ function Relatorios(_ref32) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#E8D5A3"
+        color: "#FFF2CF"
       }
     }, e.title), e.local && /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 11,
-        color: "#AAA"
+        color: "#E2E2E2"
       }
     }, e.local)), /*#__PURE__*/React.createElement("span", {
       style: {
@@ -8283,8 +8298,8 @@ function Relatorios(_ref32) {
         fontSize: 11,
         padding: "2px 8px",
         borderRadius: 10,
-        background: (statusColors[e.status] || "#888") + "18",
-        color: statusColors[e.status] || "#888",
+        background: (statusColors[e.status] || "#D0D0D0") + "18",
+        color: statusColors[e.status] || "#D0D0D0",
         fontWeight: 600
       }
     }, e.status));
@@ -8449,12 +8464,12 @@ function CheckinPublico(_ref41) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 22,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, "QR Code expirado"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 14,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginTop: 8
     }
   }, "Este link de check-in n\xE3o \xE9 mais v\xE1lido.")));
@@ -8474,7 +8489,7 @@ function CheckinPublico(_ref41) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 22,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, "Sess\xE3o n\xE3o encontrada")));
   if (status === "ok") return /*#__PURE__*/React.createElement("div", {
@@ -8509,7 +8524,7 @@ function CheckinPublico(_ref41) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 22,
       fontWeight: 700,
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       marginBottom: 8
     }
   }, "Presen\xE7a confirmada!"), /*#__PURE__*/React.createElement("div", {
@@ -8522,13 +8537,13 @@ function CheckinPublico(_ref41) {
   }, membro === null || membro === void 0 ? void 0 : membro.name), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginBottom: 16
     }
   }, sessao === null || sessao === void 0 ? void 0 : sessao.eventoTitulo, " \xB7 ", sessao === null || sessao === void 0 ? void 0 : sessao.eventoData), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#CCC"
+      color: "#F2F2F2"
     }
   }, config.nomeApp || "Coral Zaion")));
   if (status === "jaRegistrado") return /*#__PURE__*/React.createElement("div", {
@@ -8553,12 +8568,12 @@ function CheckinPublico(_ref41) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, "J\xE1 registrado!"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 14,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginTop: 8
     }
   }, membro === null || membro === void 0 ? void 0 : membro.name, ", sua presen\xE7a j\xE1 foi confirmada neste evento.")));
@@ -8602,7 +8617,7 @@ function CheckinPublico(_ref41) {
   }, config.nomeApp || "Coral Zaion"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginTop: 4
     }
   }, "Check-in de presen\xE7a")), /*#__PURE__*/React.createElement("div", {
@@ -8619,13 +8634,13 @@ function CheckinPublico(_ref41) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 16,
       fontWeight: 700,
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       marginBottom: 4
     }
   }, sessao === null || sessao === void 0 ? void 0 : sessao.eventoTitulo), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginBottom: 20
     }
   }, sessao === null || sessao === void 0 ? void 0 : sessao.eventoData), /*#__PURE__*/React.createElement("input", {
@@ -8643,7 +8658,7 @@ function CheckinPublico(_ref41) {
       fontSize: 14,
       outline: "none",
       fontFamily: "inherit",
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       marginBottom: 8
     }
   }), sugestoes.length > 0 && /*#__PURE__*/React.createElement("div", {
@@ -8670,19 +8685,19 @@ function CheckinPublico(_ref41) {
         fontSize: 14,
         borderBottom: "1px solid #F5F5F5",
         fontFamily: "inherit",
-        color: "#E8D5A3"
+        color: "#FFF2CF"
       }
     }, m.name, " ", /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
-        color: "#AAA",
+        color: "#E2E2E2",
         marginLeft: 8
       }
     }, m.voice));
   })), busca.length > 0 && busca.length < 3 && /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#AAA"
+      color: "#E2E2E2"
     }
   }, "Digite mais ", 3 - busca.length, " letra(s)..."), busca.length >= 3 && sugestoes.length === 0 && /*#__PURE__*/React.createElement("div", {
     style: {
@@ -8875,7 +8890,7 @@ function Frequencia(_ref42) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#E8D5A3",
+    color: "#FFF2CF",
     background: "#FAFAFA"
   };
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
@@ -8899,7 +8914,7 @@ function Frequencia(_ref42) {
   }, "Frequ\xEAncia via QR")), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginBottom: 20
     }
   }, "Controle de presen\xE7a em ensaios e eventos"), /*#__PURE__*/React.createElement("div", {
@@ -8908,7 +8923,7 @@ function Frequencia(_ref42) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       marginBottom: 14
     }
   }, "Nova Sess\xE3o de Check-in"), /*#__PURE__*/React.createElement("div", {
@@ -8929,7 +8944,7 @@ function Frequencia(_ref42) {
       display: "block",
       fontSize: 11,
       fontWeight: 700,
-      color: "#9A8A60",
+      color: "#DCCB94",
       marginBottom: 5,
       textTransform: "uppercase",
       letterSpacing: 0.8
@@ -9018,7 +9033,7 @@ function Frequencia(_ref42) {
   }), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 11,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginTop: 6
     }
   }, sessaoAtiva ? "V\xE1lido at\xE9 ".concat(new Date(sessaoAtiva.expiraEm.seconds * 1000).toLocaleString("pt-BR", {
@@ -9034,19 +9049,19 @@ function Frequencia(_ref42) {
     style: {
       fontSize: 15,
       fontWeight: 700,
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       marginBottom: 4
     }
   }, eventoAtual.title), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginBottom: 12
     }
   }, eventoAtual.date), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#C9B880",
+      color: "#F2E4B5",
       marginBottom: 8
     }
   }, "\uD83D\uDCF2 Coristas escaneiam o QR ou acessam o link:"), /*#__PURE__*/React.createElement("div", {
@@ -9103,7 +9118,7 @@ function Frequencia(_ref42) {
     style: {
       textAlign: "center",
       padding: "32px 20px",
-      color: "#CCC"
+      color: "#F2F2F2"
     }
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "qr-code",
@@ -9118,7 +9133,7 @@ function Frequencia(_ref42) {
     style: {
       textAlign: "center",
       padding: "32px 20px",
-      color: "#CCC"
+      color: "#F2F2F2"
     }
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "qr-code",
@@ -9141,19 +9156,19 @@ function Frequencia(_ref42) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       marginBottom: 14
     }
   }, "Presen\xE7as registradas ", /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: 13,
-      color: "#AAA",
+      color: "#E2E2E2",
       fontWeight: 400
     }
   }, "(", frequencias.length, ")")), frequencias.length === 0 ? /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#CCC",
+      color: "#F2F2F2",
       textAlign: "center",
       padding: "16px 0"
     }
@@ -9197,23 +9212,23 @@ function Frequencia(_ref42) {
     }, /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#AAA"
+        color: "#E2E2E2"
       }
     }, i + 1), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#E8D5A3"
+        color: "#FFF2CF"
       }
     }, f.membroNome), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#9A8A60"
+        color: "#DCCB94"
       }
     }, f.naipe || "—"), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#AAA"
+        color: "#E2E2E2"
       }
     }, (_f$dataHora3 = f.dataHora) !== null && _f$dataHora3 !== void 0 && _f$dataHora3.seconds ? new Date(f.dataHora.seconds * 1000).toLocaleString("pt-BR", {
       hour: "2-digit",
@@ -9229,7 +9244,7 @@ function Declaracao(_ref43) {
     events = _useCollection16.data;
   var _useCollection17 = useCollection("zaion_members"),
     members = _useCollection17.data;
-  var _useCollection18 = useCollection("frequencias", "dataHora"),
+  var _useCollection18 = useCollection("zaion_frequencias", "dataHora"),
     frequencias = _useCollection18.data;
   var _useState159 = useState("evento"),
     _useState160 = _slicedToArray(_useState159, 2),
@@ -9365,14 +9380,14 @@ function Declaracao(_ref43) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#E8D5A3",
+    color: "#FFF2CF",
     background: "#FAFAFA"
   };
   var lbl = {
     display: "block",
     fontSize: 11,
     fontWeight: 700,
-    color: "#9A8A60",
+    color: "#DCCB94",
     marginBottom: 5,
     textTransform: "uppercase",
     letterSpacing: 0.8
@@ -9388,7 +9403,7 @@ function Declaracao(_ref43) {
   }, "Declara\xE7\xE3o Digital"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginBottom: 20
     }
   }, "Emiss\xE3o de listas de presen\xE7a e declara\xE7\xF5es individuais"), /*#__PURE__*/React.createElement("div", {
@@ -9423,13 +9438,13 @@ function Declaracao(_ref43) {
         cursor: "pointer",
         fontFamily: "inherit",
         fontWeight: tipo === t.key ? 700 : 500,
-        color: tipo === t.key ? cor : "#C9B880",
+        color: tipo === t.key ? cor : "#F2E4B5",
         fontSize: 13
       }
     }, /*#__PURE__*/React.createElement(Icon, {
       name: t.icon,
       size: 16,
-      color: tipo === t.key ? cor : "#AAA"
+      color: tipo === t.key ? cor : "#E2E2E2"
     }), t.label);
   })), tipo === "evento" && /*#__PURE__*/React.createElement("div", {
     style: card
@@ -9437,7 +9452,7 @@ function Declaracao(_ref43) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       marginBottom: 14
     }
   }, "Lista de Presen\xE7a por Evento"), /*#__PURE__*/React.createElement("div", {
@@ -9473,7 +9488,7 @@ function Declaracao(_ref43) {
   })))), eventoSel && /*#__PURE__*/React.createElement(React.Fragment, null, freqEvento.length === 0 ? /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#CCC",
+      color: "#F2F2F2",
       textAlign: "center",
       padding: "16px 0"
     }
@@ -9495,25 +9510,25 @@ function Declaracao(_ref43) {
     }, /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
-        color: "#AAA",
+        color: "#E2E2E2",
         minWidth: 20
       }
     }, i + 1), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#E8D5A3",
+        color: "#FFF2CF",
         flex: 1
       }
     }, f.membroNome), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
-        color: "#9A8A60"
+        color: "#DCCB94"
       }
     }, f.naipe || "—"), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
-        color: "#AAA"
+        color: "#E2E2E2"
       }
     }, (_f$dataHora5 = f.dataHora) !== null && _f$dataHora5 !== void 0 && _f$dataHora5.seconds ? new Date(f.dataHora.seconds * 1000).toLocaleString("pt-BR", {
       hour: "2-digit",
@@ -9545,7 +9560,7 @@ function Declaracao(_ref43) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       marginBottom: 14
     }
   }, "Declara\xE7\xE3o Individual do Corista"), /*#__PURE__*/React.createElement("div", {
@@ -9615,27 +9630,27 @@ function Declaracao(_ref43) {
     }, /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
-        color: "#AAA",
+        color: "#E2E2E2",
         minWidth: 20
       }
     }, i + 1), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
-        color: "#9A8A60",
+        color: "#DCCB94",
         minWidth: 90
       }
     }, f.eventoData ? new Date(f.eventoData + "T12:00:00").toLocaleDateString("pt-BR") : ""), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#E8D5A3",
+        color: "#FFF2CF",
         flex: 1
       }
     }, f.eventoTitulo));
   })), freqCorista.length === 0 && /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#9A8A60",
+      color: "#DCCB94",
       padding: "8px 0 12px",
       fontStyle: "italic"
     }
@@ -9678,17 +9693,17 @@ function EmBreve(_ref44) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: icon,
     size: 40,
-    color: "#DDD"
+    color: "#F5F5F5"
   }), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 18,
       fontWeight: 600,
-      color: "#CCC"
+      color: "#F2F2F2"
     }
   }, label), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#DDD"
+      color: "#F5F5F5"
     }
   }, "Em constru\xE7\xE3o"));
 }
@@ -9897,12 +9912,12 @@ function PainelCorista(_ref45) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 24,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, "Ol\xE1, ", user.name.split(" ")[0], "! \uD83D\uDC4B"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginTop: 4
     }
   }, "Confira os avisos e a agenda do coral \xB7 Seu naipe: ", /*#__PURE__*/React.createElement("span", {
@@ -9954,19 +9969,19 @@ function PainelCorista(_ref45) {
       style: {
         fontSize: 14,
         fontWeight: 700,
-        color: "#E8D5A3",
+        color: "#FFF2CF",
         marginBottom: 4
       }
     }, a.title || a.titulo), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 13,
-        color: "#C9B880",
+        color: "#F2E4B5",
         lineHeight: 1.5
       }
     }, a.text || a.texto), ((_a$createdAt3 = a.createdAt) === null || _a$createdAt3 === void 0 ? void 0 : _a$createdAt3.seconds) && /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 11,
-        color: "#AAA",
+        color: "#E2E2E2",
         marginTop: 6
       }
     }, new Date(a.createdAt.seconds * 1000).toLocaleDateString("pt-BR", {
@@ -10059,13 +10074,13 @@ function PainelCorista(_ref45) {
       style: {
         fontSize: 14,
         fontWeight: 700,
-        color: "#E8D5A3",
+        color: "#FFF2CF",
         marginBottom: 4
       }
     }, n.titulo), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 13,
-        color: "#C9B880",
+        color: "#F2E4B5",
         lineHeight: 1.5
       }
     }, n.texto), /*#__PURE__*/React.createElement("div", {
@@ -10084,7 +10099,7 @@ function PainelCorista(_ref45) {
     }, "\u270D\uFE0F ", n.autorNome), ((_n$createdAt = n.createdAt) === null || _n$createdAt === void 0 ? void 0 : _n$createdAt.seconds) && /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 11,
-        color: "#AAA"
+        color: "#E2E2E2"
       }
     }, new Date(n.createdAt.seconds * 1000).toLocaleDateString("pt-BR", {
       day: "numeric",
@@ -10141,7 +10156,7 @@ function PainelCorista(_ref45) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "chevron-left",
     size: 16,
-    color: "#C9B880"
+    color: "#F2E4B5"
   })), /*#__PURE__*/React.createElement("div", {
     style: {
       textAlign: "center"
@@ -10151,12 +10166,12 @@ function PainelCorista(_ref45) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 16,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, MONTHS_PT[mes].charAt(0).toUpperCase() + MONTHS_PT[mes].slice(1), " De ", ano), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#AAA"
+      color: "#E2E2E2"
     }
   }, eventosMes.length, " atividade", eventosMes.length !== 1 ? "s" : "")), /*#__PURE__*/React.createElement("button", {
     onClick: function onClick() {
@@ -10176,7 +10191,7 @@ function PainelCorista(_ref45) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "chevron-right",
     size: 16,
-    color: "#C9B880"
+    color: "#F2E4B5"
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
       padding: "12px 16px"
@@ -10185,7 +10200,7 @@ function PainelCorista(_ref45) {
     style: {
       textAlign: "center",
       padding: "24px",
-      color: "#CCC",
+      color: "#F2F2F2",
       fontSize: 13
     }
   }, "Nenhuma atividade neste m\xEAs.") : eventosMes.map(function (e) {
@@ -10198,7 +10213,7 @@ function PainelCorista(_ref45) {
       Apresentação: "#2E7D32",
       Reunião: "#E65100",
       Gravação: "#7B1FA2"
-    }[e.tipo] || "#888";
+    }[e.tipo] || "#D0D0D0";
     // Áudio do naipe — busca em todas as músicas do setlist
     var audioNaipe = e[naipeKey] || null;
     var urlsNaipe = (e.setlist || []).map(function (item) {
@@ -10232,7 +10247,7 @@ function PainelCorista(_ref45) {
     }, dia), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 10,
-        color: "#AAA",
+        color: "#E2E2E2",
         fontWeight: 700,
         textTransform: "uppercase",
         letterSpacing: 0.5
@@ -10256,7 +10271,7 @@ function PainelCorista(_ref45) {
       style: {
         fontSize: 14,
         fontWeight: 700,
-        color: "#E8D5A3",
+        color: "#FFF2CF",
         marginBottom: 6
       }
     }, e.title), /*#__PURE__*/React.createElement("div", {
@@ -10272,24 +10287,24 @@ function PainelCorista(_ref45) {
         alignItems: "center",
         gap: 4,
         fontSize: 12,
-        color: "#C9B880"
+        color: "#F2E4B5"
       }
     }, /*#__PURE__*/React.createElement(Icon, {
       name: "clock",
       size: 12,
-      color: "#AAA"
+      color: "#E2E2E2"
     }), " Chegada: ", e.timeChegada), e.local && /*#__PURE__*/React.createElement("div", {
       style: {
         display: "flex",
         alignItems: "center",
         gap: 4,
         fontSize: 12,
-        color: "#C9B880"
+        color: "#F2E4B5"
       }
     }, /*#__PURE__*/React.createElement(Icon, {
       name: "map-pin",
       size: 12,
-      color: "#AAA"
+      color: "#E2E2E2"
     }), e.mapsUrl ? /*#__PURE__*/React.createElement("a", {
       href: e.mapsUrl,
       target: "_blank",
@@ -10304,16 +10319,16 @@ function PainelCorista(_ref45) {
         alignItems: "center",
         gap: 4,
         fontSize: 12,
-        color: "#C9B880"
+        color: "#F2E4B5"
       }
     }, /*#__PURE__*/React.createElement(Icon, {
       name: "shirt",
       size: 12,
-      color: "#AAA"
+      color: "#E2E2E2"
     }), " ", e.traje)), e.notes && /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#AAA",
+        color: "#E2E2E2",
         fontStyle: "italic",
         marginBottom: 8
       }
@@ -10373,7 +10388,7 @@ function PainelCorista(_ref45) {
         style: {
           fontSize: 12,
           fontWeight: 600,
-          color: "#9A8A60",
+          color: "#DCCB94",
           marginBottom: 4
         }
       }, idx + 1, ". ", item.title), /*#__PURE__*/React.createElement("iframe", {
@@ -10448,7 +10463,7 @@ function PainelCorista(_ref45) {
         }, /*#__PURE__*/React.createElement("span", {
           style: {
             fontSize: 12,
-            color: "#AAA"
+            color: "#E2E2E2"
           }
         }, "Sua presen\xE7a:"), /*#__PURE__*/React.createElement("button", {
           onClick: function onClick() {
@@ -10462,7 +10477,7 @@ function PainelCorista(_ref45) {
             borderRadius: 20,
             border: "1px solid ".concat(conf === "vou" ? "#2E7D32" : "#EEE"),
             background: conf === "vou" ? "#E8F5E9" : "#fff",
-            color: conf === "vou" ? "#2E7D32" : "#888",
+            color: conf === "vou" ? "#2E7D32" : "#D0D0D0",
             fontSize: 12,
             fontWeight: 600,
             cursor: "pointer",
@@ -10471,7 +10486,7 @@ function PainelCorista(_ref45) {
         }, /*#__PURE__*/React.createElement(Icon, {
           name: "check-circle",
           size: 13,
-          color: conf === "vou" ? "#2E7D32" : "#CCC"
+          color: conf === "vou" ? "#2E7D32" : "#F2F2F2"
         }), " Vou participar"), /*#__PURE__*/React.createElement("button", {
           onClick: function onClick() {
             return confirmar(e.id, "nao");
@@ -10484,7 +10499,7 @@ function PainelCorista(_ref45) {
             borderRadius: 20,
             border: "1px solid ".concat(conf === "nao" ? cor : "#EEE"),
             background: conf === "nao" ? "#1A0000" : "#fff",
-            color: conf === "nao" ? cor : "#888",
+            color: conf === "nao" ? cor : "#D0D0D0",
             fontSize: 12,
             fontWeight: 600,
             cursor: "pointer",
@@ -10493,7 +10508,7 @@ function PainelCorista(_ref45) {
         }, /*#__PURE__*/React.createElement(Icon, {
           name: "x-circle",
           size: 13,
-          color: conf === "nao" ? cor : "#CCC"
+          color: conf === "nao" ? cor : "#F2F2F2"
         }), " N\xE3o vou")));
     })())));
   }))));
@@ -10503,7 +10518,7 @@ function PainelCorista(_ref45) {
 function MinhaDeclaracao(_ref46) {
   var user = _ref46.user,
     config = _ref46.config;
-  var _useCollection23 = useCollection("frequencias", "dataHora"),
+  var _useCollection23 = useCollection("zaion_frequencias", "dataHora"),
     frequencias = _useCollection23.data;
   var _useState181 = useState(new Date().getFullYear() + "-01-01"),
     _useState182 = _slicedToArray(_useState181, 2),
@@ -10543,14 +10558,14 @@ function MinhaDeclaracao(_ref46) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#E8D5A3",
+    color: "#FFF2CF",
     background: "#FAFAFA"
   };
   var lbl = {
     display: "block",
     fontSize: 11,
     fontWeight: 700,
-    color: "#9A8A60",
+    color: "#DCCB94",
     marginBottom: 5,
     textTransform: "uppercase",
     letterSpacing: 0.8
@@ -10598,7 +10613,7 @@ function MinhaDeclaracao(_ref46) {
   }, "Minha Declara\xE7\xE3o"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginBottom: 20
     }
   }, "Declara\xE7\xE3o de participa\xE7\xE3o nas atividades do coral"), /*#__PURE__*/React.createElement("div", {
@@ -10649,27 +10664,27 @@ function MinhaDeclaracao(_ref46) {
     }, /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
-        color: "#AAA",
+        color: "#E2E2E2",
         minWidth: 20
       }
     }, i + 1), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
-        color: "#9A8A60",
+        color: "#DCCB94",
         minWidth: 90
       }
     }, f.eventoData ? new Date(f.eventoData + "T12:00:00").toLocaleDateString("pt-BR") : ""), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#E8D5A3",
+        color: "#FFF2CF",
         flex: 1
       }
     }, f.eventoTitulo));
   })), freqCorista.length === 0 && /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#9A8A60",
+      color: "#DCCB94",
       padding: "8px 0 12px",
       fontStyle: "italic"
     }
@@ -10806,14 +10821,14 @@ function ModalNoticia(_ref47) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#E8D5A3",
+    color: "#FFF2CF",
     background: "#FAFAFA"
   };
   var lbl = {
     display: "block",
     fontSize: 12,
     fontWeight: 600,
-    color: "#9A8A60",
+    color: "#DCCB94",
     marginBottom: 5
   };
   return /*#__PURE__*/React.createElement("div", {
@@ -10851,7 +10866,7 @@ function ModalNoticia(_ref47) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, noticia ? "Editar Notícia" : "Nova Notícia"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
@@ -10869,7 +10884,7 @@ function ModalNoticia(_ref47) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "x",
     size: 16,
-    color: "#C9B880"
+    color: "#F2E4B5"
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
       marginBottom: 14
@@ -10975,7 +10990,7 @@ function ModalNoticia(_ref47) {
       flex: 1,
       padding: "13px",
       background: "#F0EAE8",
-      color: "#C9B880",
+      color: "#F2E4B5",
       border: "none",
       borderRadius: 10,
       fontSize: 14,
@@ -11010,7 +11025,7 @@ function AreaRH(_ref48) {
     members = _useCollection24.data;
   var _useCollection25 = useCollection("zaion_events", "date"),
     events = _useCollection25.data;
-  var _useCollection26 = useCollection("frequencias", "dataHora"),
+  var _useCollection26 = useCollection("zaion_frequencias", "dataHora"),
     frequencias = _useCollection26.data;
   var _useCollection27 = useCollection("zaion_noticias"),
     noticias = _useCollection27.data;
@@ -11068,7 +11083,7 @@ function AreaRH(_ref48) {
     Tenor: "#1565C0",
     Barítono: "#4527A0",
     Baixo: "#1B5E20",
-    Outro: "#888"
+    Outro: "#D0D0D0"
   };
 
   // Frequência por corista (últimos 30 dias)
@@ -11196,14 +11211,14 @@ function AreaRH(_ref48) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#E8D5A3",
+    color: "#FFF2CF",
     background: "#FAFAFA"
   };
   var lbl = {
     display: "block",
     fontSize: 11,
     fontWeight: 700,
-    color: "#9A8A60",
+    color: "#DCCB94",
     marginBottom: 5,
     textTransform: "uppercase",
     letterSpacing: 0.8
@@ -11219,7 +11234,7 @@ function AreaRH(_ref48) {
   }, "Gestor(a) do Coral"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginBottom: 20
     }
   }, "Gest\xE3o de pessoas, comunica\xE7\xE3o e relat\xF3rios"), aba === "dashboard" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
@@ -11277,14 +11292,14 @@ function AreaRH(_ref48) {
     }, m.value), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 11,
-        color: "#E8D5A3",
+        color: "#FFF2CF",
         fontWeight: 600,
         marginTop: 4
       }
     }, m.label), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 11,
-        color: "#AAA",
+        color: "#E2E2E2",
         marginTop: 2
       }
     }, m.sub));
@@ -11294,7 +11309,7 @@ function AreaRH(_ref48) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       marginBottom: 14
     }
   }, "Distribui\xE7\xE3o por Naipe"), Object.entries(naipes).map(function (_ref51) {
@@ -11316,13 +11331,13 @@ function AreaRH(_ref48) {
     }, /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 13,
-        color: "#E8D5A3",
+        color: "#FFF2CF",
         fontWeight: 600
       }
     }, naipe), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
-        color: "#AAA"
+        color: "#E2E2E2"
       }
     }, qtd, " \xB7 ", pct, "%")), /*#__PURE__*/React.createElement("div", {
       style: {
@@ -11335,7 +11350,7 @@ function AreaRH(_ref48) {
       style: {
         width: pct + "%",
         height: "100%",
-        background: naipeColors[naipe] || "#888",
+        background: naipeColors[naipe] || "#D0D0D0",
         borderRadius: 4
       }
     })));
@@ -11345,7 +11360,7 @@ function AreaRH(_ref48) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       marginBottom: 14
     }
   }, "Frequ\xEAncia de Participa\xE7\xE3o"), freqLista.map(function (_ref53) {
@@ -11366,7 +11381,7 @@ function AreaRH(_ref48) {
     }, /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 13,
-        color: "#E8D5A3"
+        color: "#FFF2CF"
       }
     }, nome), /*#__PURE__*/React.createElement("span", {
       style: {
@@ -11395,7 +11410,7 @@ function AreaRH(_ref48) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       marginBottom: 14
     }
   }, "Confirma\xE7\xF5es \u2014 Pr\xF3ximos Eventos"), proxEventos.map(function (e) {
@@ -11422,12 +11437,12 @@ function AreaRH(_ref48) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#E8D5A3"
+        color: "#FFF2CF"
       }
     }, e.title), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#AAA"
+        color: "#E2E2E2"
       }
     }, e.date)), /*#__PURE__*/React.createElement("span", {
       style: {
@@ -11479,12 +11494,12 @@ function AreaRH(_ref48) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#E8D5A3"
+        color: "#FFF2CF"
       }
     }, m.name), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
-        color: "#AAA"
+        color: "#E2E2E2"
       }
     }, "dia ", parseInt(dd)));
   }))), aba === "noticias" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
@@ -11498,7 +11513,7 @@ function AreaRH(_ref48) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#E8D5A3"
+      color: "#FFF2CF"
     }
   }, "Not\xEDcias do Coral"), /*#__PURE__*/React.createElement("button", {
     onClick: function onClick() {
@@ -11525,7 +11540,7 @@ function AreaRH(_ref48) {
   }), " Nova Not\xEDcia")), noticias.length === 0 ? /*#__PURE__*/React.createElement("div", {
     style: _objectSpread(_objectSpread({}, card), {}, {
       textAlign: "center",
-      color: "#CCC",
+      color: "#F2F2F2",
       padding: "32px"
     })
   }, "Nenhuma not\xEDcia publicada.") : noticias.map(function (n) {
@@ -11570,7 +11585,7 @@ function AreaRH(_ref48) {
     }, n.categoria || "Geral"), ((_n$createdAt2 = n.createdAt) === null || _n$createdAt2 === void 0 ? void 0 : _n$createdAt2.seconds) && /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 11,
-        color: "#AAA"
+        color: "#E2E2E2"
       }
     }, new Date(n.createdAt.seconds * 1000).toLocaleDateString("pt-BR", {
       day: "numeric",
@@ -11580,13 +11595,13 @@ function AreaRH(_ref48) {
       style: {
         fontSize: 15,
         fontWeight: 700,
-        color: "#E8D5A3",
+        color: "#FFF2CF",
         marginBottom: 6
       }
     }, n.titulo), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 13,
-        color: "#C9B880",
+        color: "#F2E4B5",
         lineHeight: 1.5
       }
     }, n.texto.slice(0, 200), n.texto.length > 200 ? "..." : ""));
@@ -11600,7 +11615,7 @@ function AreaRH(_ref48) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       marginBottom: 16
     }
   }, "Declara\xE7\xE3o Individual por Corista"), /*#__PURE__*/React.createElement("div", {
@@ -11655,17 +11670,17 @@ function AreaRH(_ref48) {
     onChange: function onChange(e) {
       return setDataFim(e.target.value);
     }
-  }))), coristaDecl && /*#__PURE__*/React.createElement(React.Fragment, null, freqCorista.length > 0 && /*#__PURE__*/React.createElement("div", {style:{marginBottom:12}}, freqCorista.map(function(f,i){ return /*#__PURE__*/React.createElement("div",{key:f.id,style:{display:"flex",gap:10,padding:"8px 0",borderBottom:"1px solid #F5F0F0",alignItems:"center"}}, /*#__PURE__*/React.createElement("span",{style:{fontSize:12,color:"#AAA",minWidth:20}},i+1), /*#__PURE__*/React.createElement("span",{style:{fontSize:12,color:"#888",minWidth:90}},f.eventoData?new Date(f.eventoData+"T12:00:00").toLocaleDateString("pt-BR"):""), /*#__PURE__*/React.createElement("span",{style:{fontSize:13,fontWeight:600,color:"#1A1D23"}},f.eventoTitulo)); })), freqCorista.length === 0 && /*#__PURE__*/React.createElement("div",{style:{fontSize:12,color:"#888",padding:"8px 0 12px",fontStyle:"italic"}},"Nenhuma participação no período — a declaração será gerada com dados de vínculo."), /*#__PURE__*/React.createElement("button",{onClick:gerarDeclCorista,style:{display:"flex",alignItems:"center",gap:8,padding:"11px 20px",background:cor,color:"#fff",border:"none",borderRadius:10,fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:"inherit"}}, /*#__PURE__*/React.createElement(Icon,{name:"printer",size:14,color:"#fff"}), " Gerar Declaração PDF")))), aba === "historico" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  }))), coristaDecl && /*#__PURE__*/React.createElement(React.Fragment, null, freqCorista.length > 0 && /*#__PURE__*/React.createElement("div", {style:{marginBottom:12}}, freqCorista.map(function(f,i){ return /*#__PURE__*/React.createElement("div",{key:f.id,style:{display:"flex",gap:10,padding:"8px 0",borderBottom:"1px solid #F5F0F0",alignItems:"center"}}, /*#__PURE__*/React.createElement("span",{style:{fontSize:12,color:"#E2E2E2",minWidth:20}},i+1), /*#__PURE__*/React.createElement("span",{style:{fontSize:12,color:"#D0D0D0",minWidth:90}},f.eventoData?new Date(f.eventoData+"T12:00:00").toLocaleDateString("pt-BR"):""), /*#__PURE__*/React.createElement("span",{style:{fontSize:13,fontWeight:600,color:"#1A1D23"}},f.eventoTitulo)); })), freqCorista.length === 0 && /*#__PURE__*/React.createElement("div",{style:{fontSize:12,color:"#D0D0D0",padding:"8px 0 12px",fontStyle:"italic"}},"Nenhuma participação no período — a declaração será gerada com dados de vínculo."), /*#__PURE__*/React.createElement("button",{onClick:gerarDeclCorista,style:{display:"flex",alignItems:"center",gap:8,padding:"11px 20px",background:cor,color:"#fff",border:"none",borderRadius:10,fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:"inherit"}}, /*#__PURE__*/React.createElement(Icon,{name:"printer",size:14,color:"#fff"}), " Gerar Declaração PDF")))), aba === "historico" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       marginBottom: 16
     }
   }, "Hist\xF3rico de Relat\xF3rios Enviados"), relatorios.length === 0 ? /*#__PURE__*/React.createElement("div", {
     style: _objectSpread(_objectSpread({}, card), {}, {
       textAlign: "center",
-      color: "#CCC",
+      color: "#F2F2F2",
       padding: "32px"
     })
   }, "Nenhum relat\xF3rio registrado ainda.") : /*#__PURE__*/React.createElement("div", {
@@ -11706,22 +11721,22 @@ function AreaRH(_ref48) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#E8D5A3"
+        color: "#FFF2CF"
       }
     }, r.tipo || "Relatório"), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#9A8A60"
+        color: "#DCCB94"
       }
     }, r.periodo || "—", r.corista ? " \xB7 ".concat(r.corista) : ""), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#AAA"
+        color: "#E2E2E2"
       }
     }, (_r$geradoEm = r.geradoEm) !== null && _r$geradoEm !== void 0 && _r$geradoEm.seconds ? new Date(r.geradoEm.seconds * 1000).toLocaleDateString("pt-BR") : ""), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#AAA"
+        color: "#E2E2E2"
       }
     }, r.geradoPor || "—"));
   }))));
@@ -12016,7 +12031,7 @@ function App() {
   }, config.nomeApp || "Coral Zaion"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#AAA"
+      color: "#E2E2E2"
     }
   }, isAdmin ? config.subtitulo || "Portal de Gestão" : "Área do Corista")))), /*#__PURE__*/React.createElement("nav", {
     style: {
@@ -12039,7 +12054,7 @@ function App() {
         borderRadius: 10,
         border: "none",
         background: tab === item.key ? cor : "none",
-        color: tab === item.key ? "#fff" : "#E8D5A3",
+        color: tab === item.key ? "#fff" : "#FFF2CF",
         cursor: "pointer",
         fontFamily: "inherit",
         fontSize: 17,
@@ -12051,7 +12066,7 @@ function App() {
     }, /*#__PURE__*/React.createElement(Icon, {
       name: item.icon,
       size: 16,
-      color: tab === item.key ? "#fff" : "#888"
+      color: tab === item.key ? "#fff" : "#D0D0D0"
     }), item.label);
   })), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -12061,14 +12076,14 @@ function App() {
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#AAA",
+      color: "#E2E2E2",
       marginBottom: 2
     }
   }, isAdmin ? "Administrador" : user.voice || "Corista"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 15,
       fontWeight: 600,
-      color: "#E8D5A3",
+      color: "#FFF2CF",
       marginBottom: 10
     }
   }, user.name), /*#__PURE__*/React.createElement("button", {
@@ -12222,14 +12237,14 @@ function App() {
         alignItems: "center",
         gap: 3,
         fontFamily: "inherit",
-        color: tab === item.key ? cor : "#CCC",
+        color: tab === item.key ? cor : "#F2F2F2",
         borderTop: "2px solid ".concat(tab === item.key ? cor : "transparent"),
         transition: "color 0.15s"
       }
     }, /*#__PURE__*/React.createElement(Icon, {
       name: item.icon,
       size: 18,
-      color: tab === item.key ? cor : "#CCC"
+      color: tab === item.key ? cor : "#F2F2F2"
     }), item.label);
   })));
 }
