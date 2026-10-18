@@ -31,21 +31,32 @@ var firebaseConfig = {
 };
 if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
-// ── TAMANHO DAS LETRAS (acessibilidade 60+) ──────────────────────────────────
+// ── TAMANHO E PESO DAS LETRAS (acessibilidade 60+) ───────────────────────────
 var __FS = 1;
 try { __FS = parseFloat(localStorage.getItem("zaion_fs")) || 1; } catch (e) {}
 if (__FS < 1 || __FS > 2) __FS = 1;
 window.__FS = __FS;
-if (__FS !== 1) {
-  var __ce = React.createElement;
-  React.createElement = function (t, p) {
-    if (p && p.style && typeof p.style.fontSize === "number") {
-      var st = Object.assign({}, p.style, { fontSize: Math.round(p.style.fontSize * __FS * 10) / 10 });
-      arguments[1] = Object.assign({}, p, { style: st });
+var __PESO_FORTE = { "#ffffff": 1, "#fff": 1, "#f5f5f5": 1, "#f2f2f2": 1 };
+var __PESO_MEDIO = { "#e6e6e6": 1, "#e2e2e2": 1, "#d0d0d0": 1 };
+var __ce = React.createElement;
+React.createElement = function (t, p) {
+  if (p && p.style && typeof t === "string") {
+    var st = p.style, mudou = false, novo = {};
+    if (__FS !== 1 && typeof st.fontSize === "number") {
+      novo.fontSize = Math.round(st.fontSize * __FS * 10) / 10;
+      mudou = true;
     }
-    return __ce.apply(React, arguments);
-  };
-}
+    if (typeof st.color === "string" && (st.fontWeight === undefined || st.fontWeight < 500)) {
+      var cl = st.color.toLowerCase();
+      if (__PESO_FORTE[cl]) { novo.fontWeight = 600; mudou = true; }
+      else if (__PESO_MEDIO[cl]) { novo.fontWeight = 500; mudou = true; }
+    }
+    if (mudou) {
+      arguments[1] = Object.assign({}, p, { style: Object.assign({}, st, novo) });
+    }
+  }
+  return __ce.apply(React, arguments);
+};
 var COR = "#C9A227";
 var COR_FUNDO = "#000000";
 var LOGO_URL = "https://raw.githubusercontent.com/luciakratz-arch/Coral-Zaion/main/logo.jpg";
@@ -252,14 +263,14 @@ function CadastroPublico(_ref2) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#FFF2CF",
+    color: "#FFFFFF",
     background: "#121212"
   };
   var lbl = {
     display: "block",
     fontSize: 12,
     fontWeight: 600,
-    color: "#DCCB94",
+    color: "#E6E6E6",
     marginBottom: 5
   };
   var g2 = {
@@ -298,14 +309,14 @@ function CadastroPublico(_ref2) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 24,
       fontWeight: 700,
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       marginBottom: 8,
       textAlign: "center"
     }
   }, "Cadastro realizado!"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 15,
-      color: "#DCCB94",
+      color: "#E6E6E6",
       textAlign: "center",
       maxWidth: 320
     }
@@ -740,7 +751,7 @@ function PlayerModal(_ref3) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "music",
     size: 48,
-    color: "#F2E4B5"
+    color: "#F5F5F5"
   }), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 16
@@ -1069,7 +1080,7 @@ function MesaSom(_ref6) {
     style: {
       padding: "24px 16px",
       textAlign: "center",
-      color: "#F2E4B5",
+      color: "#F5F5F5",
       fontSize: 13
     }
   }, "Nenhuma m\xFAsica no setlist."), setlist.map(function (s, i) {
@@ -1095,7 +1106,7 @@ function MesaSom(_ref6) {
     }, /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 13,
-        color: (tocando === null || tocando === void 0 ? void 0 : tocando.id) === s.id ? cor : "#F2E4B5",
+        color: (tocando === null || tocando === void 0 ? void 0 : tocando.id) === s.id ? cor : "#F5F5F5",
         fontWeight: 700,
         minWidth: 22
       }
@@ -1112,12 +1123,12 @@ function MesaSom(_ref6) {
     }, s.title), s.compositor && /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 11,
-        color: "#F2E4B5"
+        color: "#F5F5F5"
       }
     }, s.compositor)), (s.playback || s.audioOriginal) && /*#__PURE__*/React.createElement(Icon, {
       name: "play-circle",
       size: 14,
-      color: (tocando === null || tocando === void 0 ? void 0 : tocando.id) === s.id ? cor : "#FFF2CF"
+      color: (tocando === null || tocando === void 0 ? void 0 : tocando.id) === s.id ? cor : "#FFFFFF"
     })));
   })), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1130,18 +1141,18 @@ function MesaSom(_ref6) {
   }, !tocando ? /*#__PURE__*/React.createElement("div", {
     style: {
       textAlign: "center",
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "music",
     size: 64,
-    color: "#FFF2CF"
+    color: "#FFFFFF"
   }), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 16,
       fontSize: 18,
       fontWeight: 600,
-      color: "#F2E4B5"
+      color: "#F5F5F5"
     }
   }, "Clique em uma m\xFAsica para reproduzir")) : /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1183,7 +1194,7 @@ function MesaSom(_ref6) {
       background: "#1A1D23",
       borderRadius: 12,
       textAlign: "center",
-      color: "#F2E4B5",
+      color: "#F5F5F5",
       fontSize: 14
     }
   }, "Sem playback cadastrado para esta m\xFAsica."), setlist[setlist.findIndex(function (s) {
@@ -1209,7 +1220,7 @@ function MesaSom(_ref6) {
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 11,
-      color: "#F2E4B5"
+      color: "#F5F5F5"
     }
   }, "A seguir"), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1328,7 +1339,7 @@ function Login(_ref7) {
       fontSize: 15,
       outline: "none",
       fontFamily: "inherit",
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       background: "#121212"
     },
     btnSec: {
@@ -1393,7 +1404,7 @@ function Login(_ref7) {
   }, config.nomeApp || "Coral Zaion"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 16,
-      color: "#F2E4B5",
+      color: "#F5F5F5",
       marginTop: 4
     }
   }, config.subtitulo || "Portal de Gestão")), !tela && /*#__PURE__*/React.createElement("div", {
@@ -1466,12 +1477,12 @@ function Login(_ref7) {
       style: {
         fontWeight: 700,
         fontSize: 17,
-        color: "#FFF2CF"
+        color: "#FFFFFF"
       }
     }, p.label), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 14,
-        color: "#F2E4B5",
+        color: "#F5F5F5",
         marginTop: 2
       }
     }, p.sub)), /*#__PURE__*/React.createElement(Icon, {
@@ -1596,7 +1607,7 @@ function Login(_ref7) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, "Gestor(a) do Coral")), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1687,7 +1698,7 @@ function Login(_ref7) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, "Sou Corista")), /*#__PURE__*/React.createElement("input", {
     style: _objectSpread(_objectSpread({}, s.inp), {}, {
@@ -1719,12 +1730,12 @@ function Login(_ref7) {
       style: { padding: "10px 16px" }
     },
       /*#__PURE__*/React.createElement("div", {
-        style: { fontSize: 14, color: "#FFF2CF", marginBottom: 6 }
+        style: { fontSize: 14, color: "#FFFFFF", marginBottom: 6 }
       }, m.name, " ", /*#__PURE__*/React.createElement("span", { style: { fontSize: 12, color: "#E2E2E2", marginLeft: 8 } }, m.voice)),
       /*#__PURE__*/React.createElement("div", { style: { display: "flex", gap: 8 } },
         /*#__PURE__*/React.createElement("button", {
           onClick: function() { onLogin({ name: m.name, isAdmin: false, role: "corista", voice: m.voice }); },
-          style: { flex: 1, padding: "8px", background: "#2A2000", border: "1px solid #C9A227", borderRadius: 6, color: "#FFF2CF", cursor: "pointer", fontSize: 13, fontFamily: "inherit" }
+          style: { flex: 1, padding: "8px", background: "#2A2000", border: "1px solid #C9A227", borderRadius: 6, color: "#FFFFFF", cursor: "pointer", fontSize: 13, fontFamily: "inherit" }
         }, "Entrar como Corista"),
         /*#__PURE__*/React.createElement("button", {
           onClick: function() { onLogin({ name: m.name, isAdmin: false, role: "rh", voice: m.voice }); },
@@ -1743,7 +1754,7 @@ function Login(_ref7) {
         cursor: "pointer",
         fontSize: 14,
         fontFamily: "inherit",
-        color: "#FFF2CF"
+        color: "#FFFFFF"
       }
     }, m.name, " ", /*#__PURE__*/React.createElement("span", {
       style: { fontSize: 12, color: "#E2E2E2", marginLeft: 8 }
@@ -1875,7 +1886,7 @@ function Painel(_ref8) {
     }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 13,
-        color: "#F2E4B5",
+        color: "#F5F5F5",
         fontWeight: 600,
         marginBottom: 8
       }
@@ -1883,7 +1894,7 @@ function Painel(_ref8) {
       style: {
         fontSize: 32,
         fontWeight: 700,
-        color: "#FFF2CF",
+        color: "#FFFFFF",
         lineHeight: 1
       }
     }, m.value), /*#__PURE__*/React.createElement("div", {
@@ -1913,7 +1924,7 @@ function Painel(_ref8) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, "Pr\xF3ximos Eventos")), proxEventos.length === 0 ? /*#__PURE__*/React.createElement("div", {
     style: _objectSpread(_objectSpread({}, card()), {}, {
@@ -1935,7 +1946,7 @@ function Painel(_ref8) {
       style: {
         fontSize: 15,
         fontWeight: 700,
-        color: "#FFF2CF"
+        color: "#FFFFFF"
       }
     }, e.title), /*#__PURE__*/React.createElement("div", {
       style: {
@@ -1965,7 +1976,7 @@ function Painel(_ref8) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, "Aniversariantes do M\xEAs")), aniversarios.map(function (m) {
     var _m$birthday$split = m.birthday.split("-"),
@@ -1999,12 +2010,12 @@ function Painel(_ref8) {
       style: {
         fontSize: 14,
         fontWeight: isToday ? 700 : 600,
-        color: "#FFF2CF"
+        color: "#FFFFFF"
       }
     }, isToday ? "🎉 " : "", m.name), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 14,
-        color: "#F2E4B5",
+        color: "#F5F5F5",
         marginTop: 2
       }
     }, "dia ", parseInt(dd), " de ", MONTHS_SHORT[parseInt(mm) - 1], isToday ? " · hoje!" : "")));
@@ -2024,7 +2035,7 @@ function Painel(_ref8) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, "Avisos Recentes")), avisos.filter(function(a) { return !a.oculto; }).slice(0, 3).map(function (a) {
     var _a$createdAt;
@@ -2044,7 +2055,7 @@ function Painel(_ref8) {
       style: {
         fontSize: 15,
         fontWeight: 700,
-        color: "#FFF2CF"
+        color: "#FFFFFF"
       }
     }, a.title || a.titulo), ((_a$createdAt = a.createdAt) === null || _a$createdAt === void 0 ? void 0 : _a$createdAt.seconds) && /*#__PURE__*/React.createElement("div", {
       style: {
@@ -2058,7 +2069,7 @@ function Painel(_ref8) {
     }))), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 14,
-        color: "#F2E4B5",
+        color: "#F5F5F5",
         lineHeight: 1.5
       }
     }, a.text || a.texto));
@@ -2185,14 +2196,14 @@ function ModalIntegrante(_ref9) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#FFF2CF",
+    color: "#FFFFFF",
     background: "#FAFAFA"
   };
   var lbl = {
     display: "block",
     fontSize: 12,
     fontWeight: 600,
-    color: "#DCCB94",
+    color: "#E6E6E6",
     marginBottom: 5
   };
   var g2 = {
@@ -2236,7 +2247,7 @@ function ModalIntegrante(_ref9) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, membro ? "Editar Integrante" : "Adicionar Integrante"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
@@ -2254,7 +2265,7 @@ function ModalIntegrante(_ref9) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "x",
     size: 16,
-    color: "#F2E4B5"
+    color: "#F5F5F5"
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
       marginBottom: 16
@@ -2459,7 +2470,7 @@ function ModalIntegrante(_ref9) {
       flex: 1,
       padding: "13px",
       background: "#F0EAE8",
-      color: "#F2E4B5",
+      color: "#F5F5F5",
       border: "none",
       borderRadius: 10,
       fontSize: 14,
@@ -2619,7 +2630,7 @@ function Integrantes(_ref0) {
       outline: "none",
       fontSize: 14,
       fontFamily: "inherit",
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       background: "none"
     }
   }), /*#__PURE__*/React.createElement("select", {
@@ -2633,7 +2644,7 @@ function Integrantes(_ref0) {
       padding: "7px 12px",
       fontSize: 13,
       fontFamily: "inherit",
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       outline: "none",
       background: "#121212",
       cursor: "pointer"
@@ -2690,12 +2701,12 @@ function Integrantes(_ref0) {
       style: {
         fontSize: 14,
         fontWeight: 600,
-        color: "#FFF2CF"
+        color: "#FFFFFF"
       }
     }, m.name), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 13,
-        color: "#DCCB94"
+        color: "#E6E6E6"
       }
     }, m.funcao || "Corista"), /*#__PURE__*/React.createElement("div", {
       style: {
@@ -2805,14 +2816,14 @@ function Configuracoes(_ref1) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#FFF2CF",
+    color: "#FFFFFF",
     background: "#121212"
   };
   var lbl = {
     display: "block",
     fontSize: 11,
     fontWeight: 700,
-    color: "#DCCB94",
+    color: "#E6E6E6",
     marginBottom: 6,
     textTransform: "uppercase",
     letterSpacing: 1
@@ -2839,7 +2850,7 @@ function Configuracoes(_ref1) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#DCCB94",
+      color: "#E6E6E6",
       textTransform: "uppercase",
       letterSpacing: 1,
       marginBottom: 16
@@ -2923,7 +2934,7 @@ function Configuracoes(_ref1) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#DCCB94",
+      color: "#E6E6E6",
       textTransform: "uppercase",
       letterSpacing: 1,
       marginBottom: 16
@@ -3301,14 +3312,14 @@ function ModalEvento(_ref10) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#FFF2CF",
+    color: "#FFFFFF",
     background: "#FAFAFA"
   };
   var lbl = {
     display: "block",
     fontSize: 12,
     fontWeight: 600,
-    color: "#DCCB94",
+    color: "#E6E6E6",
     marginBottom: 5
   };
   var g2 = {
@@ -3352,7 +3363,7 @@ function ModalEvento(_ref10) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, evento ? "Editar Evento" : "Adicionar Evento"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
@@ -3370,7 +3381,7 @@ function ModalEvento(_ref10) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "x",
     size: 16,
-    color: "#F2E4B5"
+    color: "#F5F5F5"
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
       marginBottom: 16
@@ -3577,7 +3588,7 @@ function ModalEvento(_ref10) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#FFF2CF"
+        color: "#FFFFFF"
       }
     }, s.title), s.compositor && /*#__PURE__*/React.createElement("div", {
       style: {
@@ -3608,7 +3619,7 @@ function ModalEvento(_ref10) {
     })));
   })), /*#__PURE__*/React.createElement("select", {
     style: _objectSpread(_objectSpread({}, inp), {}, {
-      color: "#DCCB94"
+      color: "#E6E6E6"
     }),
     onChange: function onChange(e) {
       var song = songs.find(function (s) {
@@ -3703,7 +3714,7 @@ function ModalEvento(_ref10) {
       flex: 1,
       padding: "13px",
       background: "#F0EAE8",
-      color: "#F2E4B5",
+      color: "#F5F5F5",
       border: "none",
       borderRadius: 10,
       fontSize: 14,
@@ -3854,13 +3865,13 @@ function ModalExcluirEvento(_ref11) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       marginBottom: 8
     }
   }, "Excluir evento"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#DCCB94",
+      color: "#E6E6E6",
       marginBottom: 20
     }
   }, "\"", evento.title, "\" faz parte de uma s\xE9rie. O que deseja excluir?"), /*#__PURE__*/React.createElement("button", {
@@ -3889,7 +3900,7 @@ function ModalExcluirEvento(_ref11) {
     disabled: excluindo,
     style: _objectSpread(_objectSpread({}, btnBase), {}, {
       background: "#F0F0F0",
-      color: "#F2E4B5",
+      color: "#F5F5F5",
       marginBottom: 0
     })
   }, "Cancelar")));
@@ -4015,13 +4026,13 @@ function Agenda(_ref12) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "chevron-left",
     size: 16,
-    color: "#F2E4B5"
+    color: "#F5F5F5"
   })), /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: "'Playfair Display',serif",
       fontSize: 18,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, MONTHS_PT[mes].charAt(0).toUpperCase() + MONTHS_PT[mes].slice(1), " ", ano), /*#__PURE__*/React.createElement("button", {
     onClick: function onClick() {
@@ -4041,7 +4052,7 @@ function Agenda(_ref12) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "chevron-right",
     size: 16,
-    color: "#F2E4B5"
+    color: "#F5F5F5"
   }))), eventosMes.length === 0 ? /*#__PURE__*/React.createElement("div", {
     style: {
       background: "#121212",
@@ -4120,7 +4131,7 @@ function Agenda(_ref12) {
       style: {
         fontSize: 15,
         fontWeight: 700,
-        color: "#FFF2CF"
+        color: "#FFFFFF"
       }
     }, e.title), e.tipo && /*#__PURE__*/React.createElement("span", {
       style: {
@@ -4128,7 +4139,7 @@ function Agenda(_ref12) {
         padding: "2px 8px",
         borderRadius: 10,
         background: "#F0EAE8",
-        color: "#DCCB94",
+        color: "#E6E6E6",
         fontWeight: 600
       }
     }, e.tipo), !feriado && e.status && /*#__PURE__*/React.createElement("span", {
@@ -4146,7 +4157,7 @@ function Agenda(_ref12) {
         alignItems: "center",
         gap: 6,
         fontSize: 13,
-        color: "#F2E4B5",
+        color: "#F5F5F5",
         marginBottom: 4
       }
     }, /*#__PURE__*/React.createElement(Icon, {
@@ -4159,7 +4170,7 @@ function Agenda(_ref12) {
         alignItems: "center",
         gap: 6,
         fontSize: 13,
-        color: "#F2E4B5",
+        color: "#F5F5F5",
         marginBottom: 4
       }
     }, /*#__PURE__*/React.createElement(Icon, {
@@ -4327,14 +4338,14 @@ function ModalAviso(_ref13) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#FFF2CF",
+    color: "#FFFFFF",
     background: "#FAFAFA"
   };
   var lbl = {
     display: "block",
     fontSize: 12,
     fontWeight: 600,
-    color: "#DCCB94",
+    color: "#E6E6E6",
     marginBottom: 5
   };
   return /*#__PURE__*/React.createElement("div", {
@@ -4372,7 +4383,7 @@ function ModalAviso(_ref13) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, aviso ? "Editar Aviso" : "Novo Aviso"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
@@ -4390,7 +4401,7 @@ function ModalAviso(_ref13) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "x",
     size: 16,
-    color: "#F2E4B5"
+    color: "#F5F5F5"
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
       marginBottom: 16
@@ -4464,7 +4475,7 @@ function ModalAviso(_ref13) {
       flex: 1,
       padding: "13px",
       background: "#F0EAE8",
-      color: "#F2E4B5",
+      color: "#F5F5F5",
       border: "none",
       borderRadius: 10,
       fontSize: 14,
@@ -4701,7 +4712,7 @@ function Avisos(_ref14) {
       style: {
         fontSize: 15,
         fontWeight: 700,
-        color: "#FFF2CF"
+        color: "#FFFFFF"
       }
     }, a.title), !isAuto && a.prioridade && a.prioridade !== "Normal" && /*#__PURE__*/React.createElement("span", {
       style: {
@@ -4768,13 +4779,13 @@ function Avisos(_ref14) {
         padding: "4px 10px",
         fontSize: 11,
         fontWeight: 600,
-        color: a.oculto ? "#B45309" : "#F2E4B5",
+        color: a.oculto ? "#B45309" : "#F5F5F5",
         fontFamily: "inherit"
       }
     }, a.oculto ? "Mostrar" : "Ocultar"))), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 14,
-        color: "#F2E4B5",
+        color: "#F5F5F5",
         lineHeight: 1.6
       }
     }, a.text), isAuto && /*#__PURE__*/React.createElement("div", {
@@ -4960,14 +4971,14 @@ function ModalMusica(_ref15) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#FFF2CF",
+    color: "#FFFFFF",
     background: "#FAFAFA"
   };
   var lbl = {
     display: "block",
     fontSize: 11,
     fontWeight: 700,
-    color: "#DCCB94",
+    color: "#E6E6E6",
     marginBottom: 5,
     textTransform: "uppercase",
     letterSpacing: 0.8
@@ -5022,7 +5033,7 @@ function ModalMusica(_ref15) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, musica ? "Editar Música" : "Adicionar Música ao Repertório"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
@@ -5040,7 +5051,7 @@ function ModalMusica(_ref15) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "x",
     size: 16,
-    color: "#F2E4B5"
+    color: "#F5F5F5"
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
       marginBottom: 14
@@ -5380,7 +5391,7 @@ function ModalMusica(_ref15) {
       flex: 1,
       padding: "13px",
       background: "#F0EAE8",
-      color: "#F2E4B5",
+      color: "#F5F5F5",
       border: "none",
       borderRadius: 10,
       fontSize: 14,
@@ -5537,7 +5548,7 @@ function Repertorio(_ref16) {
       outline: "none",
       fontSize: 14,
       fontFamily: "inherit",
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       background: "none"
     }
   })), filtradas.length === 0 ? /*#__PURE__*/React.createElement("div", {
@@ -5583,7 +5594,7 @@ function Repertorio(_ref16) {
       style: {
         fontSize: 15,
         fontWeight: 700,
-        color: "#FFF2CF",
+        color: "#FFFFFF",
         flex: 1,
         paddingRight: 8
       }
@@ -5680,7 +5691,7 @@ function Repertorio(_ref16) {
         padding: "3px 8px",
         borderRadius: 10,
         background: "#F5F5F5",
-        color: "#F2E4B5",
+        color: "#F5F5F5",
         fontSize: 11,
         fontWeight: 600,
         border: "none",
@@ -5872,14 +5883,14 @@ function ModalEstudo(_ref18) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#FFF2CF",
+    color: "#FFFFFF",
     background: "#FAFAFA"
   };
   var lbl = {
     display: "block",
     fontSize: 12,
     fontWeight: 600,
-    color: "#DCCB94",
+    color: "#E6E6E6",
     marginBottom: 6
   };
   return /*#__PURE__*/React.createElement("div", {
@@ -5917,7 +5928,7 @@ function ModalEstudo(_ref18) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, estudo ? "Editar material" : "Adicionar material"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
@@ -5935,7 +5946,7 @@ function ModalEstudo(_ref18) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "x",
     size: 16,
-    color: "#F2E4B5"
+    color: "#F5F5F5"
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
       marginBottom: 20
@@ -6009,7 +6020,7 @@ function ModalEstudo(_ref18) {
         borderRadius: 20,
         border: "1px solid ".concat(form.categoria === c ? cor : "#EEE"),
         background: form.categoria === c ? cor : "#fff",
-        color: form.categoria === c ? "#fff" : "#F2E4B5",
+        color: form.categoria === c ? "#fff" : "#F5F5F5",
         fontSize: 13,
         fontWeight: 600,
         cursor: "pointer",
@@ -6104,7 +6115,7 @@ function ModalEstudo(_ref18) {
       flex: 1,
       padding: "13px",
       background: "#F0EAE8",
-      color: "#F2E4B5",
+      color: "#F5F5F5",
       border: "none",
       borderRadius: 10,
       fontSize: 14,
@@ -6227,7 +6238,7 @@ function SalaEstudos(_ref19) {
         borderRadius: 20,
         border: "1px solid ".concat(filtro === c ? cor : "#EEE"),
         background: filtro === c ? cor : "#fff",
-        color: filtro === c ? "#fff" : "#F2E4B5",
+        color: filtro === c ? "#fff" : "#F5F5F5",
         fontSize: 13,
         fontWeight: 600,
         cursor: "pointer",
@@ -6304,14 +6315,14 @@ function SalaEstudos(_ref19) {
         padding: "2px 8px",
         borderRadius: 10,
         background: "#F5F5F5",
-        color: "#F2E4B5",
+        color: "#F5F5F5",
         fontWeight: 600
       }
     }, e.categoria)), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 13,
         fontWeight: 700,
-        color: "#FFF2CF",
+        color: "#FFFFFF",
         marginBottom: 4,
         lineHeight: 1.3
       }
@@ -6373,7 +6384,7 @@ function SalaEstudos(_ref19) {
     }, /*#__PURE__*/React.createElement(Icon, {
       name: "pencil",
       size: 13,
-      color: "#DCCB94"
+      color: "#E6E6E6"
     })), /*#__PURE__*/React.createElement("button", {
       onClick: /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee14() {
         return _regenerator().w(function (_context14) {
@@ -6519,7 +6530,7 @@ function Apresentacao(_ref21) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#FFF2CF",
+    color: "#FFFFFF",
     background: "#FAFAFA"
   };
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
@@ -6547,7 +6558,7 @@ function Apresentacao(_ref21) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       marginBottom: 12
     }
   }, "Selecionar Evento"), /*#__PURE__*/React.createElement("div", {
@@ -6618,7 +6629,7 @@ function Apresentacao(_ref21) {
   }, "Mesa de Som \u2014 Painel do Sonoplasta")), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#DCCB94",
+      color: "#E6E6E6",
       marginBottom: 10
     }
   }, "Acesso p\xFAblico sem senha \u2014 envie este link para o sonoplasta no dia da apresenta\xE7\xE3o."), /*#__PURE__*/React.createElement("div", {
@@ -6737,7 +6748,7 @@ function Apresentacao(_ref21) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#FFF2CF"
+        color: "#FFFFFF"
       }
     }, s.title), s.compositor && /*#__PURE__*/React.createElement("div", {
       style: {
@@ -6824,7 +6835,7 @@ function Apresentacao(_ref21) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       marginBottom: 4
     }
   }, tocando.title), tocando.compositor && /*#__PURE__*/React.createElement("div", {
@@ -6882,7 +6893,7 @@ function Apresentacao(_ref21) {
     }
   }, "A seguir: ", /*#__PURE__*/React.createElement("span", {
     style: {
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       fontWeight: 600
     }
   }, setlist[setlist.findIndex(function (s) {
@@ -6974,7 +6985,7 @@ function FrequenciaEventos(_ref24) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, "Frequ\xEAncia por Evento")), eventosComFreq.map(function (e) {
     var lista = porEvento[e.id] || [];
@@ -6996,7 +7007,7 @@ function FrequenciaEventos(_ref24) {
       style: {
         fontSize: 13,
         fontWeight: 700,
-        color: "#FFF2CF"
+        color: "#FFFFFF"
       }
     }, e.title), /*#__PURE__*/React.createElement("div", {
       style: {
@@ -7103,7 +7114,7 @@ function FrequenciaAcesso(_ref25) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, "Frequ\xEAncia de Acesso ao App")), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -7137,7 +7148,7 @@ function FrequenciaAcesso(_ref25) {
     }, /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#F2E4B5",
+        color: "#F5F5F5",
         minWidth: 100,
         textAlign: "right",
         overflow: "hidden",
@@ -7193,7 +7204,7 @@ function FrequenciaAcesso(_ref25) {
       alignItems: "center",
       gap: 5,
       fontSize: 11,
-      color: "#F2E4B5"
+      color: "#F5F5F5"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -7208,7 +7219,7 @@ function FrequenciaAcesso(_ref25) {
       alignItems: "center",
       gap: 5,
       fontSize: 11,
-      color: "#F2E4B5"
+      color: "#F5F5F5"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -7262,7 +7273,7 @@ function FrequenciaAcesso(_ref25) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#FFF2CF"
+        color: "#FFFFFF"
       }
     }, nome), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
       style: {
@@ -7287,7 +7298,7 @@ function FrequenciaAcesso(_ref25) {
     }, dados.ultimos30)), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#DCCB94"
+        color: "#E6E6E6"
       }
     }, dados.ultimoAcesso ? new Date(dados.ultimoAcesso * 1000).toLocaleString("pt-BR", {
       day: "2-digit",
@@ -7596,14 +7607,14 @@ function Relatorios(_ref32) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#FFF2CF",
+    color: "#FFFFFF",
     background: "#FAFAFA"
   };
   var lbl = {
     display: "block",
     fontSize: 11,
     fontWeight: 700,
-    color: "#DCCB94",
+    color: "#E6E6E6",
     marginBottom: 5,
     textTransform: "uppercase",
     letterSpacing: 0.8
@@ -7616,7 +7627,7 @@ function Relatorios(_ref32) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#FFF2CF",
+    color: "#FFFFFF",
     background: "#FAFAFA",
     resize: "vertical",
     minHeight: 80
@@ -7652,7 +7663,7 @@ function Relatorios(_ref32) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, "Per\xEDodo do relat\xF3rio")), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -7770,7 +7781,7 @@ function Relatorios(_ref32) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       marginBottom: 14
     }
   }, "Atividades por tipo"), Object.entries(porTipo).length === 0 ? /*#__PURE__*/React.createElement("div", {
@@ -7799,7 +7810,7 @@ function Relatorios(_ref32) {
     }, /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
-        color: "#F2E4B5"
+        color: "#F5F5F5"
       }
     }, tipo), /*#__PURE__*/React.createElement("span", {
       style: {
@@ -7828,7 +7839,7 @@ function Relatorios(_ref32) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       marginBottom: 14
     }
   }, "Distribui\xE7\xE3o por status"), Object.entries(porStatus).length === 0 ? /*#__PURE__*/React.createElement("div", {
@@ -7867,7 +7878,7 @@ function Relatorios(_ref32) {
     }), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 13,
-        color: "#F2E4B5"
+        color: "#F5F5F5"
       }
     }, status)), /*#__PURE__*/React.createElement("span", {
       style: {
@@ -7899,7 +7910,7 @@ function Relatorios(_ref32) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, "Texto Qualitativo do Relat\xF3rio")), /*#__PURE__*/React.createElement("button", {
     onClick: function onClick() {
@@ -7917,7 +7928,7 @@ function Relatorios(_ref32) {
       fontWeight: 600,
       cursor: "pointer",
       fontFamily: "inherit",
-      color: "#F2E4B5"
+      color: "#F5F5F5"
     }
   }, editTextos ? "Cancelar" : "Editar textos")), !editTextos ? /*#__PURE__*/React.createElement(React.Fragment, null, textos.sobreProjeto && /*#__PURE__*/React.createElement("div", {
     style: {
@@ -7935,7 +7946,7 @@ function Relatorios(_ref32) {
   }, "Sobre o Projeto"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#F2E4B5",
+      color: "#F5F5F5",
       lineHeight: 1.6
     }
   }, textos.sobreProjeto)), textos.curriculoMaestro && /*#__PURE__*/React.createElement("div", {
@@ -7954,7 +7965,7 @@ function Relatorios(_ref32) {
   }, "Curr\xEDculo do Maestro"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#F2E4B5",
+      color: "#F5F5F5",
       lineHeight: 1.6
     }
   }, textos.curriculoMaestro)), textos.equipe && /*#__PURE__*/React.createElement("div", {
@@ -7973,7 +7984,7 @@ function Relatorios(_ref32) {
   }, "Equipe de Produ\xE7\xE3o"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
-      color: "#F2E4B5",
+      color: "#F5F5F5",
       lineHeight: 1.6
     }
   }, textos.equipe)), !textos.sobreProjeto && !textos.curriculoMaestro && !textos.equipe && /*#__PURE__*/React.createElement("div", {
@@ -8184,7 +8195,7 @@ function Relatorios(_ref32) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, "Atividades no per\xEDodo ", /*#__PURE__*/React.createElement("span", {
     style: {
@@ -8266,7 +8277,7 @@ function Relatorios(_ref32) {
     }, i + 1), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
-        color: "#DCCB94",
+        color: "#E6E6E6",
         minWidth: 80
       }
     }, e.date ? new Date(e.date + "T12:00:00").toLocaleDateString("pt-BR") : ""), /*#__PURE__*/React.createElement("div", {
@@ -8277,7 +8288,7 @@ function Relatorios(_ref32) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#FFF2CF"
+        color: "#FFFFFF"
       }
     }, e.title), e.local && /*#__PURE__*/React.createElement("div", {
       style: {
@@ -8464,7 +8475,7 @@ function CheckinPublico(_ref41) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 22,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, "QR Code expirado"), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -8489,7 +8500,7 @@ function CheckinPublico(_ref41) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 22,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, "Sess\xE3o n\xE3o encontrada")));
   if (status === "ok") return /*#__PURE__*/React.createElement("div", {
@@ -8524,7 +8535,7 @@ function CheckinPublico(_ref41) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 22,
       fontWeight: 700,
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       marginBottom: 8
     }
   }, "Presen\xE7a confirmada!"), /*#__PURE__*/React.createElement("div", {
@@ -8568,7 +8579,7 @@ function CheckinPublico(_ref41) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, "J\xE1 registrado!"), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -8634,7 +8645,7 @@ function CheckinPublico(_ref41) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 16,
       fontWeight: 700,
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       marginBottom: 4
     }
   }, sessao === null || sessao === void 0 ? void 0 : sessao.eventoTitulo), /*#__PURE__*/React.createElement("div", {
@@ -8658,7 +8669,7 @@ function CheckinPublico(_ref41) {
       fontSize: 14,
       outline: "none",
       fontFamily: "inherit",
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       marginBottom: 8
     }
   }), sugestoes.length > 0 && /*#__PURE__*/React.createElement("div", {
@@ -8685,7 +8696,7 @@ function CheckinPublico(_ref41) {
         fontSize: 14,
         borderBottom: "1px solid #F5F5F5",
         fontFamily: "inherit",
-        color: "#FFF2CF"
+        color: "#FFFFFF"
       }
     }, m.name, " ", /*#__PURE__*/React.createElement("span", {
       style: {
@@ -8890,7 +8901,7 @@ function Frequencia(_ref42) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#FFF2CF",
+    color: "#FFFFFF",
     background: "#FAFAFA"
   };
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
@@ -8923,7 +8934,7 @@ function Frequencia(_ref42) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       marginBottom: 14
     }
   }, "Nova Sess\xE3o de Check-in"), /*#__PURE__*/React.createElement("div", {
@@ -8944,7 +8955,7 @@ function Frequencia(_ref42) {
       display: "block",
       fontSize: 11,
       fontWeight: 700,
-      color: "#DCCB94",
+      color: "#E6E6E6",
       marginBottom: 5,
       textTransform: "uppercase",
       letterSpacing: 0.8
@@ -9049,7 +9060,7 @@ function Frequencia(_ref42) {
     style: {
       fontSize: 15,
       fontWeight: 700,
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       marginBottom: 4
     }
   }, eventoAtual.title), /*#__PURE__*/React.createElement("div", {
@@ -9061,7 +9072,7 @@ function Frequencia(_ref42) {
   }, eventoAtual.date), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#F2E4B5",
+      color: "#F5F5F5",
       marginBottom: 8
     }
   }, "\uD83D\uDCF2 Coristas escaneiam o QR ou acessam o link:"), /*#__PURE__*/React.createElement("div", {
@@ -9156,7 +9167,7 @@ function Frequencia(_ref42) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       marginBottom: 14
     }
   }, "Presen\xE7as registradas ", /*#__PURE__*/React.createElement("span", {
@@ -9218,12 +9229,12 @@ function Frequencia(_ref42) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#FFF2CF"
+        color: "#FFFFFF"
       }
     }, f.membroNome), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#DCCB94"
+        color: "#E6E6E6"
       }
     }, f.naipe || "—"), /*#__PURE__*/React.createElement("div", {
       style: {
@@ -9380,14 +9391,14 @@ function Declaracao(_ref43) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#FFF2CF",
+    color: "#FFFFFF",
     background: "#FAFAFA"
   };
   var lbl = {
     display: "block",
     fontSize: 11,
     fontWeight: 700,
-    color: "#DCCB94",
+    color: "#E6E6E6",
     marginBottom: 5,
     textTransform: "uppercase",
     letterSpacing: 0.8
@@ -9438,7 +9449,7 @@ function Declaracao(_ref43) {
         cursor: "pointer",
         fontFamily: "inherit",
         fontWeight: tipo === t.key ? 700 : 500,
-        color: tipo === t.key ? cor : "#F2E4B5",
+        color: tipo === t.key ? cor : "#F5F5F5",
         fontSize: 13
       }
     }, /*#__PURE__*/React.createElement(Icon, {
@@ -9452,7 +9463,7 @@ function Declaracao(_ref43) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       marginBottom: 14
     }
   }, "Lista de Presen\xE7a por Evento"), /*#__PURE__*/React.createElement("div", {
@@ -9517,13 +9528,13 @@ function Declaracao(_ref43) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#FFF2CF",
+        color: "#FFFFFF",
         flex: 1
       }
     }, f.membroNome), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
-        color: "#DCCB94"
+        color: "#E6E6E6"
       }
     }, f.naipe || "—"), /*#__PURE__*/React.createElement("span", {
       style: {
@@ -9560,7 +9571,7 @@ function Declaracao(_ref43) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       marginBottom: 14
     }
   }, "Declara\xE7\xE3o Individual do Corista"), /*#__PURE__*/React.createElement("div", {
@@ -9636,21 +9647,21 @@ function Declaracao(_ref43) {
     }, i + 1), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
-        color: "#DCCB94",
+        color: "#E6E6E6",
         minWidth: 90
       }
     }, f.eventoData ? new Date(f.eventoData + "T12:00:00").toLocaleDateString("pt-BR") : ""), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#FFF2CF",
+        color: "#FFFFFF",
         flex: 1
       }
     }, f.eventoTitulo));
   })), freqCorista.length === 0 && /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#DCCB94",
+      color: "#E6E6E6",
       padding: "8px 0 12px",
       fontStyle: "italic"
     }
@@ -9912,7 +9923,7 @@ function PainelCorista(_ref45) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 24,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, "Ol\xE1, ", user.name.split(" ")[0], "! \uD83D\uDC4B"), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -9969,13 +9980,13 @@ function PainelCorista(_ref45) {
       style: {
         fontSize: 14,
         fontWeight: 700,
-        color: "#FFF2CF",
+        color: "#FFFFFF",
         marginBottom: 4
       }
     }, a.title || a.titulo), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 13,
-        color: "#F2E4B5",
+        color: "#F5F5F5",
         lineHeight: 1.5
       }
     }, a.text || a.texto), ((_a$createdAt3 = a.createdAt) === null || _a$createdAt3 === void 0 ? void 0 : _a$createdAt3.seconds) && /*#__PURE__*/React.createElement("div", {
@@ -10074,13 +10085,13 @@ function PainelCorista(_ref45) {
       style: {
         fontSize: 14,
         fontWeight: 700,
-        color: "#FFF2CF",
+        color: "#FFFFFF",
         marginBottom: 4
       }
     }, n.titulo), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 13,
-        color: "#F2E4B5",
+        color: "#F5F5F5",
         lineHeight: 1.5
       }
     }, n.texto), /*#__PURE__*/React.createElement("div", {
@@ -10156,7 +10167,7 @@ function PainelCorista(_ref45) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "chevron-left",
     size: 16,
-    color: "#F2E4B5"
+    color: "#F5F5F5"
   })), /*#__PURE__*/React.createElement("div", {
     style: {
       textAlign: "center"
@@ -10166,7 +10177,7 @@ function PainelCorista(_ref45) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 16,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, MONTHS_PT[mes].charAt(0).toUpperCase() + MONTHS_PT[mes].slice(1), " De ", ano), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -10191,7 +10202,7 @@ function PainelCorista(_ref45) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "chevron-right",
     size: 16,
-    color: "#F2E4B5"
+    color: "#F5F5F5"
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
       padding: "12px 16px"
@@ -10271,7 +10282,7 @@ function PainelCorista(_ref45) {
       style: {
         fontSize: 14,
         fontWeight: 700,
-        color: "#FFF2CF",
+        color: "#FFFFFF",
         marginBottom: 6
       }
     }, e.title), /*#__PURE__*/React.createElement("div", {
@@ -10287,7 +10298,7 @@ function PainelCorista(_ref45) {
         alignItems: "center",
         gap: 4,
         fontSize: 12,
-        color: "#F2E4B5"
+        color: "#F5F5F5"
       }
     }, /*#__PURE__*/React.createElement(Icon, {
       name: "clock",
@@ -10299,7 +10310,7 @@ function PainelCorista(_ref45) {
         alignItems: "center",
         gap: 4,
         fontSize: 12,
-        color: "#F2E4B5"
+        color: "#F5F5F5"
       }
     }, /*#__PURE__*/React.createElement(Icon, {
       name: "map-pin",
@@ -10319,7 +10330,7 @@ function PainelCorista(_ref45) {
         alignItems: "center",
         gap: 4,
         fontSize: 12,
-        color: "#F2E4B5"
+        color: "#F5F5F5"
       }
     }, /*#__PURE__*/React.createElement(Icon, {
       name: "shirt",
@@ -10388,7 +10399,7 @@ function PainelCorista(_ref45) {
         style: {
           fontSize: 12,
           fontWeight: 600,
-          color: "#DCCB94",
+          color: "#E6E6E6",
           marginBottom: 4
         }
       }, idx + 1, ". ", item.title), /*#__PURE__*/React.createElement("iframe", {
@@ -10558,14 +10569,14 @@ function MinhaDeclaracao(_ref46) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#FFF2CF",
+    color: "#FFFFFF",
     background: "#FAFAFA"
   };
   var lbl = {
     display: "block",
     fontSize: 11,
     fontWeight: 700,
-    color: "#DCCB94",
+    color: "#E6E6E6",
     marginBottom: 5,
     textTransform: "uppercase",
     letterSpacing: 0.8
@@ -10670,21 +10681,21 @@ function MinhaDeclaracao(_ref46) {
     }, i + 1), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
-        color: "#DCCB94",
+        color: "#E6E6E6",
         minWidth: 90
       }
     }, f.eventoData ? new Date(f.eventoData + "T12:00:00").toLocaleDateString("pt-BR") : ""), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#FFF2CF",
+        color: "#FFFFFF",
         flex: 1
       }
     }, f.eventoTitulo));
   })), freqCorista.length === 0 && /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#DCCB94",
+      color: "#E6E6E6",
       padding: "8px 0 12px",
       fontStyle: "italic"
     }
@@ -10821,14 +10832,14 @@ function ModalNoticia(_ref47) {
     fontSize: 14,
     outline: "none",
     fontFamily: "inherit",
-    color: "#FFF2CF",
+    color: "#FFFFFF",
     background: "#FAFAFA"
   };
   var lbl = {
     display: "block",
     fontSize: 12,
     fontWeight: 600,
-    color: "#DCCB94",
+    color: "#E6E6E6",
     marginBottom: 5
   };
   return /*#__PURE__*/React.createElement("div", {
@@ -10866,7 +10877,7 @@ function ModalNoticia(_ref47) {
       fontFamily: "'Playfair Display',serif",
       fontSize: 20,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, noticia ? "Editar Notícia" : "Nova Notícia"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
@@ -10884,7 +10895,7 @@ function ModalNoticia(_ref47) {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "x",
     size: 16,
-    color: "#F2E4B5"
+    color: "#F5F5F5"
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
       marginBottom: 14
@@ -10990,7 +11001,7 @@ function ModalNoticia(_ref47) {
       flex: 1,
       padding: "13px",
       background: "#F0EAE8",
-      color: "#F2E4B5",
+      color: "#F5F5F5",
       border: "none",
       borderRadius: 10,
       fontSize: 14,
@@ -11211,14 +11222,14 @@ function AreaRH(_ref48) {
     fontSize: 13,
     outline: "none",
     fontFamily: "inherit",
-    color: "#FFF2CF",
+    color: "#FFFFFF",
     background: "#FAFAFA"
   };
   var lbl = {
     display: "block",
     fontSize: 11,
     fontWeight: 700,
-    color: "#DCCB94",
+    color: "#E6E6E6",
     marginBottom: 5,
     textTransform: "uppercase",
     letterSpacing: 0.8
@@ -11292,7 +11303,7 @@ function AreaRH(_ref48) {
     }, m.value), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 11,
-        color: "#FFF2CF",
+        color: "#FFFFFF",
         fontWeight: 600,
         marginTop: 4
       }
@@ -11309,7 +11320,7 @@ function AreaRH(_ref48) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       marginBottom: 14
     }
   }, "Distribui\xE7\xE3o por Naipe"), Object.entries(naipes).map(function (_ref51) {
@@ -11331,7 +11342,7 @@ function AreaRH(_ref48) {
     }, /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 13,
-        color: "#FFF2CF",
+        color: "#FFFFFF",
         fontWeight: 600
       }
     }, naipe), /*#__PURE__*/React.createElement("span", {
@@ -11360,7 +11371,7 @@ function AreaRH(_ref48) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       marginBottom: 14
     }
   }, "Frequ\xEAncia de Participa\xE7\xE3o"), freqLista.map(function (_ref53) {
@@ -11381,7 +11392,7 @@ function AreaRH(_ref48) {
     }, /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 13,
-        color: "#FFF2CF"
+        color: "#FFFFFF"
       }
     }, nome), /*#__PURE__*/React.createElement("span", {
       style: {
@@ -11410,7 +11421,7 @@ function AreaRH(_ref48) {
     style: {
       fontSize: 13,
       fontWeight: 700,
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       marginBottom: 14
     }
   }, "Confirma\xE7\xF5es \u2014 Pr\xF3ximos Eventos"), proxEventos.map(function (e) {
@@ -11437,7 +11448,7 @@ function AreaRH(_ref48) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#FFF2CF"
+        color: "#FFFFFF"
       }
     }, e.title), /*#__PURE__*/React.createElement("div", {
       style: {
@@ -11494,7 +11505,7 @@ function AreaRH(_ref48) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#FFF2CF"
+        color: "#FFFFFF"
       }
     }, m.name), /*#__PURE__*/React.createElement("span", {
       style: {
@@ -11513,7 +11524,7 @@ function AreaRH(_ref48) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#FFF2CF"
+      color: "#FFFFFF"
     }
   }, "Not\xEDcias do Coral"), /*#__PURE__*/React.createElement("button", {
     onClick: function onClick() {
@@ -11595,13 +11606,13 @@ function AreaRH(_ref48) {
       style: {
         fontSize: 15,
         fontWeight: 700,
-        color: "#FFF2CF",
+        color: "#FFFFFF",
         marginBottom: 6
       }
     }, n.titulo), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 13,
-        color: "#F2E4B5",
+        color: "#F5F5F5",
         lineHeight: 1.5
       }
     }, n.texto.slice(0, 200), n.texto.length > 200 ? "..." : ""));
@@ -11615,7 +11626,7 @@ function AreaRH(_ref48) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       marginBottom: 16
     }
   }, "Declara\xE7\xE3o Individual por Corista"), /*#__PURE__*/React.createElement("div", {
@@ -11674,7 +11685,7 @@ function AreaRH(_ref48) {
     style: {
       fontSize: 14,
       fontWeight: 700,
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       marginBottom: 16
     }
   }, "Hist\xF3rico de Relat\xF3rios Enviados"), relatorios.length === 0 ? /*#__PURE__*/React.createElement("div", {
@@ -11721,12 +11732,12 @@ function AreaRH(_ref48) {
       style: {
         fontSize: 13,
         fontWeight: 600,
-        color: "#FFF2CF"
+        color: "#FFFFFF"
       }
     }, r.tipo || "Relatório"), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#DCCB94"
+        color: "#E6E6E6"
       }
     }, r.periodo || "—", r.corista ? " \xB7 ".concat(r.corista) : ""), /*#__PURE__*/React.createElement("div", {
       style: {
@@ -12054,7 +12065,7 @@ function App() {
         borderRadius: 10,
         border: "none",
         background: tab === item.key ? cor : "none",
-        color: tab === item.key ? "#fff" : "#FFF2CF",
+        color: tab === item.key ? "#fff" : "#FFFFFF",
         cursor: "pointer",
         fontFamily: "inherit",
         fontSize: 17,
@@ -12083,7 +12094,7 @@ function App() {
     style: {
       fontSize: 15,
       fontWeight: 600,
-      color: "#FFF2CF",
+      color: "#FFFFFF",
       marginBottom: 10
     }
   }, user.name), /*#__PURE__*/React.createElement("button", {
