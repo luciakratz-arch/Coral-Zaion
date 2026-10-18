@@ -1394,11 +1394,11 @@ function Login(_ref7) {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      width: 300,
-      height: 150,
+      width: "min(92vw, 480px)",
+      height: "min(46vw, 240px)",
       borderRadius: 0,
       overflow: "hidden",
-      margin: "0 auto 16px",
+      margin: "0 auto 12px",
       background: "transparent"
     }
   }, /*#__PURE__*/React.createElement("img", {
@@ -1414,14 +1414,8 @@ function Login(_ref7) {
     }
   })), /*#__PURE__*/React.createElement("div", {
     style: {
-      fontFamily: "'Playfair Display',serif",
-      fontSize: 28,
-      fontWeight: 700,
-      color: cor
-    }
-  }, config.nomeApp || "Coral Zaion"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 16,
+      fontSize: 18,
+      fontWeight: 600,
       color: "#F5F5F5",
       marginTop: 4
     }
@@ -1798,14 +1792,7 @@ function Login(_ref7) {
       setTela(null);
       setErro("");
     }
-  }, "Voltar")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 32,
-      fontSize: 11,
-      color: "#F2F2F2"
-    }
-  }, config.nomeApp || "Coral Zaion", " \xB7 Portal de Gest\xE3o")
-  );
+  }, "Voltar")));
 }
 
 // ── PAINEL ────────────────────────────────────────────────────────────────────
